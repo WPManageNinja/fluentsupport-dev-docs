@@ -1,0 +1,93 @@
+:root {
+    --vp-c-brand: #00a79c;
+    --my-shadow: 0 3px 10px #00000033;
+    --search-image-filter: invert(0);
+}
+
+.dark {
+    --my-shadow: 0 3px 10px #4b4343;
+    --search-image-filter: invert(1);
+}
+
+.fs-docs-collapse {
+    padding: 0.2rem 1rem;
+    box-shadow: var(--my-shadow);
+    border-radius: 5px;
+
+    .fs-docs-title {
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .fs-docs-content {
+        padding: 15px 0;
+    }
+}
+
+// Disable branding
+.VPPluginSearch-flex-logo {
+    display: none;
+}
+
+.VPPluginSearch-modal{
+    padding-bottom: 50px;
+    position: relative;
+}
+
+.VPPluginSearch-modal::before{
+    content: '';
+    width: 155px;
+    height: 30px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-image: url("../../assets/images/ninjatables-text.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0 10px 5px 10px;
+    filter: var(--search-image-filter);
+}
+
+
+.VPPluginSearch-modal::after{
+    content: '';
+    width: 25px;
+    height: 28px;
+    position: absolute;
+    bottom: 0;
+    right: 120px;
+    background-image: url("../../assets/images/ninja-tables-logo.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0 10px 5px 0;
+    //filter: grayscale(1) invert(1);
+}
+
+
+.DocSearch-Form img.VPPluginSearch-flex-logo {
+    display: none !important;
+}
+.DocSearch-Button {
+    border: 1px solid var(--vp-c-brand);
+    opacity: 0.6;
+    border-radius: 30px;
+    height: 35px;
+    padding: 0 5px 0 10px;
+}
+
+.DocSearch-Search-Icon {
+    color: var(--vp-c-brand);
+}
+.DocSearch-Input {
+    background-color: #00a79c0f;
+}
+.DocSearch-Button-Placeholder {
+    color: inherit;
+}
+.VPButton.brand {
+    background-color: #15BE7C !important;
+}
+.clip {
+    -webkit-text-fill-color: #15BE7C !important;
+}
