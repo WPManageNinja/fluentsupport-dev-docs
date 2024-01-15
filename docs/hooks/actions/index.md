@@ -455,7 +455,7 @@ This action is triggered when attachment uploaded as temporary. asdet
 **Usage**
 
 ```php
-add_action('fluent_support/after_logging_in_user', function ($attachment, $ticketId) {
+add_action('fluent_support/attachment_uploaded_as_temp', function ($attachment, $ticketId) {
      // ...do something
 }, 10, 2);
 ```
@@ -473,7 +473,7 @@ This action is located in <br>
 [//]: # (15)
 <details class="fs-docs-collapse">
 
-<summary class="fs-docs-title">fluent_support_attachment_uploaded_as_temp</summary>
+<summary class="fs-docs-title">fluent_support_after_creating_any_response</summary>
 <hr>
 <div class="fs-docs-content">
 This action is triggered after creating any response.
@@ -503,6 +503,224 @@ This action is located in <br>
 </div>
 
 </details>
+
+[//]: # (16)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_after_ticket_created</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after creating any customer.
+
+**Parameters**
+- '$customer' (object) Customer data
+
+**Usage**
+
+```php
+add_action('fluent_support/customer_created', function ($customer) {
+     // ...do something
+}, 10, 1);
+```
+**Reference**
+
+`do_action('fluent_support/customer_created', $customer)`
+
+This action is located in <br>
+`fluent-support/app/Models/Customer.php`
+</div>
+
+</details>
+
+[//]: # (17)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_when_ticket_is_being_deleted</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered when a ticket is being deleted.
+
+**Parameters**
+- '$ticket' (object) Ticket data
+
+**Usage**
+
+```php
+add_action('fluent_support/deleting_ticket', function ($ticket) {
+     // ...do something
+}, 10, 1);
+```
+**Reference**
+
+`do_action('fluent_support/deleting_ticket', $this)`
+
+This action is located in <br>
+`fluent-support/app/Models/Ticket.php`
+</div>
+
+</details>
+
+[//]: # (18)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_after_ticket_tag_added</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a ticket tag is added
+
+**Parameters**
+- '$tagId' (integer) Tag ID
+- '$ticket' (object) Ticket data
+
+
+**Usage**
+
+```php
+add_action('fluent_support/ticket_tag_added', function ($tagId, $ticket) {
+     // ...do something
+}, 10, 2);
+```
+**Reference**
+
+`do_action('fluent_support/ticket_tag_added', $tagId, $this)`
+
+This action is located in <br>
+`fluent-support/app/Models/Ticket.php`
+</div>
+
+</details>
+
+[//]: # (19)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_after_ticket_tag_removed</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a ticket tag is removed
+
+**Parameters**
+- '$tagId' (integer) Tag ID
+- '$ticket' (object) Ticket data
+
+
+**Usage**
+
+```php
+add_action('fluent_support/ticket_tag_removed', function ($tagId, $ticket) {
+     // ...do something
+}, 10, 2);
+```
+**Reference**
+
+`do_action('fluent_support/ticket_tag_removed', $tagId, $this)`
+
+This action is located in <br>
+`fluent-support/app/Models/Ticket.php`
+</div>
+
+</details>
+
+
+[//]: # (21)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_agent_assigned_to_ticket</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a ticket is assigned to an agent.
+
+**Parameters**
+- '$ticket' (integer) Ticket data
+- '$customer' (object) Customer data
+- '$agent' (object) Agent data
+
+
+**Usage**
+
+```php
+add_action('fluent_support/agent_assigned_to_ticket', function ($ticket, $customer, $agent) {
+     // ...do something
+}, 10, 3);
+```
+**Reference**
+
+`do_action('fluent_support/agent_assigned_to_ticket', $ticket->agent, $ticket, $assigner)`
+
+This action is located in <br>
+`fluent-support/app/Models/Ticket.php`,
+`fluent-support/app/Services/Tickets/ResponseService.php`,
+`fluent-support-pro/app/Services/Workflow/ActionRunner.php`
+</div>
+
+</details>
+
+[//]: # (22)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_before_delete_email_box</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered before deleting a mailbox.
+
+**Parameters**
+- '$box' (object) Mailbox data
+- '$fallbackBox' (object) Fallback Mailbox data
+
+**Usage**
+
+```php
+add_action('fluent_support/before_delete_email_box', function ($box, $fallbackBox) {
+     // ...do something
+}, 10, 2);
+```
+**Reference**
+
+`do_action('fluent_support/before_delete_email_box', $box, $fallbackBox)`
+
+This action is located in <br>
+`fluent-support/app/Services/MailerInbox/MailBoxService.php`
+
+</div>
+
+</details>
+
+[//]: # (23)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_mailbox_deleted</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after deleting a mailbox.
+
+**Parameters**
+- '$mailBoxId' (integer) Mailbox ID
+- '$fallbackBox' (object) Fallback Mailbox data
+
+**Usage**
+
+```php
+add_action('fluent_support/mailbox_deleted', function ($mailBoxId, $fallbackBox) {
+     // ...do something
+}, 10, 2);
+```
+**Reference**
+
+`do_action('fluent_support/mailbox_deleted', $mailBoxId, $fallbackBox)`
+
+This action is located in <br>
+`fluent-support/app/Services/MailerInbox/MailBoxService.php`
+
+</div>
+
+</details>
+
+
+
+
+
+      
+
+
 
 
 
