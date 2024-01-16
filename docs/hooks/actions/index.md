@@ -22,7 +22,7 @@ Here You can find the proper guidelines, handy code snippets, full code examples
 [//]: # (0)
 <details class="fs-docs-collapse">
 
-<summary class="fs-docs-title">fluent_support_before_ticekt_create</summary>
+<summary class="fs-docs-title">fluent_support_before_ticket_create</summary>
 <hr>
 <div class="fs-docs-content">
 This action will run to get the ticket and customer data before ticket create.
@@ -492,14 +492,16 @@ function($createdResponse, $ticket, $person) {
 }, 20, 3);
 ```
 
-**Note:** `$conversationType` is a dynamically assigned conversation type. Here, `$person->person_type denotes` the type of person, whether it be an agent, user, etc.
+**Note:** `$conversationType` is a dynamically assigned conversation type (some hooks use it as `$convoType`). Here, `$person->person_type denotes` the type of person, whether it be an agent, user, etc.
 
 **Reference**
 
 `do_action('fluent_support/' . $conversationType . '_added_by_' . $person->person_type, $response, $ticket, $person)`
 
 This action is located in <br>
-`fluent-support/app/Models/Conversation.php`
+`fluent-support/app/Models/Conversation.php`,
+`fluent-support/app/Services/Tickets/ResponseService.php`
+
 </div>
 
 </details>
@@ -555,7 +557,8 @@ add_action('fluent_support/deleting_ticket', function ($ticket) {
 `do_action('fluent_support/deleting_ticket', $this)`
 
 This action is located in <br>
-`fluent-support/app/Models/Ticket.php`
+`fluent-support/app/Models/Ticket.php`,
+`fluent-support/app/Services/Tickets/TicketService.php`
 </div>
 
 </details>
@@ -664,7 +667,7 @@ This action is triggered before deleting a mailbox.
 
 **Parameters**
 - '$box' (object) Mailbox data
-- '$fallbackBox' (object) Fallback Mailbox data
+- '$fallbackBox' (object) Fallback mailbox data
 
 **Usage**
 
@@ -694,7 +697,7 @@ This action is triggered after deleting a mailbox.
 
 **Parameters**
 - '$mailBoxId' (integer) Mailbox ID
-- '$fallbackBox' (object) Fallback Mailbox data
+- '$fallbackBox' (object) Fallback mailbox data
 
 **Usage**
 
@@ -714,21 +717,620 @@ This action is located in <br>
 
 </details>
 
+[//]: # (24)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_before_move_tickets</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered before moving tickets.
+
+**Parameters**
+- '$data' (array) Mailbox ID
+- '$oldBox' (object) Current mailbox data
+- '$newBox' (object) Data for the new mailbox where selected tickets will be moved
+
+**Usage**
+
+```php
+add_action('fluent_support/before_move_tickets', function ($data, $oldBox, $newBox) {
+     // ...do something
+}, 10, 3);
+```
+**Reference**
+
+`do_action('fluent_support/before_move_tickets', $data, $oldBox, $newBox)`
+
+This action is located in <br>
+`fluent-support/app/Services/MailerInbox/MailBoxService.php`
+
+</div>
+
+</details>
+
+[//]: # (25)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_tickets_moved</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after tickets are moved.
+
+**Parameters**
+- '$data' (array) Details about mailbox data
+- '$oldBox' (object) Current mailbox data
+- '$newBox' (object) Data for the new mailbox where selected tickets will be moved
+
+**Usage**
+
+```php
+add_action('fluent_support/tickets_moved', function ($data, $oldBox, $newBox) {
+     // ...do something
+}, 10, 3);
+```
+**Reference**
+
+`do_action('fluent_support/tickets_moved', $data, $oldBox, $newBox)`
+
+This action is located in <br>
+`fluent-support/app/Services/MailerInbox/MailBoxService.php`
+
+</div>
+
+</details>
+
+[//]: # (26)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_telegram_payload_error</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a Telegram payload error.
+
+**Parameters**
+- '$responseData' (array) Telegram response data
+- '$payload' (array) Telegram payload data
+
+**Usage**
+
+```php
+add_action('fluent_support/telegram_payload_error', function ($responseData, $payload) {
+     // ...do something
+}, 10, 2);
+```
+**Reference**
+
+`do_action('fluent_support/telegram_payload_error', $responseData, $payload)`
+
+This action is located in <br>
+`fluent-support/app/Services/ThirdParty/HandleTelegramEvent.php`
+
+</div>
+
+</details>
+
+[//]: # (27)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_ticket_closed</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after ticket is closed.
+
+**Parameters**
+- '$ticket' (object) Ticket data
+- '$person' (object) Person data
+
+**Usage**
+
+```php
+add_action('fluent_support/ticket_closed', function ($ticket, $person) {
+     // ...do something
+}, 10, 2);
+```
+**Reference**
+
+`do_action('fluent_support/ticket_closed', $ticket, $person)`
+
+This action is located in <br>
+`fluent-support/app/Services/Tickets/ResponseService.php`,
+`fluent-support/app/Services/Tickets/TicketService.php`
+
+</div>
+
+</details>
+
+[//]: # (28)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_after_ticket_closed_by_any_person</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after ticket closed by any person.
+
+**Parameters**
+- '$ticket' (object) Ticket data
+- '$person' (object) Person data
+
+**Usage**
+
+```php
+add_action('fluent_support/ticket_closed_by_' . $person->person_type, function($ticket, $person) {
+   // Do your stuff here
+}, 20, 3);
+```
+
+**Note:** `$person->person_type denotes` the type of person, whether it be an agent, user, etc.
+
+**Reference**
+
+`do_action('fluent_support/ticket_closed_by_' . $person->person_type, $ticket, $person)`
+
+This action is located in <br>
+`fluent-support/app/Models/ResponseService.php`,
+`fluent-support/app/Services/Tickets/TicketService.php`
+
+</div>
+
+</details>
+
+[//]: # (29)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_ticket_reopen</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a ticket is reopened.
+
+**Parameters**
+- '$ticket' (object) Ticket data
+- '$person' (object) Person data
+
+**Usage**
+
+```php
+add_action('fluent_support/ticket_reopen', function ($ticket, $person) {
+     // ...do something
+}, 10, 2);
+```
+**Reference**
+
+`do_action('fluent_support/ticket_reopen', $ticket, $person)`
+
+This action is located in <br>
+`fluent-support/app/Services/Tickets/TicketService.php`
+
+</div>
+
+</details>
+
+[//]: # (30)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_after_ticket_reopen_by_any_person</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a ticket is reopened by any person.
+
+**Parameters**
+- '$ticket' (object) Ticket data
+- '$person' (object) Person data
+
+**Usage**
+
+```php
+add_action('fluent_support/ticket_reopen_by_' . $person->person_type, function($ticket, $person) {
+   // Do your stuff here
+}, 20, 3);
+```
+
+**Note:** `$person->person_type denotes` the type of person, whether it be an agent, user, etc.
+
+**Reference**
+
+`do_action('fluent_support/ticket_reopen_by_' . $person->person_type, $ticket, $person)`
+
+This action is located in <br>
+`fluent-support/app/Services/Tickets/TicketService.php`
+
+</div>
+
+</details>
+
+[//]: # (31)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_ticket_agent_change</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a ticket agent is changed.
+
+**Parameters**
+- '$ticket' (object) Ticket data
+- '$person' (object) Person data
+
+**Usage**
+
+```php
+add_action('fluent_support/ticket_agent_change', function ($ticket, $person) {
+     // ...do something
+}, 10, 2);
+```
+**Reference**
+
+`do_action('fluent_support/ticket_agent_change', $ticket, $person)`
+
+This action is located in <br>
+`fluent-support/app/Services/Tickets/TicketService.php`
+
+</div>
+
+</details>
+
+[//]: # (32)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_ticket_agent_change</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a ticket agent is changed.
+
+**Parameters**
+- '$agent' (object) Agent data
+- '$ticketData' (array) Ticket data
+
+**Usage**
+
+```php
+add_action('fluent_support/ticket_deleted', function ($agent, $ticketData) {
+     // ...do something
+}, 10, 2);
+```
+**Reference**
+
+`do_action('fluent_support/ticket_deleted', $agent, $ticketData)`
+
+This action is located in <br>
+`fluent-support/app/Services/Tickets/TicketService.php`
+
+</div>
+
+</details>
+
+[//]: # (33)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_loaded</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after fluent support loaded.
+
+**Parameters**
+- '$application' (object) Application data
+
+**Usage**
+
+```php
+add_action('fluent_support_loaded', function ($application) {
+     // ...do something
+}, 10, 1);
+```
+**Reference**
+
+`do_action('fluent_support_loaded', $application)`
+
+This action is located in <br>
+`fluent-support/boot/app.php`
+
+</div>
+
+</details>
+
+[//]: # (34)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_addons_loaded</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after fluent support addons loaded.
+
+**Parameters**
+- '$application' (object) Application data
+
+**Usage**
+
+```php
+add_action('fluent_support_addons_loaded', function ($application) {
+     // ...do something
+}, 10, 1);
+```
+**Reference**
+
+` do_action('fluent_support_addons_loaded', $application)`
+
+This action is located in <br>
+`fluent-support/boot/app.php`
+
+</div>
+
+</details>
+
+[//]: # (35)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_delete_remote_attachment_third_party_in_use</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after delete remote attachment.
+
+**Parameters**
+- '$attachment' (object) attachment data
+- '$ticketID' (integer) Ticket ID
+
+**Usage**
+
+```php
+add_action('fluent_support/delete_remote_attachment_' . $attachment->driver, function ($attachment,$ticketID) {
+     // ...do something
+}, 10, 2);
+```
+
+**Note:** `$attachment->driver` the type of person, whether it be an agent, user, etc.
+
+**Reference**
+
+`do_action('fluent_support/delete_remote_attachment_' . $attachment->driver, $attachment, $ticket->id)`
+
+This action is located in <br>
+`fluent-support/app/Hooks/CleanupHandler.php`
+
+</div>
+
+</details>
+
+[//]: # (36)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_verify_dropbox_code</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered to handle Dropbox authorization.
+
+**Parameters**
+- '$code' (string) Dropbox verification code 
+
+**Usage**
+
+```php
+add_action('fluent_support_pro/verify_dropbox_code', function ($code) {
+     // ...do something
+}, 10, 1);
+```
+**Reference**
+
+`do_action('fluent_support_pro/verify_dropbox_code', $code)`
+
+This action is located in <br>
+`fluent-support-pro/app/Http/Controllers/AuthorizeController.php`
+
+</div>
+
+</details>
+
+[//]: # (37)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_before_ticket_create_from_email</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered before ticket create from email.
+
+**Parameters**
+- '$responseOrTicketData' (array) It is either ticket data or response data
+- '$customer' (object) Customer data
+
+**Usage**
+
+```php
+add_action('fluent_support/before_ticket_create_from_email', function ($responseOrTicketData, $customer) {
+     // ...do something
+}, 10, 2);
+```
+**Reference**
+
+`do_action('fluent_support/before_ticket_create_from_email', $responseOrTicketData, $customer)`
+
+This action is located in <br>
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
+
+</div>
+
+</details>
+
+[//]: # (38)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_after_ticket_create_from_email</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after creating a ticket from email.
+
+**Parameters**
+- '$createdTicket' (object) Ticket data
+- '$customer' (object) Customer data
+
+**Usage**
+
+```php
+add_action('fluent_support/after_ticket_create_from_email', function ($createdTicket, $customer) {
+     // ...do something
+}, 10, 2);
+```
+**Reference**
+
+`do_action('fluent_support/after_ticket_create_from_email', $createdTicket, $customer)`
+
+This action is located in <br>
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
+
+</div>
+
+</details>
+
+[//]: # (39)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_ticket_merge</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered when a ticket is merged.
+
+**Parameters**
+- '$ticket' (object) Ticket data
+- '$mergedTicket' (object) Ticket data that will be merged
+
+**Usage**
+
+```php
+add_action('fluent_support/ticket_merge', function ($ticket, $mergedTicket) {
+     // ...do something
+}, 10, 2);
+```
+**Reference**
+
+`do_action('fluent_support/ticket_merge', $ticket, $mergedTicket)`
+
+This action is located in <br>
+`fluent-support-pro/app/Services/ProTicketService.php`
+
+</div>
+
+</details>
+
+[//]: # (40)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_before_ticket_split</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered before a ticket is split.
+
+**Parameters**
+- '$actualTicketId' (string) Ticket ID
+- '$conversationId' (integer) Conversation ID
+- 'data' (array) New ticket data
+
+**Usage**
+
+```php
+add_action('fluent_support/before_ticket_split', function ($actualTicketId, $conversationId, $data) {
+     // ...do something
+}, 10, 3);
+```
+**Reference**
+
+`do_action('fluent_support/before_ticket_split', $actualTicketId, $conversationId, $data)`
+
+This action is located in <br>
+`fluent-support-pro/app/Services/ProTicketService.php`
+
+</div>
+
+</details>
+
+[//]: # (41)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_after_ticket_split</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a ticket is split.
+
+**Parameters**
+- '$actualTicketId' (string) Ticket ID
+- '$newTicket' (object) Ticket data
 
 
+**Usage**
 
+```php
+add_action('fluent_support/after_ticket_split', function ($actualTicketId, $newTicket) {
+     // ...do something
+}, 10, 2);
+```
+**Reference**
 
-      
+`do_action('fluent_support/after_ticket_split', $actualTicketId, $newTicket)`
 
+This action is located in <br>
+`fluent-support-pro/app/Services/ProTicketService.php`
 
+</div>
 
+</details>
 
+[//]: # (42)
+<details class="fs-docs-collapse">
 
+<summary class="fs-docs-title">fluent_support_run_action_from_any_saved_action</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered when an action runs.
 
+**Parameters**
+- '$action' (string) Action name
+- '$workflow' (object) Workflow data
+- '$ticket' (object) Ticket data
 
+**Usage**
 
+```php
+add_action('fluent_support/run_action_' . $action->action_name, function ($action, $workflow, $ticket) {
+     // ...do something
+}, 10, 3);
+```
 
+**Note:** `$action->action_name` represents the type of action name.
 
+**Reference**
+
+`do_action('fluent_support/run_action_' . $action->action_name, $action, $this->workflow, $this->ticket)`
+
+This action is located in <br>
+`fluent-support-pro/app/Services/Workflow/ActionRunner.php`
+
+</div>
+
+</details>
+
+[//]: # (43)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_pro_loaded</summary>
+<hr>
+<div class="fs-docs-content">
+This action is triggered after fluent support pro loaded.
+
+**Parameters**
+- '$app' (object) Application data
+
+**Usage**
+
+```php
+add_action('fluent_support_pro_loaded', function ($app) {
+     // ...do something
+}, 10, 1);
+```
+**Reference**
+
+`do_action('fluent_support_pro_loaded', $app)`
+
+This action is located in <br>
+`fluent-support-pro/fluent-support-pro.php`
+
+</div>
+
+</details>
 
 
 
