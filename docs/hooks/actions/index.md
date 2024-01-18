@@ -492,7 +492,7 @@ function($createdResponse, $ticket, $person) {
 }, 20, 3);
 ```
 
-**Note:** `$conversationType` is a dynamically assigned conversation type (some hooks use it as `$convoType`). Here, `$person->person_type denotes` the type of person, whether it be an agent, user, etc.
+**Note:** `$conversationType` is a dynamically assigned conversation type (some hooks use it as `$convoType`). Here, `$person->person_type` contain the type of person, whether it be an agent, user, etc.
 
 **Reference**
 

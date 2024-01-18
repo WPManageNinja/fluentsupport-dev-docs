@@ -2,7 +2,7 @@
 ###
 <Badge type="info" text="Fluent Support Core" /> <Badge type="tip" text="Basic" />
 
-Fluent Support is the best support plugin to display data in tabular format. Build tables within a minute and customize however you want without coding! It’s the ultimate solution for WordPress tables.
+Fluent Support is go-to helpdesk plugin for unparalleled customer support. Effectively manage and resolve customer queries with ease. This powerful plugin empowers you to create a seamless support experience, allowing you to handle tickets, provide timely responses, and streamline communication effortlessly.
 
 ## Fluent Support Versions
 

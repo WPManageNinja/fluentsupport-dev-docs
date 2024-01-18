@@ -20,3 +20,15 @@ Here You can find the proper guidelines, handy code snippets, full code examples
 
 ## Fluent Support Core Filters
 
+### Ticket Response Filters
+<hr />
+
+<!--@include: ./_ticket_response_filters.md-->
+
+### User Authentication Filters
+<hr />
+
+<!--@include: ./user_authentication_filters.md-->
+
+
+
