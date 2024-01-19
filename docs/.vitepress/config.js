@@ -51,7 +51,7 @@ export default defineConfig({
       '/hooks/filters/': [
         { text: 'Action Hook', link: '/hooks/actions/', },
         { text: 'Filter Hook', link: '/hooks/filters/' },
-      ]
+      ],
     },
 
     socialLinks: [
