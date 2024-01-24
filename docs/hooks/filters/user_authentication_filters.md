@@ -136,47 +136,7 @@ add_filter('fluent_support/registration_form_fields', function ($fields) {
 **Reference**
 `apply_filters('fluent_support/registration_form_fields', $fields)`
 
-
-```php
-
-$fields = [
-    'first_name' => [
-        'required'    => true,
-        'type'        => 'text',
-        'label'       => __('First name', 'fluent-support'),
-        'id'          => 'fst_first_name',
-        'placeholder' => __('First name', 'fluent-support'),
-    ],
-    'last_name' => [
-        'type'        => 'text',
-        'label'       => __('Last Name', 'fluent-support'),
-        'id'          => 'fst_last_name',
-        'placeholder' => __('Last name', 'fluent-support'),
-    ],
-    'username' => [
-        'required'    => true,
-        'type'        => 'text',
-        'label'       => __('Username', 'fluent-support'),
-        'id'          => 'fst_username',
-        'placeholder' => __('Username', 'fluent-support'),
-    ],
-    'email' => [
-        'required'    => true,
-        'type'        => 'email',
-        'label'       => __('Email Address', 'fluent-support'),
-        'id'          => 'fst_email',
-        'placeholder' => __('Your Email Address', 'fluent-support'),
-    ],
-    'password' => [
-        'required'    => true,
-        'type'        => 'password',
-        'label'       => __('Password', 'fluent-support'),
-        'id'          => 'fst_password',
-        'placeholder' => __('Password', 'fluent-support'),
-    ],
-];
-
-```
+<b>`$fields` is specifically for showcasing registration form fields. However, keep in mind that the actual structure in the main code might have slight differences, and you can find the registration form field array defined in main code.</b>
 
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/AuthHandler.php`
@@ -210,56 +170,8 @@ add_filter('fluent_support/custom_registration_form_fields', function ($customFi
 **Reference**
 `apply_filters('fluent_support/custom_registration_form_fields', $customFields)`
 
+<b>`$customFields` is specifically for showcasing custom registration form fields. However, keep in mind that the actual structure in the main code might have slight differences, and you can find the registration form field array defined in main code.</b>
 
-```php
-
-$customFields = [
-        'address_line_1' => [
-            'required'    => false,
-            'type'        => 'text',
-            'label'       => __('Address Line 1', 'fluent-support'),
-            'id'          => 'fst_address_line_1',
-            'placeholder' => __('Address Line 1', 'fluent-support'),
-        ],
-        'address_line_2' => [
-            'required'    => false,
-            'type'        => 'text',
-            'label'       => __('Address Line 2', 'fluent-support'),
-            'id'          => 'fst_address_line_2',
-            'placeholder' => __('Address Line 2', 'fluent-support'),
-        ],
-        'city'      => [
-            'required'    => false,
-            'type'        => 'text',
-            'label'       => __('City', 'fluent-support'),
-            'id'          => 'fst_city',
-            'placeholder' => __('City', 'fluent-support'),
-        ],
-        'zip'   => [
-            'required'    => false,
-            'type'        => 'text',
-            'label'       => __('Zip', 'fluent-support'),
-            'id'          => 'fst_zip',
-            'placeholder' => __('Zip', 'fluent-support'),
-        ],
-        'state'   => [
-            'required'    => false,
-            'type'        => 'text',
-            'label'       => __('State', 'fluent-support'),
-            'id'          => 'fst_state',
-            'placeholder' => __('State', 'fluent-support'),
-        ],
-        'country' => [
-            'required'   => false,
-            'type'       => 'select',
-            'label'      => __('Country', 'fluent-support'),
-            'id'         => 'fst_country',
-            'placeholder' => __('Select a Country', 'fluent-support'),
-            'options'    =>  $countryList,
-        ],
-];
-
-```
 
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/AuthHandler.php`,
