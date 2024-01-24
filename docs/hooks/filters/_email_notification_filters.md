@@ -62,7 +62,7 @@ add_filter('fluent_support/email_footer_credit', function ($message) {
 
 `apply_filters('fluent_support/email_footer_credit', $message)`
 
-<b>`$message` is specifically for showcasing email footer data. However, keep in mind that the actual structure in the main code might have slight differences, and you can find the email footer string defined in the main filter.</b>
+<b>`$message` is used here as an illustrative variable to represent the raw string value found in the main filter, demonstrating the email footer data.</b>
 
 
 This filter is located in <br>

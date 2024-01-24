@@ -136,7 +136,7 @@ add_filter('fluent_support/registration_form_fields', function ($fields) {
 **Reference**
 `apply_filters('fluent_support/registration_form_fields', $fields)`
 
-<b>`$fields` is specifically for showcasing registration form fields. However, keep in mind that the actual structure in the main code might have slight differences, and you can find the registration form field array defined in main code.</b>
+<b>`$fields` is used here as an illustrative variable to represent the raw array value found in the main filter, demonstrating the registration form fields data.</b>
 
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/AuthHandler.php`
@@ -170,7 +170,7 @@ add_filter('fluent_support/custom_registration_form_fields', function ($customFi
 **Reference**
 `apply_filters('fluent_support/custom_registration_form_fields', $customFields)`
 
-<b>`$customFields` is specifically for showcasing custom registration form fields. However, keep in mind that the actual structure in the main code might have slight differences, and you can find the registration form field array defined in main code.</b>
+<b>`$customFields` is used here as an illustrative variable to represent the raw array value found in the main filter, demonstrating the custom registration form fields data.</b>
 
 
 This filter is located in <br>

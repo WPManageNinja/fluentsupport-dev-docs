@@ -39,3 +39,8 @@ Here You can find the proper guidelines, handy code snippets, full code examples
 <br />
 
 <!--@include: ./_email_notification_filters.md-->
+
+### Admin menu Filters
+<br />
+
+<!--@include: ./_admin_menu_filters.md-->
