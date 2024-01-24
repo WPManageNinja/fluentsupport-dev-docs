@@ -28,10 +28,14 @@ Here You can find the proper guidelines, handy code snippets, full code examples
 ### User Authentication Filters
 <br />
 
-<!--@include: ./user_authentication_filters.md-->
+<!--@include: ./_user_authentication_filters.md-->
 
 ### Customer Portal Filters
 <br />
 
 <!--@include: ./_customer_portal_filters.md-->
 
+### Email Notification Filters
+<br />
+
+<!--@include: ./_email_notification_filters.md-->

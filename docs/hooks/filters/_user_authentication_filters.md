@@ -33,7 +33,7 @@ add_filter('fluent_support/login_form_args', function ($loginArgs) {
 
 
 This filter is located in <br>
-`fluent-support/app/Services/Tickets/ResponseService.php`
+`fluent-support/app/Hooks/Handlers/AuthHandler.php`
 </div>
 
 </details>
