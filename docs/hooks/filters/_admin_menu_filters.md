@@ -218,7 +218,6 @@ add_filter('fluent_support/ticket_custom_fields', function ($fields) {
 
 `apply_filters('fluent_support/ticket_custom_fields', [])`
 
-
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/Menu.php`,
 `fluent-support/app/Models/Ticket.php`,

@@ -40,7 +40,12 @@ Here You can find the proper guidelines, handy code snippets, full code examples
 
 <!--@include: ./_email_notification_filters.md-->
 
-### Admin menu Filters
+### Admin Menu Filters
 <br />
 
 <!--@include: ./_admin_menu_filters.md-->
+
+### Ticket Filters
+<br />
+
+<!--@include: ./_ticket_filters.md-->
