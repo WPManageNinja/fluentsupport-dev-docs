@@ -226,6 +226,39 @@ This filter is located in <br>
 
 </details>
 
+[//]: # (6)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_dashboard_notice</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve the dashboard notice and agent data and modify it.
+
+**Parameters**
+
+- '$dashboardNotice' (array) ticket custom fields
+- '$agent' (object) Agent data
+
+**Usage**
+
+```php
+add_filter('fluent_support/dashboard_notice', function ($dashboardNotice, $agent) {
+    // ...do something
+    return $dashboardNotice
+}, 10, 2)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/dashboard_notice', '', $agent)`
+
+This filter is located in <br>
+`fluent-support/app/Http/Controllers/AgentController.php`,
+`fluent-support-pro/app/Hooks/filters.php`
+</div>
+
+</details>
+
 
 </explain-block>
 

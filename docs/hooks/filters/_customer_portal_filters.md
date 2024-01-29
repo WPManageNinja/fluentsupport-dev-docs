@@ -137,6 +137,76 @@ This filter is located in <br>
 
 </details>
 
+[//]: # (3)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_can_customer_create_ticket</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve whether a customer can create a ticket, along with customer and ticket data and allows you to modify it.
+
+**Parameters**
+
+- '$canCreate' (boolean) Customer can create ticket or not
+- '$customer' (object) Customer data
+- '$data' (array) Ticket data
+
+**Usage**
+
+```php
+add_filter('fluent_support/can_customer_create_ticket', function ($canCreate, $customer, $data) {
+    // ...do something
+    return $vars
+}, 10, 3)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/can_customer_create_ticket', true, $customer, $data)`
+
+
+This filter is located in <br>
+`fluent-support/app/Http/Controllers/CustomerPortalController.php`,
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
+</div>
+
+</details>
+
+[//]: # (4)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_can_customer_create_response</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve whether a customer can create a response, along with customer, ticket along with response data and allows you to modify it.
+
+**Parameters**
+
+- '$canCreate' (boolean) Customer can create ticket or not
+- '$customer' (object) Customer data
+- '$ticket' (object) Ticket data
+- '$data' (array) Ticket response data
+
+**Usage**
+
+```php
+add_filter('fluent_support/can_customer_create_response', function ($canCreate, $customer, $ticket,  $data) {
+    // ...do something
+    return $canCreate
+}, 10, 4)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/can_customer_create_response', true, $ticket->customer, $ticket, $data)`
+
+
+This filter is located in <br>
+`fluent-support/app/Http/Controllers/CustomerPortalController.php`,
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
+</div>
+
+</details>
 
 
 </explain-block>
