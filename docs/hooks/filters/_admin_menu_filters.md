@@ -259,6 +259,38 @@ This filter is located in <br>
 
 </details>
 
+[//]: # (7)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_agent_has_access</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve the agent has access or not data and modify it.
+
+**Parameters**
+
+- '$status' (boolean) Information about whether an agent has access or not
+- '$request' (object) Fluent support framework request
+
+**Usage**
+
+```php
+add_filter('fluent_support/agent_has_access', function ($status, $request) {
+    // ...do something
+    return $status
+}, 10, 2)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/agent_has_access', $status, $request)`
+
+This filter is located in <br>
+`fluent-support/app/Http/Policies/AgentTicketPolicy.php`,
+</div>
+
+</details>
+
 
 </explain-block>
 

@@ -526,5 +526,72 @@ This filter is located in <br>
 
 </details>
 
+[//]: # (16)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_fst_menu_url_base</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve fluent support admin url base data and modify it.
+
+**Parameters**
+
+- '$urlBase' (string) Fluent support admin url base
+
+**Usage**
+
+```php
+add_filter('fluent_support/fst_menu_url_base', function ($urlBase) {
+    // ...do something
+    return $urlBase
+}, 10, 1)
+```
+
+**Reference**
+
+`$urlBase = apply_filters(
+    'fst_menu_url_base',
+    admin_url('admin.php?page=fluent-support#/')
+)`
+
+This filter is located in <br>
+`fluent-support/app/Services/Tickets/TicketStats.php`
+</div>
+
+</details>
+
+[//]: # (16)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_fst_menu_url_base</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve list of quick links data and modify it.
+
+**Parameters**
+
+- '$quickLinks' (array) List of quick links
+
+**Usage**
+
+```php
+add_filter('fluent_support/fst_menu_url_base', function ($quickLinks) {
+    // ...do something
+    return $quickLinks
+}, 10, 1)
+```
+
+**Reference**
+
+`apply_filters('fst_quick_links', $quickLinks))`
+
+<b>`$quickLinks` is used here as an illustrative variable to represent the raw array value found in the main filter, demonstrating the quick links data such as active tickets, total tickets, etc.</b>
+
+
+This filter is located in <br>
+`fluent-support/app/Services/Tickets/TicketStats.php`
+</div>
+
+</details>
 
 </explain-block>
