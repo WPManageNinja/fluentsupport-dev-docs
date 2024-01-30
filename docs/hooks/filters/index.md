@@ -20,36 +20,35 @@ Here You can find the proper guidelines, handy code snippets, full code examples
 
 ## Fluent Support Core Filters
 
+### Ticket Filters
+<br />
+
+<!--@include: ./_ticket_filters.md-->
+
 ### Ticket Response Filters
 <br />
 
 <!--@include: ./_ticket_response_filters.md-->
+
+### Admin Dashboard Filters
+<br />
+
+<!--@include: ./_admin_dashboard_filters.md-->
+
+### Frontend Filters
+<br />
+
+<!--@include: ./_frontend_filters.md-->
 
 ### User Authentication Filters
 <br />
 
 <!--@include: ./_user_authentication_filters.md-->
 
-### Customer Portal Filters
-<br />
-
-<!--@include: ./_customer_portal_filters.md-->
-
 ### Email Notification Filters
 <br />
 
 <!--@include: ./_email_notification_filters.md-->
-
-### Admin Menu Filters
-<br />
-
-<!--@include: ./_admin_menu_filters.md-->
-
-### Ticket Filters
-<br />
-
-<!--@include: ./_ticket_filters.md-->
-
 
 ### Other Useful Filters
 <br />

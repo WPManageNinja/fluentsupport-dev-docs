@@ -1,4 +1,4 @@
-<explain-block title="fluent-support/admin_menu_filters">
+<explain-block title="fluent-support/admin_dashboard_filters">
 
 [//]: # (0)
 <details class="fs-docs-collapse">

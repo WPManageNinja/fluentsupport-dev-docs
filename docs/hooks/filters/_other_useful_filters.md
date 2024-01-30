@@ -327,4 +327,73 @@ This filter is located in <br>
 
 </details>
 
+[//]: # (10)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_migrator_class_mapper</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve the Ticket migration class mapper data and modify it.
+
+**Parameters**
+
+- '$classMapper' (array) Ticket migration class mapper
+
+**Usage**
+
+```php
+add_filter('fluent_support/migrator_class_mapper', function ($classMapper) {
+    // ...do something
+    return $classMapper
+}, 10, 1)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/migrator_class_mapper', [
+            'awesome-support' => 'AwesomeSupportTickets',
+            'support-candy'   => 'SupportCandyTickets',
+            'js-helpdesk'     => 'JSHelpdeskTickets',
+        ])`
+
+This filter is located in <br>
+`fluent-support/app/Services/Tickets/Importer/MigratorService.php`
+</div>
+
+</details>
+
+
+[//]: # (11)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_allow_share_essential</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve the permission for share essential data and modify it.
+
+**Parameters**
+
+- '$allowShareEssential' (boolean) Permission to share essential data or not
+
+**Usage**
+
+```php
+add_filter('fluentsupport_allow_share_essential', function ($allowShareEssential) {
+    // ...do something
+    return $allowShareEssential
+}, 10, 1)
+```
+
+**Reference**
+
+`apply_filters('fluentsupport_allow_share_essential', Helper::getOption('_share_essential', 'no') == 'yes')`
+
+This filter is located in <br>
+`fluent-support/app/Services/Tickets/Importer/MigratorService.php`
+</div>
+
+</details>
+
+
+
 </explain-block>
