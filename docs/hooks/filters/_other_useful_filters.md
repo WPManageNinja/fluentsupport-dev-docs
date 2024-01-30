@@ -195,4 +195,136 @@ This filter is located in <br>
 
 </details>
 
+
+[//]: # (6)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_uploaded_file_name_prefix</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve file name prefix and modify it.
+
+**Parameters**
+
+- '$prefix' (string) File name prefix
+**Usage**
+
+```php
+add_filter('fluent_support/uploaded_file_name_prefix', function ($prefix) {
+    // ...do something
+    return $prefix
+}, 10, 1)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/uploaded_file_name_prefix', $prefix)`
+
+This filter is located in <br>
+`fluent-support/app/Services/Includes/FileSystem.php`
+</div>
+
+</details>
+
+[//]: # (7)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_smartcode_fallback</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve Smartcode data and modify it.
+
+**Parameters**
+
+- '$matches' (string) Smartcode data
+- '$data' (object) Customer data
+**Usage**
+
+```php
+add_filter('fluent_support/smartcode_fallback', function ($matches, $data) {
+    // ...do something
+    return $matches
+}, 10, 2)
+```
+
+**Reference**
+
+`apply_filters('fluentsupport/smartcode_fallback', $matches[0], $data)`
+
+This filter is located in <br>
+`fluent-support/app/Services/Parser/ShortcodeParser.php`
+</div>
+
+</details>
+
+[//]: # (8)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_smartcode_fallback_callback</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve fallback behavior for smartcodes and modify it.
+
+**Parameters**
+
+- '$matches' (string) Smartcode data
+- '$valueKey' (string) Key associated with the original value
+- '$defaultValue' (string) The default value to fall back on if the smartcode cannot be resolved
+- '$data' (object) Customer data
+
+**Usage**
+
+```php
+add_filter('fluentsupport/smartcode_fallback_callback_' . $dataKey, function ($matches, $valueKey, $defaultValue, $data) {
+    // ...do something
+    return $matches
+}, 10, 4)
+```
+**Note:** `$dataKey` Unique key or identifier associated with the specific data being processed.
+
+**Reference**
+
+`apply_filters('fluentsupport/smartcode_fallback_callback_' . $dataKey, $matches[0], $valueKey, $defaultValue, $data)`
+
+This filter is located in <br>
+`fluent-support/app/Services/Parser/ShortcodeParser.php`
+</div>
+
+</details>
+
+[//]: # (9)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_strict_subjects</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve the strict subjects and modify it.
+
+**Parameters**
+
+- '$subjects' (array) Email based subjects
+
+**Usage**
+
+```php
+add_filter('fluent_support/strict_subjects', function ($subjects) {
+    // ...do something
+    return $subjects
+}, 10, 1)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/strict_subjects', [
+            'ticket_replied_by_agent_email_to_customer',
+            'ticket_closed_by_agent_email_to_customer',
+            'ticket_created_email_to_customer'
+        ])`
+
+This filter is located in <br>
+`fluent-support/app/Services/EmailNotification/Settings.php`
+</div>
+
+</details>
+
 </explain-block>

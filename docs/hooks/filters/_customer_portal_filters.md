@@ -227,12 +227,45 @@ This filter hook allows you to retrieve user profile edit link data and modify i
 add_filter('fluent_support/person_user_edit_url', function ($userEditUrl, $instance) {
     // ...do something
     return $userEditUrl
-}, 10, 4)
+}, 10, 2)
 ```
 
 **Reference**
 
 `apply_filters('fluent_support/person_user_edit_url', $userEditUrl, $this)`
+
+
+This filter is located in <br>
+`fluent-support/app/Models/Person.php`
+</div>
+
+</details>
+
+[//]: # (4)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_customer_extra_widgets</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve customer extra widgets data and modify it.
+
+**Parameters**
+
+- '$widgets' (array) Widgets data
+- '$customer' (object) Customer data
+
+**Usage**
+
+```php
+add_filter('fluent_support/customer_extra_widgets', function ($widgets, $customer) {
+    // ...do something
+    return $widgets
+}, 10, 2)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/customer_extra_widgets', $widgets, $customer)`
 
 
 This filter is located in <br>

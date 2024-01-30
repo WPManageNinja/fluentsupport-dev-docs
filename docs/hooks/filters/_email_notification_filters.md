@@ -71,5 +71,39 @@ This filter is located in <br>
 
 </details>
 
+[//]: # (2)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_email_setting_keys</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve email settings key data and modify it.
+
+**Parameters**
+
+- '$emailSettingsKey' (array) email settings key data
+
+**Usage**
+
+```php
+add_filter('fluent_support/email_setting_keys', function ($emailSettingsKey) {
+    // ...do something
+    return $emailSettingsKey
+}, 10, 1)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/email_setting_keys', $emailSettingsKey )`
+
+<b>`$emailSettingsKey` is used here as an illustrative variable to represent the raw string value found in the main filter, demonstrating the mail settings key data.</b>
+
+
+This filter is located in <br>
+`fluent-support/app/Services/EmailNotification/Settings.php`
+</div>
+
+</details>
+
 
 </explain-block>
