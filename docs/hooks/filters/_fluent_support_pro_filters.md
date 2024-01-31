@@ -652,7 +652,7 @@ This filter hook allows you to retrieve the outgoing webhook data and modify it.
 add_filter('fluent_support/outgoing_webhook_data', function($data, $action, $ticket) {
     // ...do something
     return $groups
-}, 10, 1)
+}, 10, 3)
 ```
 
 **Reference**
@@ -662,6 +662,169 @@ add_filter('fluent_support/outgoing_webhook_data', function($data, $action, $tic
 
 This filter is located in <br>
 `fluent-support-pro/app/Services/Workflow/ActionRunner.php`
+</div>
+
+</details>
+
+[//]: # (18)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_workflow_ticket_created_supported_conditions</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve the workflow ticket created supported conditions data and modify it.
+
+**Parameters**
+
+- '$supportedConditions' (array) Ticket created supported conditions data
+
+**Usage**
+
+```php
+add_filter('fluent_support/workflow_ticket_created_supported_conditions', function($supportedConditions) {
+    // ...do something
+    return $supportedConditions
+}, 10, 1)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/workflow_ticket_created_supported_conditions', $supportedConditions)`
+
+<b>`$supportedConditions` is used here as an illustrative variable to represent the raw array value found in the main filter, demonstrating the ticket created supported conditions data.</b>
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`
+</div>
+
+</details>
+
+[//]: # (19)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_workflow_response_added_by_customer_
+supported_conditions</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve the response added by customer supported conditions data and modify it.
+
+**Parameters**
+
+- '$supportedConditions' (array) Response added by customer supported conditions data
+
+**Usage**
+
+```php
+add_filter('fluent_support/workflow_response_added_by_customer_supported_conditions', function($supportedConditions) {
+    // ...do something
+    return $supportedConditions
+}, 10, 1)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/workflow_response_added_by_customer_supported_conditions', $supportedConditions)`
+
+<b>`$supportedConditions` is used here as an illustrative variable to represent the raw array value found in the main filter, demonstrating the response added by customer supported conditions data.</b>
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`
+</div>
+
+</details>
+
+[//]: # (20)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_workflow_ticket_closed_supported_conditions</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve the ticket closed supported conditions data and modify it.
+
+**Parameters**
+
+- '$supportedConditions' (array) Ticket closed supported conditions data
+
+**Usage**
+
+```php
+add_filter('fluent_support/workflow_ticket_closed_supported_conditions', function($supportedConditions) {
+    // ...do something
+    return $supportedConditions
+}, 10, 1)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/workflow_ticket_closed_supported_conditions', $supportedConditions)`
+
+<b>`$supportedConditions` is used here as an illustrative variable to represent the raw array value found in the main filter, demonstrating the ticket closed supported conditions data.</b>
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`
+</div>
+
+</details>
+
+[//]: # (21)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_workflow_conditions</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve the Workflow conditions data and modify it.
+
+**Parameters**
+
+- '$conditions' (array) Workflow conditions data
+
+**Usage**
+
+```php
+add_filter('fluent_support/workflow_conditions', function($conditions) {
+    // ...do something
+    return $conditions
+}, 10, 1)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/workflow_conditions', $conditions)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`
+</div>
+
+</details>
+
+[//]: # (22)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_workflow_actions</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve the Workflow actions data and modify it.
+
+**Parameters**
+
+- '$actions' (array) Workflow actions data
+- '$workFlow' (array) Workflow data
+
+**Usage**
+
+```php
+add_filter('fluent_support/workflow_actions', function($actions, $workFlow) {
+    // ...do something
+    return $actions
+}, 10, 2)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/workflow_actions', $actions, $workFlow)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`
 </div>
 
 </details>
