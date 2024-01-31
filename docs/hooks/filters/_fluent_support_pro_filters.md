@@ -600,6 +600,72 @@ This filter is located in <br>
 
 </details>
 
+[//]: # (16)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_advanced_filter_options</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve the advanced filter options data and modify it.
+
+**Parameters**
+
+- '$groups' (array) Advanced filter options data
+
+**Usage**
+
+```php
+add_filter('fluent_support/advanced_filter_options', function($groups) {
+    // ...do something
+    return $groups
+}, 10, 1)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/advanced_filter_options', $groups)`
+
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/ProHelper.php`
+</div>
+
+</details>
+
+[//]: # (17)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_outgoing_webhook_data</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve the outgoing webhook data and modify it.
+
+**Parameters**
+
+- '$data' (array) Formatted Ticket data
+- '$action' (object) Workflow action data
+- '$ticket' (object) Ticket data
+
+**Usage**
+
+```php
+add_filter('fluent_support/outgoing_webhook_data', function($data, $action, $ticket) {
+    // ...do something
+    return $groups
+}, 10, 1)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/outgoing_webhook_data', $data, $action, $this->ticket)`
+
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Workflow/ActionRunner.php`
+</div>
+
+</details>
+
 
 </explain-block>
 
