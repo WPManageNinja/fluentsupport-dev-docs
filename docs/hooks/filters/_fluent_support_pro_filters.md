@@ -536,5 +536,70 @@ This filter is located in <br>
 
 </details>
 
+[//]: # (16)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_woo_menu_link_position</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve the support page link position in WooCommerce customer menu and modify it.
+
+**Parameters**
+
+- '$supportTicketPosition' (boolean) Support page link position in WooCommerce customer menu
+
+**Usage**
+
+```php
+add_filter('fluent_support/woo_menu_link_position', function($supportTicketPosition) {
+    // ...do something
+    return $supportTicketPosition
+}, 10, 1)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/woo_menu_link_position', 3)`
+
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Integrations/WooCommerce.php`
+</div>
+
+</details>
+
+[//]: # (16)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_woo_menu_label</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve the support page link label in WooCommerce customer menu and modify it.
+
+**Parameters**
+
+- '$supportLabel' (string) Support page link label in WooCommerce customer menu
+
+**Usage**
+
+```php
+add_filter('fluent_support/woo_menu_label', function($supportLabel) {
+    // ...do something
+    return $supportLabel
+}, 10, 1)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/woo_menu_label', $supportLabel)`
+
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Integrations/WooCommerce.php`
+</div>
+
+</details>
+
+
 </explain-block>
 
