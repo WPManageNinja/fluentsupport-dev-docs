@@ -39,6 +39,7 @@ export default defineConfig({
           { text: 'Action Hook', link: '/hooks/actions/', },
           { text: 'Filter Hook', link: '/hooks/filters/' },
           { text: 'Functions', link: '/hooks/functions/' },
+          { text: 'Global Functions', link: '/global-functions/' },
         ],
       },
     ],
@@ -51,6 +52,9 @@ export default defineConfig({
       '/hooks/filters/': [
         { text: 'Action Hook', link: '/hooks/actions/', },
         { text: 'Filter Hook', link: '/hooks/filters/' },
+      ],
+      '/global-functions/': [
+        { text: 'Global Functions', link: '/global-functions/'}
       ],
     },
 
