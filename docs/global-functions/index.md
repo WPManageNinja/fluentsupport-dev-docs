@@ -108,155 +108,43 @@ public static function ticketStatusGroups()
 **Available Filter Hook:** `fluent_support/ticket_status_groups`
 
 
-### fluentcrm\_update\_subscriber\_meta
-Update Contact's Meta Value
-
-**Parameters**
-- $subscriberId `int` required
-- $key `string` required, Meta Key of the subscriber
-- $value `mixed` value of the meat
-
-**Return** \FluentCrm\App\Models\SubscriberMeta
-
-
-### fluentcrm\_delete\_subscriber\_meta
-Delete Subscriber's Meta
-
-**Parameters**
-- $subscriberId `int` required
-- $key `string` required, Meta Key of the campaign
-
-**Return** Boolean
-
-
-### fluentcrm\_subscriber\_statuses
-Get Contact Statuses.
-
-**Parameters**
-- $isOptions `boolean` if true then it will return as options structure array with `id`, `slug`, `title` properties
+### ticketStatuses
+This function will return changeable ticket status group
 
 **Return** array
 
-Example: 
-```php 
-fluentcrm_subscriber_statuses();
-//returns
-[
-    'subscribed',
-    'pending',
-    'unsubscribed',
-    'bounced',
-    'complained'
-]
+**Available Filter Hook:** `fluent_support/changeable_ticket_statuses`
 
-fluentcrm_subscriber_statuses(true);
-// returns
-[
-    [
-        'id' => 'subscribed',
-        'title' => 'Subscribed',
-        'slug' => 'subscribed'
-    ],
-    .....,
-    .....
-]
-```
-
-**Available Filter Hook:** `fluent_crm/contact_statuses`
-
-### fluentcrm\_subscriber\_editable\_statuses
-Get Contact Statuses except `bounced` and `complained`
-
-**Parameters**
-- $isOptions `boolean` if true then it will return as options structure array with `id`, `slug`, `title` properties
-
-**Return** array
-
-**Available Filter Hook:** `fluent_crm/contact_editable_statuses`
-
-### fluentcrm\_contact\_types
-Get Contact Types as array
-
-**Parameters**
-- $isOptions `boolean` if true then it will return as options structure array with `id`, `slug`, `title` properties
-
-**Return** array
-
-Example:
-```php 
-fluentcrm_contact_types();
-//returns
-[
-    'lead'     => 'Lead',
-    'customer' => 'Customer'
-]
-
-fluentcrm_contact_types(true);
-// returns
-[
-    [
-        'id' => 'lead',
-        'title' => 'Lead',
-        'slug' => 'lead'
-    ],
-    .....
-]
-
-```
-
-**Available Filter Hook:** `fluentcrm_contact_types`
-
-
-### fluentcrm\_activity\_types
-Get Contact Note Activity Types items as array
+### ticketStatusGroups
+This function will return ticket status list
 
 **Return** array
 
 Source:
 ```php 
-function fluentcrm_activity_types()
+public static function ticketStatusGroups()
 {
-    return apply_filters('fluentcrm_contact_activity_types', [
-        'note'              => __('Note', 'fluent-crm'),
-        'call'              => __('Call', 'fluent-crm'),
-        'email'             => __('Email', 'fluent-crm'),
-        'meeting'           => __('Meeting', 'fluent-crm'),
-        'quote_sent'        => __('Quote: Sent', 'fluent-crm'),
-        'quote_accepted'    => __('Quote: Accepted', 'fluent-crm'),
-        'quote_refused'     => __('Quote: Refused', 'fluent-crm'),
-        'invoice_sent'      => __('Invoice: Sent', 'fluent-crm'),
-        'invoice_part_paid' => __('Invoice: Part Paid', 'fluent-crm'),
-        'invoice_paid'      => __('Invoice: Paid', 'fluent-crm'),
-        'invoice_refunded'  => __('Invoice: Refunded', 'fluent-crm'),
-        'transaction'       => __('Transaction', 'fluent-crm'),
-        'feedback'          => __('Feedback', 'fluent-crm'),
-        'tweet'             => __('Tweet', 'fluent-crm'),
-        'facebook_post'     => __('Facebook Post', 'fluent-crm')
+    return apply_filters('fluent_support/ticket_status_groups', [
+        'open'   => ['new', 'active'],
+        'active' => ['active'],
+        'closed' => ['closed'],
+        'new'    => ['new'],
+        'all'    => []
     ]);
 }
 ```
-**Available Filter Hook:** `fluentcrm_contact_activity_types`
 
-### fluentcrm\_get\_current\_contact
-Get Current Contact based on the current userID or contact from the cookie value
+**Available Filter Hook:** `fluent_support/ticket_status_groups`
 
-**@return** `false|object` \FluentCrm\App\Models\Subscriber
 
-### fluentcrm\_get\_crm\_profile\_html
-Get FluentCRM's contact profile widget HTML
+
+### getCustomerByID
+Get customer information by user id
 
 **Parameters**
-- $userIdOrEmail `int|string` User ID or email address of the contact
-- $checkPermission `boolean` Whether to check current user's permission
-- $withCss `boolean` Whether to include CSS
+- $customerid `Integer` Customer ID
+
+**Return** Customer Instance
 
 
-**@return** `false|string` HTML of the contact's profile widget
-
-### fluentcrm\_get\_custom\_contact\_fields
-Get Custom Fields schema for contacts
-
-
-### fluentCrmGetContactSecureHash
-Get unique long hash of a contact which can be used to identify the contact for various usage when is not logged in.
 
