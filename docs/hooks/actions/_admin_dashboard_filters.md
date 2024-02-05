@@ -59,6 +59,7 @@ This action is located in <br>
 </details>
 
 [//]: # (2)
+
 <details class="fs-docs-collapse">
 
 <summary class="fs-docs-title">fluent_support_pro_loaded</summary>

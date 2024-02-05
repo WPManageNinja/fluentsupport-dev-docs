@@ -3,14 +3,19 @@ outline: deep
 pageClass: global-functions
 ---
 
-## Global Functions
+## Helper Classes
 
-Fluent Support has few global functions which are located at `app/functions/helpers.php` file.
-In this article, we are documenting few useful functions that you may use. For full understanding, please check the `app/functions/helpers.php` file 
+Fluent Support offers several helper classes to simplify interactions for building advanced functionalities in your plugin. While primarily used by the plugin, these functions are available for your use in custom addons.
+
+
+# Fluent Support Core Helper Class
+
+- Class with Namespace: `FluentSupport\App\Services\Helper`
+- Method Types: `static`
 
 [[toc]]
 
-### getOption
+### Helper::getOption()
 Get fluent-support Option. This is similar to WordPress's `get_option()` function, but it uses its own database table instead of `wp_options` table
 
 **Parameters**
@@ -20,7 +25,7 @@ Get fluent-support Option. This is similar to WordPress's `get_option()` functio
 **Return** `mixed`
 
 
-### updateOption
+### Helper::updateOption()
 Update fluent-support Option. This is similar to WordPress's `update_option()` function, but it uses its own database table instead of `wp_options` table
 
 **Parameters**
@@ -29,7 +34,7 @@ Update fluent-support Option. This is similar to WordPress's `update_option()` f
 
 **Return** `mixed`
 
-### deleteOption
+### Helper::deleteOption($key)
 Delete fluent-support Option. This is similar to WordPress's `delete_option()` function, but it uses its own database table instead of `wp_options` table
 
 **Parameters**
@@ -38,7 +43,7 @@ Delete fluent-support Option. This is similar to WordPress's `delete_option()` f
 **Return** boolean
 
 
-### getAgentByUserId
+### Helper::getAgentByUserId($id)
 Get agent information by user id
 
 **Parameters**
@@ -47,8 +52,8 @@ Get agent information by user id
 
 **Return** mixed
 
-### customerTicketPriorities
-This function will return the list of ticket priorities list for customer
+### Helper::customerTicketPriorities()
+This function will return the list of ticket priorities for customer
 
 **Return** array
 
@@ -67,8 +72,8 @@ public static function customerTicketPriorities()
 **Available Filter Hook:** `fluent_support/customer_ticket_priorities`
 
 
-### adminTicketPriorities
-This function will return the list of ticket priorities list for Admin
+### Helper::adminTicketPriorities()
+This function will return the list of ticket priorities for Admin
 
 **Return** array
 
@@ -86,7 +91,7 @@ public static function adminTicketPriorities()
 
 **Available Filter Hook:** `fluent_support/admin_ticket_priorities`
 
-### ticketStatusGroups
+### Helper::ticketStatusGroups()
 This function will return ticket status group
 
 **Return** array
@@ -108,14 +113,14 @@ public static function ticketStatusGroups()
 **Available Filter Hook:** `fluent_support/ticket_status_groups`
 
 
-### ticketStatuses
+### Helper::ticketStatuses()
 This function will return changeable ticket status group
 
 **Return** array
 
 **Available Filter Hook:** `fluent_support/changeable_ticket_statuses`
 
-### ticketStatusGroups
+### Helper::ticketStatusGroups()
 This function will return ticket status list
 
 **Return** array
@@ -138,11 +143,11 @@ public static function ticketStatusGroups()
 
 
 
-### getCustomerByID
+### Helper::getCustomerByID($customerId)
 Get customer information by user id
 
 **Parameters**
-- $customerid `Integer` Customer ID
+- $customerId `Integer` Customer ID
 
 **Return** Customer Instance
 

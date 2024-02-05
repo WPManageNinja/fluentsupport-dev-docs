@@ -38,11 +38,20 @@ export default defineConfig({
         items: [
           { text: 'Action Hook', link: '/hooks/actions/', },
           { text: 'Filter Hook', link: '/hooks/filters/' },
-          { text: 'Functions', link: '/hooks/functions/' },
-          { text: 'Global Functions', link: '/global-functions/' },
+          { text: 'Helper Classes', link: '/helpers/' },
           { text: 'Utility Functions', link: '/utility-functions/' },
         ],
       },
+      {
+        text: 'Rest API',
+        link: 'https://fluentsupport.com/rest-api/#introduction',
+      },
+      {
+        text: 'Blog',
+        link: 'https://fluentsupport.com/blog/',
+      },
+
+    
     ],
 
     sidebar: {
@@ -54,12 +63,12 @@ export default defineConfig({
         { text: 'Action Hook', link: '/hooks/actions/', },
         { text: 'Filter Hook', link: '/hooks/filters/' },
       ],
-      '/global-functions/': [
-        { text: 'Global Functions', link: '/global-functions/'},
+      '/helpers/': [
+        { text: 'Helper Classes', link: '/helpers/'},
         { text: 'Utility Functions', link: '/utility-functions/' }
       ],
       '/utility-functions/': [
-        { text: 'Global Functions', link: '/global-functions/'},
+        { text: 'Helper Classes', link: '/helpers/'},
         { text: 'Utility Functions', link: '/utility-functions/' }
       ],
     },
