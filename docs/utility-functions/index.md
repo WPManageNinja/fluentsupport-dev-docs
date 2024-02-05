@@ -2,6 +2,9 @@
 outline: deep
 ---
 
+## Ticket API Function
+<!--@include: ./_ticket_api_function.md-->
+
 ## Agents API Function
 <!--@include: ./_agent_api_function.md-->
 
@@ -13,3 +16,4 @@ outline: deep
 
 ## Tag API Function
 <!--@include: ./_tag_api_function.md-->
+
