@@ -31,13 +31,15 @@ $customer = $customersApi->getCustomer($customerId);
 ```
 
 ### updateCustomer($data, $agentId)
-This method returns customer data based on the customer_id.
+This method update the customer data 
 ```php 
 /*
-* Find a customer by customer_id
-* You can find a customer by customer_id
-* @return: null or FluentSupport\App\Models\Customer Model
-*/
+ * updateCustomer method will update the specific customer by id
+ *
+ * @param array $data
+ * @param int $customer_id
+ * @return object|boolean
+ */
 $customer = $customersApi->updateCustomer($data, $agentId);
 ```
 

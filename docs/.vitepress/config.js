@@ -58,6 +58,10 @@ export default defineConfig({
         { text: 'Global Functions', link: '/global-functions/'},
         { text: 'Utility Functions', link: '/utility-functions/' }
       ],
+      '/utility-functions/': [
+        { text: 'Global Functions', link: '/global-functions/'},
+        { text: 'Utility Functions', link: '/utility-functions/' }
+      ],
     },
 
     socialLinks: [
