@@ -10,3 +10,6 @@ outline: deep
 
 ## Product API Function
 <!--@include: ./_product_api_function.md-->
+
+## Tag API Function
+<!--@include: ./_tag_api_function.md-->

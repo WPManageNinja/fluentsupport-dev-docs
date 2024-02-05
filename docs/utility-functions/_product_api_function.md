@@ -45,14 +45,14 @@ $data = $productApi->createProduct($data);
 ### updateProduct($id, $data)
 This method will Updates a product by using the product ID.
 
-```
+```php
 /*
 * updateProduct method will update product by id
 * @param int $id
 * @param array $data
 * @return array|null Returns the updated product or null.
 */
-$updateProduct = $productApi->updateProduct($id, $data);
+$data = $productApi->updateProduct($id, $data);
 ```
 
 ### deleteProduct($id)
@@ -63,5 +63,5 @@ This method will delete a product by using the product ID
 * @param int $id
 * @return bool True if the deletion is successful; otherwise, returns false.
 */
-$deleteProduct = $productApi->deleteProduct($id);
+$data = $productApi->deleteProduct($id);
 ```
