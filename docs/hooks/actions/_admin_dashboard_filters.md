@@ -1,9 +1,5 @@
-<explain-block title="fluent-support/_admin_dashboard_filters">
+<explain-block title="fluent_support_after_admin_app_loaded">
 
-[//]: # (0)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_after_admin_app_loaded</summary>
 <hr>
 <div class="fs-docs-content">
 This action fires after fluent support admin app is loaded.
@@ -26,13 +22,9 @@ add_action('fluent_support/admin_app_loaded', function ($app) {
 This action is located in <br>
 `fluent-support/app/Hooks/Handlers/Menu.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (1)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_when_admin_app_is_loading</summary>
+<explain-block title="fluent_support_when_admin_app_is_loading">
 <hr>
 <div class="fs-docs-content">
 This action fires when fluent support admin app is loading.
@@ -55,14 +47,9 @@ add_action('fluent_support_loading_app', function ($app) {
 This action is located in <br>
 `fluent-support/app/Hooks/Handlers/Menu.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (2)
-
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_pro_loaded</summary>
+<explain-block title="fluent_support_pro_loaded">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after fluent support pro loaded.
@@ -86,12 +73,9 @@ This action is located in <br>
 
 </div>
 
-</details>
+</explain-block>
 
-[//]: # (3)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_loaded</summary>
+<explain-block title="fluent_support_loaded">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after fluent support loaded.
@@ -114,13 +98,9 @@ This action is located in <br>
 `fluent-support/boot/app.php`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (4)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_addons_loaded</summary>
+<explain-block title="fluent_support_addons_loaded">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after fluent support addons loaded.
@@ -143,10 +123,4 @@ This action is located in <br>
 `fluent-support/boot/app.php`
 
 </div>
-
-</details>
-
-
-
-
 </explain-block>

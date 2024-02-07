@@ -23,26 +23,26 @@ Here You can find the proper guidelines, handy code snippets, full code examples
 
 ## Fluent Support Core Actions
 
-### Test Actions
+## Test Actions
 <br />
 <!--@include: ./_test.md-->
 
-### Ticket Actions
+## Ticket Actions
 <br />
 
 <!--@include: ./_ticket_actions.md-->
 
-### Admin Dashboard Actions
+## Admin Dashboard Actions
 <br />
 
 <!--@include: ./_admin_dashboard_filters.md-->
 
-### Frontend Actions
+## Frontend Actions
 <br />
 
 <!--@include: ./_frontend_actions.md-->
 
-### Other Useful Actions
+## Other Useful Actions
 <br />
 
 <!--@include: ./_other_useful_actions.md-->

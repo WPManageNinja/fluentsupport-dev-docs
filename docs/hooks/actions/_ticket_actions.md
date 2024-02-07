@@ -1,9 +1,4 @@
-<explain-block title="fluent-support/_ticket_actions">
-
-[//]: # (0)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title" title="fluent_support_before_ticket_create">fluent_support_before_ticket_create</summary>
+<explain-block title="fluent_support_before_ticket_create">
 <hr>
 <div class="fs-docs-content">
 This action will run to get the ticket and customer data before ticket create.
@@ -33,12 +28,9 @@ This action is located in <br>
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler`
 </div>
 
-</details>
+</explain-block>
 
-[//]: # (1)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_after_ticekt_create</summary>
+<explain-block title="fluent_support_after_ticekt_create">
 <hr>
 <div class="fs-docs-content">
 This action will run to get the ticket and customer data.
@@ -68,13 +60,9 @@ This action is located in <br>
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (2)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_when_ticket_is_being_deleted</summary>
+<explain-block title="fluent_support_when_ticket_is_being_deleted">
 <hr>
 <div class="fs-docs-content">
 This action is triggered when a ticket is being deleted.
@@ -97,13 +85,9 @@ This action is located in <br>
 `fluent-support/app/Models/Ticket.php`,
 `fluent-support/app/Services/Tickets/TicketService.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (3)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_after_ticket_tag_added</summary>
+<explain-block title="fluent_support_after_ticket_tag_added">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after a ticket tag is added
@@ -127,13 +111,8 @@ add_action('fluent_support/ticket_tag_added', function ($tagId, $ticket) {
 This action is located in <br>
 `fluent-support/app/Models/Ticket.php`
 </div>
-
-</details>
-
-[//]: # (4)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_after_ticket_tag_removed</summary>
+</explain-block>
+<explain-block title="fluent_support_after_ticket_tag_removed">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after a ticket tag is removed
@@ -157,13 +136,9 @@ add_action('fluent_support/ticket_tag_removed', function ($tagId, $ticket) {
 This action is located in <br>
 `fluent-support/app/Models/Ticket.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (5)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_before_ticket_create_from_email</summary>
+<explain-block title="fluent_support_before_ticket_create_from_email">
 <hr>
 <div class="fs-docs-content">
 This action is triggered before ticket create from email.
@@ -187,13 +162,9 @@ This action is located in <br>
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (6)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_after_ticket_create_from_email</summary>
+<explain-block title="fluent_support_after_ticket_create_from_email">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after creating a ticket from email.
@@ -217,13 +188,9 @@ This action is located in <br>
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (7)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_ticket_merge</summary>
+<explain-block title="fluent_support_ticket_merge">
 <hr>
 <div class="fs-docs-content">
 This action is triggered when a ticket is merged.
@@ -247,13 +214,9 @@ This action is located in <br>
 `fluent-support-pro/app/Services/ProTicketService.php`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (8)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_before_ticket_split</summary>
+<explain-block title="fluent_support_before_ticket_split">
 <hr>
 <div class="fs-docs-content">
 This action is triggered before a ticket is split.
@@ -278,13 +241,8 @@ This action is located in <br>
 `fluent-support-pro/app/Services/ProTicketService.php`
 
 </div>
-
-</details>
-
-[//]: # (9)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_after_ticket_split</summary>
+</explain-block>
+<explain-block title="fluent_support_after_ticket_split">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after a ticket is split.
@@ -309,13 +267,9 @@ This action is located in <br>
 `fluent-support-pro/app/Services/ProTicketService.php`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (10)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_before_move_tickets</summary>
+<explain-block title="fluent_support_before_move_tickets">
 <hr>
 <div class="fs-docs-content">
 This action is triggered before moving tickets.
@@ -340,13 +294,9 @@ This action is located in <br>
 `fluent-support/app/Services/MailerInbox/MailBoxService.php`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (11)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_tickets_moved</summary>
+<explain-block title="fluent_support_tickets_moved">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after tickets are moved.
@@ -371,13 +321,9 @@ This action is located in <br>
 `fluent-support/app/Services/MailerInbox/MailBoxService.php`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (12)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_ticket_agent_change</summary>
+<explain-block title="fluent_support_ticket_agent_change">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after a ticket agent is changed.
@@ -401,13 +347,9 @@ This action is located in <br>
 `fluent-support/app/Services/Tickets/TicketService.php`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (13)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_ticket_deleted</summary>
+<explain-block title="fluent_support_ticket_deleted">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after a ticket agent is changed.
@@ -431,13 +373,9 @@ This action is located in <br>
 `fluent-support/app/Services/Tickets/TicketService.php`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (14)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_agent_assigned_to_ticket</summary>
+<explain-block title="fluent_support_agent_assigned_to_ticket">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after a ticket is assigned to an agent.
@@ -464,13 +402,9 @@ This action is located in <br>
 `fluent-support/app/Services/Tickets/ResponseService.php`,
 `fluent-support-pro/app/Services/Workflow/ActionRunner.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (15)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_ticket_closed</summary>
+<explain-block title="fluent_support_ticket_closed">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after ticket is closed.
@@ -495,13 +429,9 @@ This action is located in <br>
 `fluent-support/app/Services/Tickets/TicketService.php`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (16)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_after_ticket_closed_by_any_person</summary>
+<explain-block title="fluent_support_after_ticket_closed_by_any_person">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after ticket closed by any person.
@@ -529,13 +459,9 @@ This action is located in <br>
 `fluent-support/app/Services/Tickets/TicketService.php`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (17)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_ticket_reopen</summary>
+<explain-block title="fluent_support_ticket_reopen">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after a ticket is reopened.
@@ -559,13 +485,9 @@ This action is located in <br>
 `fluent-support/app/Services/Tickets/TicketService.php`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (18)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_after_ticket_reopen_by_any_person</summary>
+<explain-block title="fluent_support_after_ticket_reopen_by_any_person">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after a ticket is reopened by any person.
@@ -592,8 +514,4 @@ This action is located in <br>
 `fluent-support/app/Services/Tickets/TicketService.php`
 
 </div>
-
-</details>
-
-
 </explain-block>

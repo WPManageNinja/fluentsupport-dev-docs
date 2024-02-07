@@ -100,22 +100,27 @@
     .hook_dir {
         float: right;
     }
-    .explain_header{
+    .explain_header {
+
+        font-weight: bold;
+        font-size: 20px;
         margin: 0;
         padding: 10px 15px;
-        display: block;
+        display: flex; /* Use flexbox to align items */
+        align-items: center; /* Align items vertically */
+        cursor: pointer;
+        padding: 15px;
+      }
+      
+      .header-anchor {
         cursor: pointer;
         font-size: 19px;
-        font-weight: 500;
-    }
-    .header-anchor{
-
-        cursor: pointer;
-        font-size: 19px;
-        font-weight: 500;
-    }
+        font-weight: 1000;
+        margin-right: 5px; /* Add margin to separate the anchor from the text */
+      }
 
     svg {
+        color: red($color: #000000);
         font-size: 19px;
         font-weight: 500;
         width: 20px;
