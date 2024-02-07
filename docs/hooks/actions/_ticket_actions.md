@@ -3,7 +3,7 @@
 [//]: # (0)
 <details class="fs-docs-collapse">
 
-<summary class="fs-docs-title">fluent_support_before_ticket_create</summary>
+<summary class="fs-docs-title" title="fluent_support_before_ticket_create">fluent_support_before_ticket_create</summary>
 <hr>
 <div class="fs-docs-content">
 This action will run to get the ticket and customer data before ticket create.

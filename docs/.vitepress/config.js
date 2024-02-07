@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { SearchPlugin } from "vitepress-plugin-search";
+import { SearchPlugin } from "vitepress-plugin-search"
 
 const flexSearchIndexOptions = {
   // We can put multiple flexsearch options here
@@ -16,7 +16,9 @@ const options = {
 };
 
 export default defineConfig({
-  vite: { plugins: [SearchPlugin(options)] },
+  vite: { 
+    plugins: [SearchPlugin(options)],
+  },
   title: "Fluent Support Developers",
   description: "Here you will find detailed documentation, handy code snippets and full code examples.",
   themeConfig: {

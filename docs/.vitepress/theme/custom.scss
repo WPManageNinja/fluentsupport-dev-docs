@@ -91,3 +91,35 @@
 .clip {
     -webkit-text-fill-color: #15BE7C !important;
 }
+
+.hook_explain {
+    padding: 0.2rem 1rem;
+    box-shadow: var(--my-shadow);
+    border-radius: 5px;
+
+    .hook_dir {
+        float: right;
+    }
+    .explain_header{
+        margin: 0;
+        padding: 10px 15px;
+        display: block;
+        cursor: pointer;
+        font-size: 19px;
+        font-weight: 500;
+    }
+    .header-anchor{
+
+        cursor: pointer;
+        font-size: 19px;
+        font-weight: 500;
+    }
+
+    svg {
+        font-size: 19px;
+        font-weight: 500;
+        width: 20px;
+        height: 20px;
+    }
+}
+  

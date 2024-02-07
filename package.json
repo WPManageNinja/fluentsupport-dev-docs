@@ -13,5 +13,8 @@
     "sass": "^1.62.1",
     "vitepress": "^1.0.0-beta.1",
     "vitepress-plugin-search": "^1.0.4-alpha.20"
+  },
+  "dependencies": {
+    "markdown-it-anchor": "^8.6.7"
   }
 }
