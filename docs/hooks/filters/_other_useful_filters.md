@@ -1,9 +1,4 @@
-<explain-block title="fluent-support/other_useful_filters">
-
-[//]: # (0)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_exportable_tickets_data</summary>
+<explain-block title="fluent_support_exportable_tickets_data">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve Exportable data and modify it.
@@ -30,13 +25,9 @@ add_filter('fluent_support/exportable_tickets_data', function ($data, $tickets) 
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/PrivacyHandler.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (1)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_exportable_conversations_data</summary>
+<explain-block title="fluent_support_exportable_conversations_data">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve Exportable conversation data and modify it.
@@ -63,13 +54,9 @@ add_filter('fluent_support/exportable_conversations_data', function ($data, $con
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/PrivacyHandler.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (2)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_exportable_customer_data</summary>
+<explain-block title="fluent_support_exportable_customer_data">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve exportable customer data and modify it.
@@ -96,13 +83,9 @@ add_filter('fluent_support/exportable_customer_data', function ($data, $customer
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/PrivacyHandler.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (3)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_recaptcha_v3_ref_score</summary>
+<explain-block title="fluent_support_recaptcha_v3_ref_score">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve reCAPTCHA v3 threshold value data and modify it.
@@ -128,13 +111,9 @@ add_filter('fluent_support/recaptcha_v3_ref_score', function ($refScore) {
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/ReCaptchaHandler.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (4)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_storage_drivers_info</summary>
+<explain-block title="fluent_support_storage_drivers_info">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve storage driver information and modify it.
@@ -161,13 +140,9 @@ add_filter('fluent_support/storage_drivers_info', function ($drivers) {
 This filter is located in <br>
 `fluent-support/app/Http/Controllers/SettingsController.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (5)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_allowed_customer_profile_picture_file_type</summary>
+<explain-block title="fluent_support_allowed_customer_profile_picture_file_type">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve customer profile picture file types and modify it.
@@ -192,14 +167,9 @@ add_filter('fluent_support/allowed_customer_profile_picture_file_type', function
 This filter is located in <br>
 `fluent-support/app/Services/AvatarUploder.php`
 </div>
+</explain-block>
 
-</details>
-
-
-[//]: # (6)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_uploaded_file_name_prefix</summary>
+<explain-block title="fluent_support_uploaded_file_name_prefix">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve file name prefix and modify it.
@@ -224,12 +194,9 @@ This filter is located in <br>
 `fluent-support/app/Services/Includes/FileSystem.php`
 </div>
 
-</details>
+</explain-block>
 
-[//]: # (7)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_smartcode_fallback</summary>
+<explain-block title="fluent_support_smartcode_fallback">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve Smartcode data and modify it.
@@ -254,13 +221,9 @@ add_filter('fluent_support/smartcode_fallback', function ($matches, $data) {
 This filter is located in <br>
 `fluent-support/app/Services/Parser/ShortcodeParser.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (8)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_smartcode_fallback_callback</summary>
+<explain-block title="fluent_support_smartcode_fallback_callback">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve fallback behavior for smartcodes and modify it.
@@ -289,13 +252,9 @@ add_filter('fluentsupport/smartcode_fallback_callback_' . $dataKey, function ($m
 This filter is located in <br>
 `fluent-support/app/Services/Parser/ShortcodeParser.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (9)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_strict_subjects</summary>
+<explain-block title="fluent_support_strict_subjects">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the strict subjects and modify it.
@@ -324,13 +283,9 @@ add_filter('fluent_support/strict_subjects', function ($subjects) {
 This filter is located in <br>
 `fluent-support/app/Services/EmailNotification/Settings.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (10)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_migrator_class_mapper</summary>
+<explain-block title="fluent_support_migrator_class_mapper">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the Ticket migration class mapper data and modify it.
@@ -359,14 +314,9 @@ add_filter('fluent_support/migrator_class_mapper', function ($classMapper) {
 This filter is located in <br>
 `fluent-support/app/Services/Tickets/Importer/MigratorService.php`
 </div>
+</explain-block>
 
-</details>
-
-
-[//]: # (11)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_allow_share_essential</summary>
+<explain-block title="fluent_support_allow_share_essential">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the permission for share essential data and modify it.
@@ -391,9 +341,4 @@ add_filter('fluentsupport_allow_share_essential', function ($allowShareEssential
 This filter is located in <br>
 `fluent-support/app/Services/Tickets/Importer/MigratorService.php`
 </div>
-
-</details>
-
-
-
 </explain-block>
