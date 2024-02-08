@@ -1,9 +1,5 @@
-<explain-block title="fluent-support/ticket_response_filters">
 
-[//]: # (0)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_parse_smartcode_data</summary>
+<explain-block title="fluent_support_parse_smartcode_data">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve smart code data.
@@ -34,15 +30,9 @@ This filter is located in <br>
 `fluent-support/app/Services/Tickets/ResponseService.php`,
 `fluent-support/app/Hooks/Handlers/EmailNotificationHandler.php`
 </div>
+</explain-block>
 
-</details>
-
-
-
-[//]: # (1)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_reset_waiting_since</summary>
+<explain-block title="fluent_support_reset_waiting_since">
 <hr>
 <div class="fs-docs-content">
 This filter hook enables you to retrieve the reset waiting state and response data, providing you with the ability to customize the data.
@@ -69,13 +59,9 @@ This filter is located in <br>
 `fluent-support/app/Services/Tickets/ResponseService.php`,
 `fluent-support/app/Model/Tickets/Conversation.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (0)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_response_content_before_use_anywhere</summary>
+<explain-block title="fluent_support_response_content_before_use_anywhere">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve response data before it is used anywhere, providing you with the ability to customize the data.
@@ -100,13 +86,9 @@ add_filter('fluent_support/response_content_before_use_anywhere', function ($con
 This filter is located in <br>
 `fluent-support/app/Services/Tickets/ResponseService.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (3)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_before_creating_any_response</summary>
+<explain-block title="fluent_support_before_creating_any_response">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve ticket, person and response data before creating the response.
@@ -135,13 +117,9 @@ add_filter('fluent_support/new_' . $person_type . '_' . $convoType, function ($r
 This filter is located in <br>
 `fluent-support/app/Services/Tickets/ResponseService.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (4)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_ticket_close_internal_note</summary>
+<explain-block title="fluent_support_ticket_close_internal_note">
 <hr>
 <div class="fs-docs-content">
 This filter hook enables you to retrieve and modify internal notes and ticket data.
@@ -167,9 +145,6 @@ add_filter('fluent_support/ticket_close_internal_note', function ($internalNote,
 This filter is located in <br>
 `fluent-support/app/Services/Tickets/ResponseService.php`
 </div>
-
-</details>
-
-
 </explain-block>
+
 
