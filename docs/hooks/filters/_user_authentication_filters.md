@@ -1,10 +1,4 @@
-<explain-block title="fluent-support/user_authentication_filters">
-
-
-[//]: # (0)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_login_form_args</summary>
+<explain-block title="fluent_support_login_form_args"> 
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve login arguments and change them.
@@ -35,13 +29,9 @@ add_filter('fluent_support/login_form_args', function ($loginArgs) {
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/AuthHandler.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (1)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_custom_registration_form_fields_key</summary>
+<explain-block title="fluent_support_custom_registration_form_fields_key">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve custom registration form field keys and modify them.
@@ -70,14 +60,10 @@ This filter is located in <br>
 `fluent-support/app/Models/Ticket.php`,
 `fluent-support/app/Http/Controllers/AuthController.php`
 
-</div>
+</div> 
+</explain-block>
 
-</details>
-
-[//]: # (2)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_before_registration_form_close</summary>
+<explain-block title="fluent_support_before_registration_form_close"> 
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve registration form data and modify them.
@@ -108,14 +94,9 @@ This filter is located in <br>
 `fluent-support/app/Http/Controllers/AuthController.php`
 
 </div>
+</explain-block>
 
-</details>
-
-
-[//]: # (3)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_registration_form_fields</summary>
+<explain-block title="fluent_support_registration_form_fields"> 
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve default registration from fields add the and modify them.
@@ -142,14 +123,9 @@ This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/AuthHandler.php`
 
 </div>
+</explain-block>
 
-</details>
-
-
-[//]: # (4)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_custom_registration_form_fields</summary>
+<explain-block title="fluent_support_custom_registration_form_fields"> 
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve custom registration from fields add the and modify them.
@@ -178,13 +154,9 @@ This filter is located in <br>
 `fluent-support/app/Models/Traits/CustomerTrait.php` 
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (5)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_reset_password_form</summary>
+<explain-block title="fluent_support_reset_password_form"> 
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve Reset password form filed and modify them.
@@ -220,13 +192,9 @@ This filter is located in <br>
 
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (7)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_signup_loading_icon</summary>
+<explain-block title="fluent_support_signup_loading_icon"> 
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve icon data and modify them.
@@ -254,12 +222,9 @@ This filter is located in <br>
 
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (8)
-<details class="fs-docs-collapse">
-
+<explain-block title="fluent_support_auth_shortcode_defaults"> 
 <summary class="fs-docs-title">fluent_support_auth_shortcode_defaults</summary>
 <hr>
 <div class="fs-docs-content">
@@ -294,13 +259,9 @@ This filter is located in <br>
 
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (9)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_signup_form_data</summary>
+<explain-block title="fluent_support_signup_form_data"> 
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve signup form data and modify them.
@@ -328,13 +289,9 @@ This filter is located in <br>
 
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (10)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_signup_create_user_error</summary>
+<explain-block title="fluent_support_signup_create_user_error"> 
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve create user error message and modify it.
@@ -362,13 +319,9 @@ This filter is located in <br>
 
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (11)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_signup_complete_response</summary>
+<explain-block title="fluent_support_signup_complete_response"> 
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve and modify registration success message and redirect URL data.
@@ -399,13 +352,9 @@ This filter is located in <br>
 
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (12)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_signup_complete_response</summary>
+<explain-block title="fluent_support_signup_complete_response">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve and modify registration success message and redirect URL data.
@@ -435,14 +384,10 @@ This filter is located in <br>
 `fluent-support/app/Http/Controllers/AuthController.php`
 
 
-</div>
+</div> 
+</explain-block>
 
-</details>
-
-[//]: # (13)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_use_native_login</summary>
+<explain-block title="fluent_support_use_native_login"> 
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve and modify native login data.
@@ -469,13 +414,9 @@ This filter is located in <br>
 
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (14)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_signup_validation_rules</summary>
+<explain-block title="fluent_support_signup_validation_rules"> 
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve and modify signup validation rules data.
@@ -502,13 +443,9 @@ This filter is located in <br>
 
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (15)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_reset_password_mail_subject</summary>
+<explain-block title="fluent_support_reset_password_mail_subject"> 
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve reset password mail subject and modify it.
@@ -536,12 +473,9 @@ This filter is located in <br>
 
 </div>
 
-</details>
+</explain-block>
 
-[//]: # (16)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_reset_password_message</summary>
+<explain-block title="fluent_support_reset_password_message">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve reset password email body text and modify it.
@@ -569,13 +503,9 @@ This filter is located in <br>
 
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (17)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_signup_validation_messages</summary>
+<explain-block title="fluent_support_signup_validation_messages"> 
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve user signup validation message and modify it.
@@ -603,13 +533,9 @@ This filter is located in <br>
 
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (18)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_signup_email</summary>
+<explain-block title="fluent_support_signup_email"> 
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve email address used for signup and modify it.
@@ -636,13 +562,9 @@ This filter is located in <br>
 
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (19)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_signup_username</summary>
+<explain-block title="fluent_support_signup_username"> 
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve user name used for signup and modify it.
@@ -668,13 +590,9 @@ This filter is located in <br>
 `fluent-support/app/Http/Controllers/AuthController.php`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (20)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_signup_password</summary>
+<explain-block title="fluent_support_signup_password"> 
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve password used for signup and modify it.
@@ -700,13 +618,9 @@ This filter is located in <br>
 `fluent-support/app/Http/Controllers/AuthController.php`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (21)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_update_user_data</summary>
+<explain-block title="fluent_support_update_user_data"> 
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve user data and modify it.
@@ -733,12 +647,9 @@ This filter is located in <br>
 
 </div>
 
-</details>
+</explain-block>
 
-[//]: # (22)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_user_role</summary>
+<explain-block title="fluent_support_user_role"> 
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve user role and modify it.
@@ -764,7 +675,5 @@ This filter is located in <br>
 `fluent-support/app/Http/Controllers/AuthController.php`
 
 </div>
-
-</details>
-
 </explain-block>
+
