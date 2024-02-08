@@ -23,10 +23,6 @@ Here You can find the proper guidelines, handy code snippets, full code examples
 
 ## Fluent Support Core Actions
 
-## Test Actions
-<br />
-<!--@include: ./_test.md-->
-
 ## Ticket Actions
 <br />
 

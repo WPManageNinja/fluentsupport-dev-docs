@@ -1,9 +1,4 @@
-<explain-block title="fluent-support/_other_useful_actions">
-
-[//]: # (0)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_before_assigning_role</summary>
+<explain-block title="fluent_support_before_assigning_role">
 <hr>
 <div class="fs-docs-content">
 This action is triggered before assigning a role to a user.
@@ -27,12 +22,10 @@ This action is located in <br>
 `fluent-support/app/Http/Controllers/AuthController.php`
 </div>
 
-</details>
+</explain-block>
 
-[//]: # (1)
-<details class="fs-docs-collapse">
+<explain-block title="fluent_support_after_assigning_role">
 
-<summary class="fs-docs-title">fluent_support_after_assigning_role</summary>
 <hr>
 <div class="fs-docs-content">
 This action is triggered after assigning a role to a user.
@@ -56,14 +49,9 @@ This action is located in <br>
 `fluent-support/app/Http/Controllers/AuthController.php`
 </div>
 
-</details>
+</explain-block>
 
-
-
-[//]: # (2)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_attachment_uploaded_as_temp</summary>
+<explain-block title="fluent_support_attachment_uploaded_as_temp">
 <hr>
 <div class="fs-docs-content">
 This action is triggered when attachment uploaded as temporary. asdet
@@ -87,13 +75,9 @@ add_action('fluent_support/attachment_uploaded_as_temp', function ($attachment, 
 This action is located in <br>
 `fluent-support/app/Http/Controllers/UploaderController.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (3)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_after_creating_any_response</summary>
+<explain-block title="fluent_support_after_creating_any_response">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after creating any response.
@@ -123,13 +107,9 @@ This action is located in <br>
 `fluent-support/app/Services/Tickets/ResponseService.php`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (4)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_before_delete_email_box</summary>
+<explain-block title="fluent_support_before_delete_email_box">
 <hr>
 <div class="fs-docs-content">
 This action is triggered before deleting a mailbox.
@@ -153,13 +133,9 @@ This action is located in <br>
 `fluent-support/app/Services/MailerInbox/MailBoxService.php`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (5)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_mailbox_deleted</summary>
+<explain-block title="fluent_support_mailbox_deleted">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after deleting a mailbox.
@@ -183,13 +159,9 @@ This action is located in <br>
 `fluent-support/app/Services/MailerInbox/MailBoxService.php`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (6)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_telegram_payload_error</summary>
+<explain-block title="fluent_support_telegram_payload_error">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after a Telegram payload error.
@@ -214,13 +186,9 @@ This action is located in <br>
 
 </div>
 
-</details>
+</explain-block>
 
-
-[//]: # (7)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_delete_remote_attachment_third_party_in_use</summary>
+<explain-block title="fluent_support_delete_remote_attachment_third_party_in_use">
 <hr>
 <div class="fs-docs-content">
 This action is triggered after delete remote attachment.
@@ -247,13 +215,9 @@ This action is located in <br>
 `fluent-support/app/Hooks/CleanupHandler.php`
 
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (8)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_verify_dropbox_code</summary>
+<explain-block title="fluent_support_verify_dropbox_code">
 <hr>
 <div class="fs-docs-content">
 This action is triggered to handle Dropbox authorization.
@@ -276,14 +240,9 @@ This action is located in <br>
 `fluent-support-pro/app/Http/Controllers/AuthorizeController.php`
 
 </div>
+</explain-block>
 
-</details>
-
-
-[//]: # (9)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_run_action_from_any_saved_action</summary>
+<explain-block title="fluent_support_run_action_from_any_saved_action">
 <hr>
 <div class="fs-docs-content">
 This action is triggered when an action runs.
@@ -311,7 +270,4 @@ This action is located in <br>
 `fluent-support-pro/app/Services/Workflow/ActionRunner.php`
 
 </div>
-
-</details>
-
 </explain-block>
