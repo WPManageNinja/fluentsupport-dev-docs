@@ -24,42 +24,42 @@ Here You can find the proper guidelines, handy code snippets, full code examples
 
 ## Fluent Support Core Filters
 
-### Ticket Filters
+## Ticket Filters
 <br />
 
 <!--@include: ./_ticket_filters.md-->
 
-### Ticket Response Filters
+## Ticket Response Filters
 <br />
 
 <!--@include: ./_ticket_response_filters.md-->
 
-### Admin Dashboard Filters
+## Admin Dashboard Filters
 <br />
 
 <!--@include: ./_admin_dashboard_filters.md-->
 
-### Frontend Filters
+## Frontend Filters
 <br />
 
 <!--@include: ./_frontend_filters.md-->
 
-### User Authentication Filters
+## User Authentication Filters
 <br />
 
 <!--@include: ./_user_authentication_filters.md-->
 
-### Email Notification Filters
+## Email Notification Filters
 <br />
 
 <!--@include: ./_email_notification_filters.md-->
 
-### Fluent Support Pro Filters
+## Fluent Support Pro Filters
 <br />
 
 <!--@include: ./_fluent_support_pro_filters.md-->
 
-### Other Useful Filters
+## Other Useful Filters
 <br />
 
 <!--@include: ./_other_useful_filters.md-->

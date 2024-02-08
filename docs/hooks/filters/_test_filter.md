@@ -1,4 +1,9 @@
-<explain-block title="fluent_support_ticket_create_validation_rules">
+<explain-block title="fluent-support/ticket_filters">
+
+[//]: # (0)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_ticket_create_validation_rules</summary>
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve validation rules for ticket and modify it.
@@ -23,9 +28,13 @@ add_filter('fluent_support/ticket_create_validation_rules', function ($rules) {
 This filter is located in <br>
 `fluent-support/app/Http/Requests/TicketRequest.php`
 </div>
-</explain-block>
 
-<explain-block title="fluent_support_ticket_create_validation_messages">
+</details>
+
+[//]: # (1)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_ticket_create_validation_messages</summary>
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve validation messages for a ticket and modify it.
@@ -50,9 +59,13 @@ add_filter('fluent_support/ticket_create_validation_messages', function ($messag
 This filter is located in <br>
 `fluent-support/app/Http/Requests/TicketRequest.php`
 </div>
-</explain-block>
 
-<explain-block title="fluent_support_customer_ticket_priorities">
+</details>
+
+[//]: # (2)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_customer_ticket_priorities</summary>
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve customer ticket priority list and modify it.
@@ -81,9 +94,13 @@ add_filter('fluent_support/customer_ticket_priorities', function ($priorities) {
 This filter is located in <br>
 `fluent-support/app/Services/Helper.php`
 </div>
-</explain-block>
 
-<explain-block title="fluent_support_admin_ticket_priorities">
+</details>
+
+[//]: # (3)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_admin_ticket_priorities</summary>
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve admin ticket priority list and modify it.
@@ -113,9 +130,12 @@ This filter is located in <br>
 `fluent-support/app/Services/Helper.php`
 </div>
 
-</explain-block>
+</details>
 
-<explain-block title="fluent_support_ticket_status_groups">
+[//]: # (4)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_ticket_status_groups</summary>
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve ticket status groups and modify it.
@@ -146,9 +166,13 @@ add_filter('fluent_support/ticket_status_groups', function ($statusGroups) {
 This filter is located in <br>
 `fluent-support/app/Services/Helper.php`
 </div>
-</explain-block>
 
-<explain-block title="fluent_support_changeable_ticket_statuses">
+</details>
+
+[//]: # (5)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_changeable_ticket_statuses</summary>
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve changeable ticket status groups and modify it.
@@ -173,9 +197,13 @@ add_filter('fluent_support/changeable_ticket_statuses', function ($ticketStatus)
 This filter is located in <br>
 `fluent-support/app/Services/Helper.php`
 </div>
-</explain-block>
 
-<explain-block title="fluent_support_ticket_statuses">
+</details>
+
+[//]: # (6)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_ticket_statuses</summary>
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve ticket statuses and modify it.
@@ -204,9 +232,13 @@ add_filter('fluent_support/ticket_statuses', function ($ticketStatuses) {
 This filter is located in <br>
 `fluent-support/app/Services/Helper.php`
 </div>
-</explain-block>
 
-<explain-block title="fluent_support_accepted_ticket_mimes">
+</details>
+
+[//]: # (7)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_accepted_ticket_mimes</summary>
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve accepted mimes and modify it.
@@ -231,9 +263,13 @@ add_filter('fluent_support/accepted_ticket_mimes', function ($mimes) {
 This filter is located in <br>
 `fluent-support/app/Services/Helper.php`
 </div>
-</explain-block>
 
-<explain-block title="fluent_support_mime_groups">
+</details>
+
+[//]: # (8)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_mime_groups</summary>
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve mime groups and modify it.
@@ -258,9 +294,13 @@ add_filter('fluent_support/mime_groups', function ($mimeGroups) {
 This filter is located in <br>
 `fluent-support/app/Services/Helper.php`
 </div>
-</explain-block>
 
-<explain-block title="fluent_support_portal_base_url">
+</details>
+
+[//]: # (9)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_portal_base_url</summary>
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve portal base url and modify it.
@@ -285,9 +325,13 @@ add_filter('fluent_support/portal_base_url', function ($baseUrl) {
 This filter is located in <br>
 `fluent-support/app/Services/Helper.php`
 </div>
-</explain-block>
 
-<explain-block title="fluent_support_can_user_add_tags_to_customer">
+</details>
+
+[//]: # (10)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_can_user_add_tags_to_customer</summary>
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve user can add tags permission and  modify it.
@@ -312,9 +356,13 @@ add_filter('fluent_support/can_user_add_tags_to_customer', function ($canAddTags
 This filter is located in <br>
 `fluent-support/app/Models/Ticket.php`
 </div>
-</explain-block>
 
-<explain-block title="fluent_support_custom_field_render">
+</details>
+
+[//]: # (11)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_custom_field_render</summary>
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve custom fields data and modify it.
@@ -342,9 +390,13 @@ add_filter('fluent_support/custom_field_render_' . $fieldType , function ($value
 This filter is located in <br>
 `fluent-support/app/Models/Ticket.php`
 </div>
-</explain-block>
 
-<explain-block title="fluent_support_ticket_custom_fields">
+</details>
+
+[//]: # (12)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_ticket_custom_fields</summary>
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve custom fields and modify it.
@@ -369,9 +421,13 @@ add_filter('fluent_support/ticket_custom_fields', function ($customFields) {
 This filter is located in <br>
 `fluent-support/app/Models/Ticket.php`
 </div>
-</explain-block>
 
-<explain-block title="fluent_support_disabled_ticket_fields">
+</details>
+
+[//]: # (13)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_disabled_ticket_fields</summary>
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve disable ticket fields and modify it.
@@ -400,9 +456,12 @@ This filter is located in <br>
 `fluent-support-pro/app/Hooks/filters.php`
 </div>
 
-</explain-block>
+</details>
 
-<explain-block title="fluent_support_create_ticket_data">
+[//]: # (14)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_create_ticket_data</summary>
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve ticket and customer data and modify it.
@@ -433,9 +492,13 @@ This filter is located in <br>
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 
 </div>
-</explain-block>
 
-<explain-block title="fluent_support_previous_ticket_widgets_limit">
+</details>
+
+[//]: # (15)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_previous_ticket_widgets_limit</summary>
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve previous ticket widgets limit and modify it.
@@ -461,9 +524,12 @@ This filter is located in <br>
 `fluent-support/app/Models/Ticket.php`
 </div>
 
-</explain-block>
+</details>
 
-<explain-block title="fluent_support_fst_menu_url_base">
+[//]: # (16)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_fst_menu_url_base</summary>
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve fluent support admin url base data and modify it.
@@ -491,9 +557,13 @@ add_filter('fluent_support/fst_menu_url_base', function ($urlBase) {
 This filter is located in <br>
 `fluent-support/app/Services/Tickets/TicketStats.php`
 </div>
-</explain-block>
 
-<explain-block title="fluent_support_fst_quick_links">
+</details>
+
+[//]: # (16)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_fst_menu_url_base</summary>
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve list of quick links data and modify it.
@@ -505,7 +575,7 @@ This filter hook allows you to retrieve list of quick links data and modify it.
 **Usage**
 
 ```php
-add_filter('fluent_support/fst_quick_links', function ($quickLinks) {
+add_filter('fluent_support/fst_menu_url_base', function ($quickLinks) {
     // ...do something
     return $quickLinks
 }, 10, 1)
@@ -521,4 +591,7 @@ add_filter('fluent_support/fst_quick_links', function ($quickLinks) {
 This filter is located in <br>
 `fluent-support/app/Services/Tickets/TicketStats.php`
 </div>
+
+</details>
+
 </explain-block>
