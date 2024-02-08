@@ -1,33 +1,37 @@
-<explain-block title="fluent-support/admin_dashboard_filters">
+<explain-block title="fluent-support/frontend_filters">
 
 [//]: # (0)
 <details class="fs-docs-collapse">
 
-<summary class="fs-docs-title">fluent_support_admin_menu_position</summary>
+<summary class="fs-docs-title">fluent_support_customer_portal_invalid_permission_message</summary>
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to retrieve the value of menu position and modify it.
+This filter hook allows you to retrieve invalid permission message and modify it.
 
 **Parameters**
 
-- '$menuPosition' (integer) Value of menu position
+- '$message' (string) Invalid permission message
 
 **Usage**
 
 ```php
-add_filter('fluent_support/admin_menu_position', function ($menuPosition) {
+add_filter('fluent_support/customer_portal_invalid_permission_message', function ($message) {
     // ...do something
-    return $menuPosition
+    return $message
 }, 10, 1)
 ```
 
 **Reference**
 
-`apply_filters('fluent_support/admin_menu_position', $menuPosition)`
+`apply_filters(
+            'fluent_support/customer_portal_invalid_permission_message',
+         esc_html__('You don\'t have permission to access customer support portal', 'fluent-support')
+        )
+`
 
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/Menu.php`
+`fluent-support/app/Hooks/Handlers/CustomerPortalHandler.php`
 </div>
 
 </details>
@@ -35,31 +39,31 @@ This filter is located in <br>
 [//]: # (1)
 <details class="fs-docs-collapse">
 
-<summary class="fs-docs-title">fluent_support_base_url</summary>
+<summary class="fs-docs-title">fluent_support_agent_permission_error_message</summary>
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to retrieve the base url and modify it.
+This filter hook allows you to retrieve the error message for agent permissions and modify it.
 
 **Parameters**
 
-- '$baseUrl' (string) base url of fluent support
+- '$message' (string) Agent permission error message
 
 **Usage**
 
 ```php
-add_filter('fluent_support/base_url', function ($baseUrl) {
+add_filter('fluent_support/customer_portal_agent_permission_error_message', function ($message) {
     // ...do something
-    return $baseUrl
+    return $message
 }, 10, 1)
 ```
 
 **Reference**
 
-`apply_filters('fluent_support/base_url', admin_url('admin.php?page=fluent-support#/')`
+`apply_filters('fluent_support/customer_portal_agent_permission_error_message',$msg)`
 
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/Menu.php`
+`fluent-support/app/Hooks/Handlers/CustomerPortalHandler.php`
 </div>
 
 </details>
@@ -67,31 +71,35 @@ This filter is located in <br>
 [//]: # (2)
 <details class="fs-docs-collapse">
 
-<summary class="fs-docs-title">fluent_support_primary_menu_items</summary>
+<summary class="fs-docs-title">fluent_support_user_portal_access_config</summary>
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to retrieve the primary menu items and modify it.
+This filter hook allows you to retrieve the user portal access config data and modify it.
 
 **Parameters**
 
-- '$menuItems' (array) Primary menu items
+- '$config' (array) Customer portal access settings data
 
 **Usage**
 
 ```php
-add_filter('fluent_support/primary_menu_items', function ($menuItems) {
+add_filter('fluent_support/user_portal_access_config', function ($config) {
     // ...do something
-    return $menuItems
+    return $config
 }, 10, 1)
 ```
 
 **Reference**
 
-`apply_filters('fluent_support/primary_menu_items', $menuItems)`
+`apply_filters('fluent_support/user_portal_access_config', [
+                'status'  => true,
+                'message' => $invalidPermissionMessage
+            ])`
 
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/Menu.php`
+`fluent-support/app/Hooks/Handlers/CustomerPortalHandler.php`,
+`fluent-support/app/Http/Policies/PortalPolicy.php`
 </div>
 
 </details>
@@ -99,31 +107,67 @@ This filter is located in <br>
 [//]: # (3)
 <details class="fs-docs-collapse">
 
-<summary class="fs-docs-title">fluent_support_secondary_menu_items</summary>
+<summary class="fs-docs-title">fluent_support_customer_portal_vars</summary>
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to retrieve the secondary menu items and modify it.
+This filter hook allows you to retrieve the customer portal localize data and modify it.
 
 **Parameters**
 
-- '$menuItems' (array) Secondary menu items
+- '$vars' (array) Customer portal localize data
 
 **Usage**
 
 ```php
-add_filter('fluent_support/secondary_menu_items', function ($secondaryItems) {
+add_filter('fluent_support/customer_portal_vars', function ($vars) {
     // ...do something
-    return $secondaryItems
+    return $vars
 }, 10, 1)
 ```
 
 **Reference**
 
-`apply_filters('fluent_support/secondary_menu_items', $secondaryItems)`
+`apply_filters('fluent_support/customer_portal_vars', $vars)`
 
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/Menu.php`
+`fluent-support/app/Hooks/Handlers/CustomerPortalHandler.php`,
+`fluent-support/app/Services/ProfileInfoService.php`
+</div>
+
+</details>
+
+[//]: # (3)
+<details class="fs-docs-collapse">
+
+<summary class="fs-docs-title">fluent_support_can_customer_create_ticket</summary>
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to retrieve whether a customer can create a ticket, along with customer and ticket data and allows you to modify it.
+
+**Parameters**
+
+- '$canCreate' (boolean) Customer can create ticket or not
+- '$customer' (object) Customer data
+- '$data' (array) Ticket data
+
+**Usage**
+
+```php
+add_filter('fluent_support/can_customer_create_ticket', function ($canCreate, $customer, $data) {
+    // ...do something
+    return $vars
+}, 10, 3)
+```
+
+**Reference**
+
+`apply_filters('fluent_support/can_customer_create_ticket', true, $customer, $data)`
+
+
+This filter is located in <br>
+`fluent-support/app/Http/Controllers/CustomerPortalController.php`,
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 </div>
 
 </details>
@@ -131,31 +175,35 @@ This filter is located in <br>
 [//]: # (4)
 <details class="fs-docs-collapse">
 
-<summary class="fs-docs-title">fluent_support_integration_drivers</summary>
+<summary class="fs-docs-title">fluent_support_can_customer_create_response</summary>
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to retrieve the integration driver data and modify it.
+This filter hook allows you to retrieve whether a customer can create a response, along with customer, ticket along with response data and allows you to modify it.
 
 **Parameters**
 
-- '$integrationDrivers' (array) Integration driver data
+- '$canCreate' (boolean) Customer can create ticket or not
+- '$customer' (object) Customer data
+- '$ticket' (object) Ticket data
+- '$data' (array) Ticket response data
 
 **Usage**
 
 ```php
-add_filter('fluent_support/integration_drivers', function ($integrationDrivers) {
+add_filter('fluent_support/can_customer_create_response', function ($canCreate, $customer, $ticket,  $data) {
     // ...do something
-    return $integrationDrivers
-}, 10, 1)
+    return $canCreate
+}, 10, 4)
 ```
 
 **Reference**
 
-`apply_filters('fluent_support/integration_drivers', $integrationDrivers)`
+`apply_filters('fluent_support/can_customer_create_response', true, $ticket->customer, $ticket, $data)`
 
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/Menu.php`
+`fluent-support/app/Http/Controllers/CustomerPortalController.php`,
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 </div>
 
 </details>
@@ -163,130 +211,65 @@ This filter is located in <br>
 [//]: # (4)
 <details class="fs-docs-collapse">
 
-<summary class="fs-docs-title">fluent_support_app_vars</summary>
+<summary class="fs-docs-title">fluent_support_person_user_edit_url</summary>
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to retrieve the admin portal localize data and modify it.
+This filter hook allows you to retrieve user profile edit link data and modify it.
 
 **Parameters**
 
-- '$appVars' (array) Admin portal localize data
+- '$userEditUrl' (string) User profile edit link
+- '$instance' (object) Instance of Person class
 
 **Usage**
 
 ```php
-add_filter('fluent_support_app_vars', function ($appVars) {
+add_filter('fluent_support/person_user_edit_url', function ($userEditUrl, $instance) {
     // ...do something
-    return $appVars
-}, 10, 1)
-```
-
-**Reference**
-
-`apply_filters('fluent_support_app_vars', $appVars)`
-
-<b>`$appVars` is used here as an illustrative variable to represent the raw array value found in the main filter, demonstrating the localized data in the admin portal.</b>
-
-This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/Menu.php`
-</div>
-
-</details>
-
-[//]: # (5)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_ticket_custom_fields</summary>
-<hr>
-<div class="fs-docs-content">
-This filter hook allows you to retrieve the ticket custom fields data and modify it.
-
-**Parameters**
-
-- '$fields' (array) ticket custom fields
-
-**Usage**
-
-```php
-add_filter('fluent_support/ticket_custom_fields', function ($fields) {
-    // ...do something
-    return $fields
-}, 10, 1)
-```
-
-**Reference**
-
-`apply_filters('fluent_support/ticket_custom_fields', [])`
-
-This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/Menu.php`,
-`fluent-support/app/Models/Ticket.php`,
-`fluent-support/app/Services/Integrations/FluentForm/FeedIntegration.php`,
-</div>
-
-</details>
-
-[//]: # (6)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_dashboard_notice</summary>
-<hr>
-<div class="fs-docs-content">
-This filter hook allows you to retrieve the dashboard notice and agent data and modify it.
-
-**Parameters**
-
-- '$dashboardNotice' (array) ticket custom fields
-- '$agent' (object) Agent data
-
-**Usage**
-
-```php
-add_filter('fluent_support/dashboard_notice', function ($dashboardNotice, $agent) {
-    // ...do something
-    return $dashboardNotice
+    return $userEditUrl
 }, 10, 2)
 ```
 
 **Reference**
 
-`apply_filters('fluent_support/dashboard_notice', '', $agent)`
+`apply_filters('fluent_support/person_user_edit_url', $userEditUrl, $this)`
+
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/AgentController.php`,
-`fluent-support-pro/app/Hooks/filters.php`
+`fluent-support/app/Models/Person.php`
 </div>
 
 </details>
 
-[//]: # (7)
+[//]: # (4)
 <details class="fs-docs-collapse">
 
-<summary class="fs-docs-title">fluent_support_agent_has_access</summary>
+<summary class="fs-docs-title">fluent_support_customer_extra_widgets</summary>
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to retrieve the agent has access or not data and modify it.
+This filter hook allows you to retrieve customer extra widgets data and modify it.
 
 **Parameters**
 
-- '$status' (boolean) Information about whether an agent has access or not
-- '$request' (object) Fluent support framework request
+- '$widgets' (array) Widgets data
+- '$customer' (object) Customer data
 
 **Usage**
 
 ```php
-add_filter('fluent_support/agent_has_access', function ($status, $request) {
+add_filter('fluent_support/customer_extra_widgets', function ($widgets, $customer) {
     // ...do something
-    return $status
+    return $widgets
 }, 10, 2)
 ```
 
 **Reference**
 
-`apply_filters('fluent_support/agent_has_access', $status, $request)`
+`apply_filters('fluent_support/customer_extra_widgets', $widgets, $customer)`
+
 
 This filter is located in <br>
-`fluent-support/app/Http/Policies/AgentTicketPolicy.php`,
+`fluent-support/app/Models/Person.php`
 </div>
 
 </details>

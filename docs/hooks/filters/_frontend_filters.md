@@ -1,9 +1,4 @@
-<explain-block title="fluent-support/frontend_filters">
-
-[//]: # (0)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_customer_portal_invalid_permission_message</summary>
+<explain-block title="fluent_support_customer_portal_invalid_permission_message">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve invalid permission message and modify it.
@@ -33,13 +28,9 @@ add_filter('fluent_support/customer_portal_invalid_permission_message', function
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/CustomerPortalHandler.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (1)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_agent_permission_error_message</summary>
+<explain-block title="fluent_support_agent_permission_error_message">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the error message for agent permissions and modify it.
@@ -65,13 +56,9 @@ add_filter('fluent_support/customer_portal_agent_permission_error_message', func
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/CustomerPortalHandler.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (2)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_user_portal_access_config</summary>
+<explain-block title="fluent_support_user_portal_access_config">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the user portal access config data and modify it.
@@ -101,13 +88,9 @@ This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/CustomerPortalHandler.php`,
 `fluent-support/app/Http/Policies/PortalPolicy.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (3)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_customer_portal_vars</summary>
+<explain-block title="fluent_support_customer_portal_vars">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the customer portal localize data and modify it.
@@ -134,13 +117,9 @@ This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/CustomerPortalHandler.php`,
 `fluent-support/app/Services/ProfileInfoService.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (3)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_can_customer_create_ticket</summary>
+<explain-block title="fluent_support_can_customer_create_ticket">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve whether a customer can create a ticket, along with customer and ticket data and allows you to modify it.
@@ -169,13 +148,9 @@ This filter is located in <br>
 `fluent-support/app/Http/Controllers/CustomerPortalController.php`,
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (4)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_can_customer_create_response</summary>
+<explain-block title="fluent_support_can_customer_create_response">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve whether a customer can create a response, along with customer, ticket along with response data and allows you to modify it.
@@ -205,13 +180,9 @@ This filter is located in <br>
 `fluent-support/app/Http/Controllers/CustomerPortalController.php`,
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (4)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_person_user_edit_url</summary>
+<explain-block title="fluent_support_person_user_edit_url">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve user profile edit link data and modify it.
@@ -238,13 +209,9 @@ add_filter('fluent_support/person_user_edit_url', function ($userEditUrl, $insta
 This filter is located in <br>
 `fluent-support/app/Models/Person.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (4)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_customer_extra_widgets</summary>
+<explain-block title="fluent_support_customer_extra_widgets">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve customer extra widgets data and modify it.
@@ -271,9 +238,5 @@ add_filter('fluent_support/customer_extra_widgets', function ($widgets, $custome
 This filter is located in <br>
 `fluent-support/app/Models/Person.php`
 </div>
-
-</details>
-
-
 </explain-block>
 
