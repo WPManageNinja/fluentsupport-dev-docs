@@ -1,9 +1,4 @@
-<explain-block title="fluent-support/_fluent_support_pro_filters">
-
-[//]: # (0)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_file_storage_integration_settings</summary>
+<explain-block title="fluent_support_file_storage_integration_settings">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve file storage integration settings data and modify it.
@@ -35,13 +30,9 @@ add_filter('fluent_support/file_storage_integration_settings_' . $settingsKey, f
 This filter is located in <br>
 `fluent-support-pro/app/Http/Controllers/UploadIntegrationController.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (1)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_file_storage_integration_settings_save</summary>
+<explain-block title="fluent_support_file_storage_integration_settings_save">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve file upload related message and settings data and modify it.
@@ -72,13 +63,9 @@ function($message, $settings) {
 This filter is located in <br>
 `fluent-support-pro/app/Http/Controllers/UploadIntegrationController.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (2)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_search_doc_query</summary>
+<explain-block title="fluent_support_search_doc_query">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the search query used for document and modify it.
@@ -104,13 +91,9 @@ add_filter('fluent_support/search_doc_query', function($search) {
 This filter is located in <br>
 `fluent-support-pro/app/Http/Controllers/DocSuggestionController.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (3)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_search_doc_post_types</summary>
+<explain-block title="fluent_support_search_doc_post_types">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the document types data and modify it.
@@ -136,13 +119,9 @@ add_filter('fluent_support/search_doc_post_types', function($docsPostType) {
 This filter is located in <br>
 `fluent-support-pro/app/Http/Controllers/DocSuggestionController.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (4)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_doc_search_args</summary>
+<explain-block title="fluent_support_doc_search_args">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the document search arguments and modify it.
@@ -172,13 +151,9 @@ add_filter('fluent_support/doc_search_args', function($searchArgs) {
 This filter is located in <br>
 `fluent-support-pro/app/Http/Controllers/DocSuggestionController.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (5)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_search_doc_result</summary>
+<explain-block title="fluent_support_search_doc_result">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the document search result and modify it.
@@ -205,12 +180,9 @@ This filter is located in <br>
 `fluent-support-pro/app/Http/Controllers/DocSuggestionController.php`
 </div>
 
-</details>
+</explain-block>
 
-[//]: # (6)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_email_piping_raw_data</summary>
+<explain-block title="fluent_support_email_piping_raw_data">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the payload and mailbox data and modify it.
@@ -237,13 +209,9 @@ add_filter('fluent_support/email_piping_raw_data', function($data, $box) {
 This filter is located in <br>
 `fluent-support-pro/app/Http/Controllers/EmailBoxController.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (7)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_email_piping_data</summary>
+<explain-block title="fluent_support_email_piping_data">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the payload, formatted payload and mailbox data and modify it.
@@ -271,13 +239,9 @@ add_filter('fluent_support/email_piping_data', function($formattedData, $data, $
 This filter is located in <br>
 `fluent-support-pro/app/Http/Controllers/EmailBoxController.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (8)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_all_doc_post_types</summary>
+<explain-block title="fluent_support_all_doc_post_types">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the document post types and modify it.
@@ -307,12 +271,9 @@ This filter is located in <br>
 `fluent-support-pro/app/Http/Controllers/TicketFormController.php`
 </div>
 
-</details>
+</explain-block>
 
-[//]: # (9)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_custom_field_types</summary>
+<explain-block title="fluent_support_custom_field_types">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the list of custom field types and modify it.
@@ -339,13 +300,9 @@ add_filter('fluent_support/custom_field_types', function($fieldTypes) {
 This filter is located in <br>
 `fluent-support-pro/app/Services/CustomFieldsService.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (10)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_render_custom_field_options</summary>
+<explain-block title="fluent_support_render_custom_field_options">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the public field, customer data, and modify it..
@@ -373,13 +330,9 @@ add_filter('fluent_support/render_custom_field_options_' . $fieldType['type'], f
 This filter is located in <br>
 `fluent-support-pro/app/Services/CustomFieldsService.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (11)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_custom_field_renders_type</summary>
+<explain-block title="fluent_support_custom_field_renders_type">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the field types and modify it..
@@ -405,13 +358,9 @@ add_filter('fluent_support/custom_field_renders_type', function( $fieldTypes) {
 This filter is located in <br>
 `fluent-support-pro/app/Services/CustomFieldsService.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (12)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_ticket_partial_match</summary>
+<explain-block title="fluent_support_ticket_partial_match">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve ticket partially match data modify it..
@@ -437,13 +386,9 @@ add_filter('fluent_support/ticket_partial_match', function( $partialMatch) {
 This filter is located in <br>
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (13)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_enable_custom_piping</summary>
+<explain-block title="fluent_support_enable_custom_piping">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve custom piping permission modify it..
@@ -469,13 +414,9 @@ add_filter('fluent_support/enable_custom_piping', function( $enableCustomPiping)
 This filter is located in <br>
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (14)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_slack_api_data</summary>
+<explain-block title="fluent_support_slack_api_data">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve Slack integration settings, message data, and modify them.
@@ -501,12 +442,9 @@ add_filter('fluent_support/slack_api_data', function($data, $message) {
 This filter is located in <br>
 `fluent-support-pro/app/Services/Integrations/Slack/SlackApi.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (15)
-<details class="fs-docs-collapse">
-
+<explain-block title="fluent_support_disable_woo_menu">
 <summary class="fs-docs-title">fluent_support_disable_woo_menu</summary>
 <hr>
 <div class="fs-docs-content">
@@ -533,13 +471,9 @@ add_filter('fluent_support/disable_woo_menu', function($data) {
 This filter is located in <br>
 `fluent-support-pro/app/Services/Integrations/WooCommerce.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (16)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_woo_menu_link_position</summary>
+<explain-block title="fluent_support_woo_menu_link_position">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the support page link position in WooCommerce customer menu and modify it.
@@ -565,13 +499,9 @@ add_filter('fluent_support/woo_menu_link_position', function($supportTicketPosit
 This filter is located in <br>
 `fluent-support-pro/app/Services/Integrations/WooCommerce.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (16)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_woo_menu_label</summary>
+<explain-block title="fluent_support_woo_menu_label">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the support page link label in WooCommerce customer menu and modify it.
@@ -597,13 +527,9 @@ add_filter('fluent_support/woo_menu_label', function($supportLabel) {
 This filter is located in <br>
 `fluent-support-pro/app/Services/Integrations/WooCommerce.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (16)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_advanced_filter_options</summary>
+<explain-block title="fluent_support_advanced_filter_options">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the advanced filter options data and modify it.
@@ -629,13 +555,9 @@ add_filter('fluent_support/advanced_filter_options', function($groups) {
 This filter is located in <br>
 `fluent-support-pro/app/Services/ProHelper.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (17)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_outgoing_webhook_data</summary>
+<explain-block title="fluent_support_outgoing_webhook_data">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the outgoing webhook data and modify it.
@@ -663,13 +585,9 @@ add_filter('fluent_support/outgoing_webhook_data', function($data, $action, $tic
 This filter is located in <br>
 `fluent-support-pro/app/Services/Workflow/ActionRunner.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (18)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_workflow_ticket_created_supported_conditions</summary>
+<explain-block title="fluent_support_workflow_ticket_created_supported_conditions">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the workflow ticket created supported conditions data and modify it.
@@ -696,14 +614,9 @@ add_filter('fluent_support/workflow_ticket_created_supported_conditions', functi
 This filter is located in <br>
 `fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (19)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_workflow_response_added_by_customer_
-supported_conditions</summary>
+<explain-block title="fluent_support_workflow_response_added_by_customer_">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the response added by customer supported conditions data and modify it.
@@ -730,13 +643,9 @@ add_filter('fluent_support/workflow_response_added_by_customer_supported_conditi
 This filter is located in <br>
 `fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (20)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_workflow_ticket_closed_supported_conditions</summary>
+<explain-block title="fluent_support_workflow_ticket_closed_supported_conditions">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the ticket closed supported conditions data and modify it.
@@ -763,13 +672,9 @@ add_filter('fluent_support/workflow_ticket_closed_supported_conditions', functio
 This filter is located in <br>
 `fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (21)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_workflow_conditions</summary>
+<explain-block title="fluent_support_workflow_conditions">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the Workflow conditions data and modify it.
@@ -794,13 +699,9 @@ add_filter('fluent_support/workflow_conditions', function($conditions) {
 This filter is located in <br>
 `fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (22)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_workflow_actions</summary>
+<explain-block title="fluent_support_workflow_actions">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the Workflow actions data and modify it.
@@ -826,9 +727,6 @@ add_filter('fluent_support/workflow_actions', function($actions, $workFlow) {
 This filter is located in <br>
 `fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`
 </div>
-
-</details>
-
-
 </explain-block>
+
 
