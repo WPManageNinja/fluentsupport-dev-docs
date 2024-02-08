@@ -1,9 +1,4 @@
-<explain-block title="fluent-support/email_notification_filters">
-
-[//]: # (0)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_mail_to_customer_header</summary>
+<explain-block title="fluent_support_mail_to_customer_header">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve mailbox header data and modify it.
@@ -34,13 +29,9 @@ add_filter('fluent_support/mail_to_customer_header', function ($headers, $data) 
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/EmailNotificationHandler.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (1)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_email_footer_credit</summary>
+<explain-block title="fluent_support_email_footer_credit">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve email footer data and modify it.
@@ -68,13 +59,9 @@ add_filter('fluent_support/email_footer_credit', function ($message) {
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/EmailNotificationHandler.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (2)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_email_setting_keys</summary>
+<explain-block title="fluent_support_email_setting_keys">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve email settings key data and modify it.
@@ -102,8 +89,4 @@ add_filter('fluent_support/email_setting_keys', function ($emailSettingsKey) {
 This filter is located in <br>
 `fluent-support/app/Services/EmailNotification/Settings.php`
 </div>
-
-</details>
-
-
 </explain-block>
