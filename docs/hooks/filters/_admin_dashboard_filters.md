@@ -1,9 +1,8 @@
-<explain-block title="fluent-support/admin_dashboard_filters">
 
-[//]: # (0)
-<details class="fs-docs-collapse">
 
-<summary class="fs-docs-title">fluent_support_admin_menu_position</summary>
+
+
+<explain-block title="fluent_support_admin_menu_position">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the value of menu position and modify it.
@@ -29,13 +28,9 @@ add_filter('fluent_support/admin_menu_position', function ($menuPosition) {
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/Menu.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (1)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_base_url</summary>
+<explain-block title="fluent_support_base_url">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the base url and modify it.
@@ -61,13 +56,9 @@ add_filter('fluent_support/base_url', function ($baseUrl) {
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/Menu.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (2)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_primary_menu_items</summary>
+<explain-block title="fluent_support_primary_menu_items">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the primary menu items and modify it.
@@ -93,13 +84,9 @@ add_filter('fluent_support/primary_menu_items', function ($menuItems) {
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/Menu.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (3)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_secondary_menu_items</summary>
+<explain-block title="fluent_support_secondary_menu_items">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the secondary menu items and modify it.
@@ -125,13 +112,9 @@ add_filter('fluent_support/secondary_menu_items', function ($secondaryItems) {
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/Menu.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (4)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_integration_drivers</summary>
+<explain-block title="fluent_support_integration_drivers">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the integration driver data and modify it.
@@ -157,13 +140,9 @@ add_filter('fluent_support/integration_drivers', function ($integrationDrivers) 
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/Menu.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (4)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_app_vars</summary>
+<explain-block title="fluent_support_app_vars">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the admin portal localize data and modify it.
@@ -190,13 +169,9 @@ add_filter('fluent_support_app_vars', function ($appVars) {
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/Menu.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (5)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_ticket_custom_fields</summary>
+<explain-block title="fluent_support_ticket_custom_fields">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the ticket custom fields data and modify it.
@@ -223,13 +198,9 @@ This filter is located in <br>
 `fluent-support/app/Models/Ticket.php`,
 `fluent-support/app/Services/Integrations/FluentForm/FeedIntegration.php`,
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (6)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_dashboard_notice</summary>
+<explain-block title="fluent_support_dashboard_notice">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the dashboard notice and agent data and modify it.
@@ -256,13 +227,9 @@ This filter is located in <br>
 `fluent-support/app/Http/Controllers/AgentController.php`,
 `fluent-support-pro/app/Hooks/filters.php`
 </div>
+</explain-block>
 
-</details>
-
-[//]: # (7)
-<details class="fs-docs-collapse">
-
-<summary class="fs-docs-title">fluent_support_agent_has_access</summary>
+<explain-block title="fluent_support_agent_has_access">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the agent has access or not data and modify it.
@@ -288,9 +255,6 @@ add_filter('fluent_support/agent_has_access', function ($status, $request) {
 This filter is located in <br>
 `fluent-support/app/Http/Policies/AgentTicketPolicy.php`,
 </div>
-
-</details>
-
-
 </explain-block>
+
 
