@@ -13,8 +13,8 @@ This filter hook allows you to retrieve mailbox header data and modify it.
 ```php
 add_filter('fluent_support/mail_to_customer_header', function ($headers, $data) {
     // ...do something
-    return $headers
-}, 10, 2)
+    return $headers;
+}, 10, 2);
 ```
 
 **Reference**
@@ -45,8 +45,8 @@ This filter hook allows you to retrieve email footer data and modify it.
 ```php
 add_filter('fluent_support/email_footer_credit', function ($message) {
     // ...do something
-    return $message
-}, 10, 1)
+    return $message;
+}, 10, 1);
 ```
 
 **Reference**
@@ -75,8 +75,8 @@ This filter hook allows you to retrieve email settings key data and modify it.
 ```php
 add_filter('fluent_support/email_setting_keys', function ($emailSettingsKey) {
     // ...do something
-    return $emailSettingsKey
-}, 10, 1)
+    return $emailSettingsKey;
+}, 10, 1);
 ```
 
 **Reference**

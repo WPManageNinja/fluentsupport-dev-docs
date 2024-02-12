@@ -14,7 +14,8 @@ This filter hook allows you to retrieve smart code data.
 ```php
 add_filter('fluent_support/parse_smartcode_data', function ($response, $data) {
     // ...do something
-}, 10, 2)
+    return $data;
+}, 10, 2);
 ```
 
 **Reference**
@@ -47,7 +48,8 @@ This filter hook enables you to retrieve the reset waiting state and response da
 ```php
 add_filter('fluent_support/reset_waiting_since', function ($state, $content) {
     // ...do something
-}, 10, 2)
+    return state;
+}, 10, 2);
 ```
 
 **Reference**
@@ -75,7 +77,8 @@ This filter hook allows you to retrieve response data before it is used anywhere
 ```php
 add_filter('fluent_support/response_content_before_use_anywhere', function ($content) {
     // ...do something
-}, 10, 1)
+    return $content;
+}, 10, 1);
 ```
 
 **Reference**
@@ -104,7 +107,8 @@ This filter hook allows you to retrieve ticket, person and response data before 
 ```php
 add_filter('fluent_support/new_' . $person_type . '_' . $convoType, function ($response, $ticket, $person) {
     // ...do something
-}, 10, 3)
+    return $response;
+}, 10, 3);
 ```
 
 **Note:** `$person->person_type` contains the type of a person, whether it be an agent, user, etc., with `$convoType` being a dynamically assigned conversation type.
@@ -134,7 +138,8 @@ This filter hook enables you to retrieve and modify internal notes and ticket da
 ```php
 add_filter('fluent_support/ticket_close_internal_note', function ($internalNote, $ticket) {
     // ...do something
-}, 10, 2)
+    return $internalNote;
+}, 10, 2);
 ```
 
 **Reference**

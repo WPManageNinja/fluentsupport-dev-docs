@@ -16,8 +16,8 @@ This filter hook allows you to retrieve the value of menu position and modify it
 ```php
 add_filter('fluent_support/admin_menu_position', function ($menuPosition) {
     // ...do something
-    return $menuPosition
-}, 10, 1)
+    return $menuPosition;
+}, 10, 1);
 ```
 
 **Reference**
@@ -44,8 +44,8 @@ This filter hook allows you to retrieve the base url and modify it.
 ```php
 add_filter('fluent_support/base_url', function ($baseUrl) {
     // ...do something
-    return $baseUrl
-}, 10, 1)
+    return $baseUrl;
+}, 10, 1);
 ```
 
 **Reference**
@@ -72,8 +72,8 @@ This filter hook allows you to retrieve the primary menu items and modify it.
 ```php
 add_filter('fluent_support/primary_menu_items', function ($menuItems) {
     // ...do something
-    return $menuItems
-}, 10, 1)
+    return $menuItems;
+}, 10, 1);
 ```
 
 **Reference**
@@ -100,8 +100,8 @@ This filter hook allows you to retrieve the secondary menu items and modify it.
 ```php
 add_filter('fluent_support/secondary_menu_items', function ($secondaryItems) {
     // ...do something
-    return $secondaryItems
-}, 10, 1)
+    return $secondaryItems;
+}, 10, 1);
 ```
 
 **Reference**
@@ -128,8 +128,8 @@ This filter hook allows you to retrieve the integration driver data and modify i
 ```php
 add_filter('fluent_support/integration_drivers', function ($integrationDrivers) {
     // ...do something
-    return $integrationDrivers
-}, 10, 1)
+    return $integrationDrivers;
+}, 10, 1);
 ```
 
 **Reference**
@@ -156,8 +156,8 @@ This filter hook allows you to retrieve the admin portal localize data and modif
 ```php
 add_filter('fluent_support_app_vars', function ($appVars) {
     // ...do something
-    return $appVars
-}, 10, 1)
+    return $appVars;
+}, 10, 1);
 ```
 
 **Reference**
@@ -185,8 +185,8 @@ This filter hook allows you to retrieve the ticket custom fields data and modify
 ```php
 add_filter('fluent_support/ticket_custom_fields', function ($fields) {
     // ...do something
-    return $fields
-}, 10, 1)
+    return $fields;
+}, 10, 1);
 ```
 
 **Reference**
@@ -215,8 +215,8 @@ This filter hook allows you to retrieve the dashboard notice and agent data and 
 ```php
 add_filter('fluent_support/dashboard_notice', function ($dashboardNotice, $agent) {
     // ...do something
-    return $dashboardNotice
-}, 10, 2)
+    return $dashboardNotice;
+}, 10, 2);
 ```
 
 **Reference**
@@ -244,8 +244,8 @@ This filter hook allows you to retrieve the agent has access or not data and mod
 ```php
 add_filter('fluent_support/agent_has_access', function ($status, $request) {
     // ...do something
-    return $status
-}, 10, 2)
+    return $status;
+}, 10, 2);
 ```
 
 **Reference**

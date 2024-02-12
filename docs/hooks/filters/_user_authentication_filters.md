@@ -12,8 +12,8 @@ This filter hook allows you to retrieve login arguments and change them.
 ```php
 add_filter('fluent_support/login_form_args', function ($loginArgs) {
     // ...do something
-    return $loginArgs
-}, 10, 1)
+    return $loginArgs;
+}, 10, 1);
 ```
 
 **Reference**
@@ -45,8 +45,8 @@ This filter hook allows you to retrieve custom registration form field keys and 
 ```php
 add_filter('fluent_support/custom_registration_form_fields_key', function ($registrationFieldKeys) {
     // ...do something
-    return $registrationFieldKeys
-}, 10, 1)
+    return $registrationFieldKeys;
+}, 10, 1);
 ```
 
 **Reference**
@@ -79,8 +79,8 @@ This filter hook allows you to retrieve registration form data and modify them.
 ```php
 add_filter('fluent_support/before_registration_form_close', function ($content, $registrationFields, $attributes) {
     // ...do something
-    return $content
-}, 10, 3)
+    return $content;
+}, 10, 3);
 ```
 
 **Reference**
@@ -110,8 +110,8 @@ This filter hook allows you to retrieve default registration from fields add the
 ```php
 add_filter('fluent_support/registration_form_fields', function ($fields) {
     // ...do something
-    return $fields
-}, 10, 1)
+    return $fields;
+}, 10, 1);
 ```
 
 **Reference**
@@ -139,8 +139,8 @@ This filter hook allows you to retrieve custom registration from fields add the 
 ```php
 add_filter('fluent_support/custom_registration_form_fields', function ($customFields) {
     // ...do something
-    return $customFields
-}, 10, 1)
+    return $customFields;
+}, 10, 1);
 ```
 
 **Reference**
@@ -171,8 +171,8 @@ This filter hook allows you to retrieve Reset password form filed and modify the
 ```php
 add_filter('fluent_support/reset_password_form', function ($field) {
     // ...do something
-    return $field
-}, 10, 1)
+    return $field;
+}, 10, 1);
 ```
 
 **Reference**
@@ -209,8 +209,8 @@ This filter hook allows you to retrieve icon data and modify them.
 ```php
 add_filter('fluent_support/signup_loading_icon', function ($loadingIcon) {
     // ...do something
-    return $loadingIcon
-}, 10, 1)
+    return $loadingIcon;
+}, 10, 1);
 ```
 
 **Reference**
@@ -240,8 +240,8 @@ This filter hook allows you to retrieve shortcode behavior for agent and modify 
 ```php
 add_filter('fluent_support/auth_shortcode_defaults', function ($shortCodeDefaults) {
     // ...do something
-    return $shortCodeDefaults
-}, 10, 1)
+    return $shortCodeDefaults;
+}, 10, 1);
 ```
 
 **Reference**
@@ -276,8 +276,8 @@ This filter hook allows you to retrieve signup form data and modify them.
 ```php
 add_filter('fluent_support/signup_form_data', function ($formData) {
     // ...do something
-    return $formData
-}, 10, 1)
+    return $formData;
+}, 10, 1);
 ```
 
 **Reference**
@@ -306,8 +306,8 @@ This filter hook allows you to retrieve create user error message and modify it.
 ```php
 add_filter('fluent_support/signup_create_user_error', function ($errorMessage) {
     // ...do something
-    return $errorMessage
-}, 10, 1)
+    return $errorMessage;
+}, 10, 1);
 ```
 
 **Reference**
@@ -336,8 +336,8 @@ This filter hook allows you to retrieve and modify registration success message 
 ```php
 add_filter('fluent_support/signup_complete_response', function ($data) {
     // ...do something
-    return $data
-}, 10, 1)
+    return $data;
+}, 10, 1);
 ```
 
 **Reference**
@@ -369,8 +369,8 @@ This filter hook allows you to retrieve and modify registration success message 
 ```php
 add_filter('fluent_support/signup_complete_response', function ($data) {
     // ...do something
-    return $data
-}, 10, 1)
+    return $data;
+}, 10, 1);
 ```
 
 **Reference**
@@ -401,8 +401,8 @@ This filter hook allows you to retrieve and modify native login data.
 ```php
 add_filter('fluent_support_use_native_login', function ($useNativeLogin) {
     // ...do something
-    return $useNativeLogin
-}, 10, 1)
+    return $useNativeLogin;
+}, 10, 1);
 ```
 
 **Reference**
@@ -430,8 +430,8 @@ This filter hook allows you to retrieve and modify signup validation rules data.
 ```php
 add_filter('fluent_support/signup_validation_rules', function ($rules) {
     // ...do something
-    return $rules
-}, 10, 1)
+    return $rules;
+}, 10, 1);
 ```
 
 **Reference**
@@ -459,8 +459,8 @@ This filter hook allows you to retrieve reset password mail subject and modify i
 ```php
 add_filter('fluent_support/reset_password_mail_subject', function ($subject) {
     // ...do something
-    return $subject
-}, 10, 1)
+    return $subject;
+}, 10, 1);
 ```
 
 **Reference**
@@ -490,8 +490,8 @@ This filter hook allows you to retrieve reset password email body text and modif
 ```php
 add_filter('fluent_support/reset_password_message', function ($message, $user_data, $resetLink) {
     // ...do something
-    return $message
-}, 10, 3)
+    return $message;
+}, 10, 3);
 ```
 
 **Reference**
@@ -520,8 +520,8 @@ This filter hook allows you to retrieve user signup validation message and modif
 ```php
 add_filter('fluent_support/signup_validation_messages', function ($arg, $rules) {
     // ...do something
-    return $rules
-}, 10, 2)
+    return $rules;
+}, 10, 2);
 ```
 
 **Reference**
@@ -549,8 +549,8 @@ This filter hook allows you to retrieve email address used for signup and modify
 ```php
 add_filter('fluent_support/signup_email', function ($email) {
     // ...do something
-    return $email
-}, 10, 1)
+    return $email;
+}, 10, 1);
 ```
 
 **Reference**
@@ -578,8 +578,8 @@ This filter hook allows you to retrieve user name used for signup and modify it.
 ```php
 add_filter('fluent_support/signup_username', function ($userName) {
     // ...do something
-    return $userName
-}, 10, 1)
+    return $userName;
+}, 10, 1);
 ```
 
 **Reference**
@@ -606,8 +606,8 @@ This filter hook allows you to retrieve password used for signup and modify it.
 ```php
 add_filter('fluent_support/signup_password', function ($password) {
     // ...do something
-    return $password
-}, 10, 1)
+    return $password;
+}, 10, 1);
 ```
 
 **Reference**
@@ -634,8 +634,8 @@ This filter hook allows you to retrieve user data and modify it.
 ```php
 add_filter('fluent_support/update_user_data', function ($data) {
     // ...do something
-    return $data
-}, 10, 1)
+    return $data;
+}, 10, 1);
 ```
 
 **Reference**
@@ -663,8 +663,8 @@ This filter hook allows you to retrieve user role and modify it.
 ```php
 add_filter('fluent_support/user_role', function ($setRole) {
     // ...do something
-    return $setRole
-}, 10, 1)
+    return $setRole;
+}, 10, 1);
 ```
 
 **Reference**

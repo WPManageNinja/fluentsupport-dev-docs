@@ -12,8 +12,8 @@ This filter hook allows you to retrieve validation rules for ticket and modify i
 ```php
 add_filter('fluent_support/ticket_create_validation_rules', function ($rules) {
     // ...do something
-    return $rules
-}, 10, 1)
+    return $rules;
+}, 10, 1);
 ```
 
 **Reference**
@@ -39,8 +39,8 @@ This filter hook allows you to retrieve validation messages for a ticket and mod
 ```php
 add_filter('fluent_support/ticket_create_validation_messages', function ($messages) {
     // ...do something
-    return $messages
-}, 10, 1)
+    return $messages;
+}, 10, 1);
 ```
 
 **Reference**
@@ -66,8 +66,8 @@ This filter hook allows you to retrieve customer ticket priority list and modify
 ```php
 add_filter('fluent_support/customer_ticket_priorities', function ($priorities) {
     // ...do something
-    return $priorities
-}, 10, 1)
+    return $priorities;
+}, 10, 1);
 ```
 
 **Reference**
@@ -97,8 +97,8 @@ This filter hook allows you to retrieve admin ticket priority list and modify it
 ```php
 add_filter('fluent_support/admin_ticket_priorities', function ($priorities) {
     // ...do something
-    return $priorities
-}, 10, 1)
+    return $priorities;
+}, 10, 1);
 ```
 
 **Reference**
@@ -129,8 +129,8 @@ This filter hook allows you to retrieve ticket status groups and modify it.
 ```php
 add_filter('fluent_support/ticket_status_groups', function ($statusGroups) {
     // ...do something
-    return $statusGroups
-}, 10, 1)
+    return $statusGroups;
+}, 10, 1);
 ```
 
 **Reference**
@@ -162,8 +162,8 @@ This filter hook allows you to retrieve changeable ticket status groups and modi
 ```php
 add_filter('fluent_support/changeable_ticket_statuses', function ($ticketStatus) {
     // ...do something
-    return $ticketStatus
-}, 10, 1)
+    return $ticketStatus;
+}, 10, 1);
 ```
 
 **Reference**
@@ -189,8 +189,8 @@ This filter hook allows you to retrieve ticket statuses and modify it.
 ```php
 add_filter('fluent_support/ticket_statuses', function ($ticketStatuses) {
     // ...do something
-    return $ticketStatuses
-}, 10, 1)
+    return $ticketStatuses;
+}, 10, 1);
 ```
 
 **Reference**
@@ -220,8 +220,8 @@ This filter hook allows you to retrieve accepted mimes and modify it.
 ```php
 add_filter('fluent_support/accepted_ticket_mimes', function ($mimes) {
     // ...do something
-    return $mimes
-}, 10, 1)
+    return $mimes;
+}, 10, 1);
 ```
 
 **Reference**
@@ -247,8 +247,8 @@ This filter hook allows you to retrieve mime groups and modify it.
 ```php
 add_filter('fluent_support/mime_groups', function ($mimeGroups) {
     // ...do something
-    return $mimeGroups
-}, 10, 1)
+    return $mimeGroups;
+}, 10, 1);
 ```
 
 **Reference**
@@ -274,8 +274,8 @@ This filter hook allows you to retrieve portal base url and modify it.
 ```php
 add_filter('fluent_support/portal_base_url', function ($baseUrl) {
     // ...do something
-    return $baseUrl
-}, 10, 1)
+    return $baseUrl;
+}, 10, 1);
 ```
 
 **Reference**
@@ -301,8 +301,8 @@ This filter hook allows you to retrieve user can add tags permission and  modify
 ```php
 add_filter('fluent_support/can_user_add_tags_to_customer', function ($canAddTags) {
     // ...do something
-    return $canAddTags
-}, 10, 1)
+    return $canAddTags;
+}, 10, 1);
 ```
 
 **Reference**
@@ -331,8 +331,8 @@ This filter hook allows you to retrieve custom fields data and modify it.
 ```php
 add_filter('fluent_support/custom_field_render_' . $fieldType , function ($value, $scope) {
     // ...do something
-    return $value
-}, 10, 2)
+    return $value;
+}, 10, 2);
 ```
 
 **Reference**
@@ -358,8 +358,8 @@ This filter hook allows you to retrieve custom fields and modify it.
 ```php
 add_filter('fluent_support/ticket_custom_fields', function ($customFields) {
     // ...do something
-    return $customFields
-}, 10, 1)
+    return $customFields;
+}, 10, 1);
 ```
 
 **Reference**
@@ -385,8 +385,8 @@ This filter hook allows you to retrieve disable ticket fields and modify it.
 ```php
 add_filter('fluent_support/disabled_ticket_fields', function ($fields) {
     // ...do something
-    return $fields
-}, 10, 1)
+    return $fields;
+}, 10, 1);
 ```
 
 **Reference**
@@ -417,8 +417,8 @@ This filter hook allows you to retrieve ticket and customer data and modify it.
 ```php
 add_filter('fluent_support/create_ticket_data', function ($ticketData, $customer) {
     // ...do something
-    return $ticketData
-}, 10, 2)
+    return $ticketData;
+}, 10, 2);
 ```
 
 **Reference**
@@ -449,8 +449,8 @@ This filter hook allows you to retrieve previous ticket widgets limit and modify
 ```php
 add_filter('fluent_support/previous_ticket_widgets_limit', function ($limit) {
     // ...do something
-    return $limit
-}, 10, 1)
+    return $limit;
+}, 10, 1);
 ```
 
 **Reference**
@@ -477,8 +477,8 @@ This filter hook allows you to retrieve fluent support admin url base data and m
 ```php
 add_filter('fluent_support/fst_menu_url_base', function ($urlBase) {
     // ...do something
-    return $urlBase
-}, 10, 1)
+    return $urlBase;
+}, 10, 1);
 ```
 
 **Reference**
@@ -507,8 +507,8 @@ This filter hook allows you to retrieve list of quick links data and modify it.
 ```php
 add_filter('fluent_support/fst_quick_links', function ($quickLinks) {
     // ...do something
-    return $quickLinks
-}, 10, 1)
+    return $quickLinks;
+}, 10, 1);
 ```
 
 **Reference**

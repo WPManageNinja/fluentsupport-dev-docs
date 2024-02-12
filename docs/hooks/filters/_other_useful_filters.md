@@ -13,8 +13,8 @@ This filter hook allows you to retrieve Exportable data and modify it.
 ```php
 add_filter('fluent_support/exportable_tickets_data', function ($data, $tickets) {
     // ...do something
-    return $data
-}, 10, 2)
+    return $data;
+}, 10, 2);
 ```
 
 **Reference**
@@ -42,8 +42,8 @@ This filter hook allows you to retrieve Exportable conversation data and modify 
 ```php
 add_filter('fluent_support/exportable_conversations_data', function ($data, $conversations) {
     // ...do something
-    return $data
-}, 10, 2)
+    return $data;
+}, 10, 2);
 ```
 
 **Reference**
@@ -71,8 +71,8 @@ This filter hook allows you to retrieve exportable customer data and modify it.
 ```php
 add_filter('fluent_support/exportable_customer_data', function ($data, $customer) {
     // ...do something
-    return $data
-}, 10, 2)
+    return $data;
+}, 10, 2);
 ```
 
 **Reference**
@@ -99,8 +99,8 @@ This filter hook allows you to retrieve reCAPTCHA v3 threshold value data and mo
 ```php
 add_filter('fluent_support/recaptcha_v3_ref_score', function ($refScore) {
     // ...do something
-    return $refScore
-}, 10, 1)
+    return $refScore;
+}, 10, 1);
 ```
 
 **Reference**
@@ -127,8 +127,8 @@ This filter hook allows you to retrieve storage driver information and modify it
 ```php
 add_filter('fluent_support/storage_drivers_info', function ($drivers) {
     // ...do something
-    return $drivers
-}, 10, 1)
+    return $drivers;
+}, 10, 1);
 ```
 
 **Reference**
@@ -156,8 +156,8 @@ This filter hook allows you to retrieve customer profile picture file types and 
 ```php
 add_filter('fluent_support/allowed_customer_profile_picture_file_type', function ($fileTypes) {
     // ...do something
-    return $fileTypes
-}, 10, 1)
+    return $fileTypes;
+}, 10, 1);
 ```
 
 **Reference**
@@ -182,8 +182,8 @@ This filter hook allows you to retrieve file name prefix and modify it.
 ```php
 add_filter('fluent_support/uploaded_file_name_prefix', function ($prefix) {
     // ...do something
-    return $prefix
-}, 10, 1)
+    return $prefix;
+}, 10, 1);
 ```
 
 **Reference**
@@ -210,8 +210,8 @@ This filter hook allows you to retrieve Smartcode data and modify it.
 ```php
 add_filter('fluent_support/smartcode_fallback', function ($matches, $data) {
     // ...do something
-    return $matches
-}, 10, 2)
+    return $matches;
+}, 10, 2);
 ```
 
 **Reference**
@@ -240,8 +240,8 @@ This filter hook allows you to retrieve fallback behavior for smartcodes and mod
 ```php
 add_filter('fluentsupport/smartcode_fallback_callback_' . $dataKey, function ($matches, $valueKey, $defaultValue, $data) {
     // ...do something
-    return $matches
-}, 10, 4)
+    return $matches;
+}, 10, 4);
 ```
 **Note:** `$dataKey` Unique key or identifier associated with the specific data being processed.
 
@@ -268,8 +268,8 @@ This filter hook allows you to retrieve the strict subjects and modify it.
 ```php
 add_filter('fluent_support/strict_subjects', function ($subjects) {
     // ...do something
-    return $subjects
-}, 10, 1)
+    return $subjects;
+}, 10, 1);
 ```
 
 **Reference**
@@ -299,8 +299,8 @@ This filter hook allows you to retrieve the Ticket migration class mapper data a
 ```php
 add_filter('fluent_support/migrator_class_mapper', function ($classMapper) {
     // ...do something
-    return $classMapper
-}, 10, 1)
+    return $classMapper;
+}, 10, 1);
 ```
 
 **Reference**
@@ -330,8 +330,8 @@ This filter hook allows you to retrieve the permission for share essential data 
 ```php
 add_filter('fluentsupport_allow_share_essential', function ($allowShareEssential) {
     // ...do something
-    return $allowShareEssential
-}, 10, 1)
+    return $allowShareEssential;
+}, 10, 1);
 ```
 
 **Reference**

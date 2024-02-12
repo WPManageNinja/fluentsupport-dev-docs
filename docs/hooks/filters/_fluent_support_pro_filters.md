@@ -12,8 +12,8 @@ This filter hook allows you to retrieve file storage integration settings data a
 ```php
 add_filter('fluent_support/file_storage_integration_settings_' . $settingsKey, function ($settings) {
     // ...do something
-    return $settings
-}, 10, 1)
+    return $settings;
+}, 10, 1);
 ```
 
 **Note:** `$settingsKey` It contains the file upload driver name, such as Dropbox, Google Drive, etc.
@@ -48,8 +48,8 @@ This filter hook allows you to retrieve file upload related message and settings
 add_filter('fluent_support/file_storage_integration_settings_save_' . $settingsKey, 
 function($message, $settings) {
     // ...do something
-    return $message
-}, 10, 2)
+    return $message;
+}, 10, 2);
 ```
 **Note:** `$settingsKey` It contains the file upload driver name, such as Dropbox, Google Drive, etc.
 
@@ -79,8 +79,8 @@ This filter hook allows you to retrieve the search query used for document and m
 ```php
 add_filter('fluent_support/search_doc_query', function($search) {
     // ...do something
-    return $search
-}, 10, 1)
+    return $search;
+}, 10, 1);
 ```
 
 **Reference**
@@ -107,8 +107,8 @@ This filter hook allows you to retrieve the document types data and modify it.
 ```php
 add_filter('fluent_support/search_doc_post_types', function($docsPostType) {
     // ...do something
-    return $docsPostType
-}, 10, 1)
+    return $docsPostType;
+}, 10, 1);
 ```
 
 **Reference**
@@ -135,8 +135,8 @@ This filter hook allows you to retrieve the document search arguments and modify
 ```php
 add_filter('fluent_support/doc_search_args', function($searchArgs) {
     // ...do something
-    return $searchArgs
-}, 10, 1)
+    return $searchArgs;
+}, 10, 1);
 ```
 
 **Reference**
@@ -167,8 +167,8 @@ This filter hook allows you to retrieve the document search result and modify it
 ```php
 add_filter('fluent_support/search_doc_result', function($result) {
     // ...do something
-    return $result
-}, 10, 1)
+    return $result;
+}, 10, 1);
 ```
 
 **Reference**
@@ -197,8 +197,8 @@ This filter hook allows you to retrieve the payload and mailbox data and modify 
 ```php
 add_filter('fluent_support/email_piping_raw_data', function($data, $box) {
     // ...do something
-    return $data
-}, 10, 2)
+    return $data;
+}, 10, 2);
 ```
 
 **Reference**
@@ -227,8 +227,8 @@ This filter hook allows you to retrieve the payload, formatted payload and mailb
 ```php
 add_filter('fluent_support/email_piping_data', function($formattedData, $data, $box) {
     // ...do something
-    return $formattedData
-}, 10, 3)
+    return $formattedData;
+}, 10, 3);
 ```
 
 **Reference**
@@ -255,8 +255,8 @@ This filter hook allows you to retrieve the document post types and modify it.
 ```php
 add_filter('fluent_support/all_doc_post_types', function($postTypes) {
     // ...do something
-    return $postTypes
-}, 10, 1)
+    return $postTypes;
+}, 10, 1);
 ```
 
 **Reference**
@@ -287,8 +287,8 @@ This filter hook allows you to retrieve the list of custom field types and modif
 ```php
 add_filter('fluent_support/custom_field_types', function($fieldTypes) {
     // ...do something
-    return $fieldTypes
-}, 10, 1)
+    return $fieldTypes;
+}, 10, 1);
 ```
 
 **Reference**
@@ -317,8 +317,8 @@ This filter hook allows you to retrieve the public field, customer data, and mod
 ```php
 add_filter('fluent_support/render_custom_field_options_' . $fieldType['type'], function( $publicField, $customer) {
     // ...do something
-    return $publicField
-}, 10, 2)
+    return $publicField;
+}, 10, 2);
 ```
 **Note:** `$fieldType['type']` the type of field, whether it be text,email, user, etc.
 
@@ -346,8 +346,8 @@ This filter hook allows you to retrieve the field types and modify it..
 ```php
 add_filter('fluent_support/custom_field_renders_type', function( $fieldTypes) {
     // ...do something
-    return $fieldTypes
-}, 10, 1)
+    return $fieldTypes;
+}, 10, 1);
 ```
 
 **Reference**
@@ -374,8 +374,8 @@ This filter hook allows you to retrieve ticket partially match data modify it..
 ```php
 add_filter('fluent_support/ticket_partial_match', function( $partialMatch) {
     // ...do something
-    return $partialMatch
-}, 10, 1)
+    return $partialMatch;
+}, 10, 1);
 ```
 
 **Reference**
@@ -402,8 +402,8 @@ This filter hook allows you to retrieve custom piping permission modify it..
 ```php
 add_filter('fluent_support/enable_custom_piping', function( $enableCustomPiping) {
     // ...do something
-    return $enableCustomPiping
-}, 10, 1)
+    return $enableCustomPiping;
+}, 10, 1);
 ```
 
 **Reference**
@@ -430,8 +430,8 @@ This filter hook allows you to retrieve Slack integration settings, message data
 ```php
 add_filter('fluent_support/slack_api_data', function($data, $message) {
     // ...do something
-    return $data
-}, 10, 2)
+    return $data;
+}, 10, 2);
 ```
 
 **Reference**
@@ -459,8 +459,8 @@ This filter hook allows you to retrieve the wooCommerce menu permission to disab
 ```php
 add_filter('fluent_support/disable_woo_menu', function($data) {
     // ...do something
-    return $data
-}, 10, 1)
+    return $data;
+}, 10, 1);
 ```
 
 **Reference**
@@ -487,8 +487,8 @@ This filter hook allows you to retrieve the support page link position in WooCom
 ```php
 add_filter('fluent_support/woo_menu_link_position', function($supportTicketPosition) {
     // ...do something
-    return $supportTicketPosition
-}, 10, 1)
+    return $supportTicketPosition;
+}, 10, 1);
 ```
 
 **Reference**
@@ -515,8 +515,8 @@ This filter hook allows you to retrieve the support page link label in WooCommer
 ```php
 add_filter('fluent_support/woo_menu_label', function($supportLabel) {
     // ...do something
-    return $supportLabel
-}, 10, 1)
+    return $supportLabel;
+}, 10, 1);
 ```
 
 **Reference**
@@ -543,8 +543,8 @@ This filter hook allows you to retrieve the advanced filter options data and mod
 ```php
 add_filter('fluent_support/advanced_filter_options', function($groups) {
     // ...do something
-    return $groups
-}, 10, 1)
+    return $groups;
+}, 10, 1);
 ```
 
 **Reference**
@@ -573,8 +573,8 @@ This filter hook allows you to retrieve the outgoing webhook data and modify it.
 ```php
 add_filter('fluent_support/outgoing_webhook_data', function($data, $action, $ticket) {
     // ...do something
-    return $groups
-}, 10, 3)
+    return $groups;
+}, 10, 3);
 ```
 
 **Reference**
@@ -601,8 +601,8 @@ This filter hook allows you to retrieve the workflow ticket created supported co
 ```php
 add_filter('fluent_support/workflow_ticket_created_supported_conditions', function($supportedConditions) {
     // ...do something
-    return $supportedConditions
-}, 10, 1)
+    return $supportedConditions;
+}, 10, 1);
 ```
 
 **Reference**
@@ -630,8 +630,8 @@ This filter hook allows you to retrieve the response added by customer supported
 ```php
 add_filter('fluent_support/workflow_response_added_by_customer_supported_conditions', function($supportedConditions) {
     // ...do something
-    return $supportedConditions
-}, 10, 1)
+    return $supportedConditions;
+}, 10, 1);
 ```
 
 **Reference**
@@ -659,8 +659,8 @@ This filter hook allows you to retrieve the ticket closed supported conditions d
 ```php
 add_filter('fluent_support/workflow_ticket_closed_supported_conditions', function($supportedConditions) {
     // ...do something
-    return $supportedConditions
-}, 10, 1)
+    return $supportedConditions;
+}, 10, 1);
 ```
 
 **Reference**
@@ -688,8 +688,8 @@ This filter hook allows you to retrieve the Workflow conditions data and modify 
 ```php
 add_filter('fluent_support/workflow_conditions', function($conditions) {
     // ...do something
-    return $conditions
-}, 10, 1)
+    return $conditions;
+}, 10, 1);
 ```
 
 **Reference**
@@ -716,8 +716,8 @@ This filter hook allows you to retrieve the Workflow actions data and modify it.
 ```php
 add_filter('fluent_support/workflow_actions', function($actions, $workFlow) {
     // ...do something
-    return $actions
-}, 10, 2)
+    return $actions;
+}, 10, 2);
 ```
 
 **Reference**

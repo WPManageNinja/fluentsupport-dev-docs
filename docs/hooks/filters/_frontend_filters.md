@@ -12,8 +12,8 @@ This filter hook allows you to retrieve invalid permission message and modify it
 ```php
 add_filter('fluent_support/customer_portal_invalid_permission_message', function ($message) {
     // ...do something
-    return $message
-}, 10, 1)
+    return $message;
+}, 10, 1);
 ```
 
 **Reference**
@@ -44,8 +44,8 @@ This filter hook allows you to retrieve the error message for agent permissions 
 ```php
 add_filter('fluent_support/customer_portal_agent_permission_error_message', function ($message) {
     // ...do something
-    return $message
-}, 10, 1)
+    return $message;
+}, 10, 1);
 ```
 
 **Reference**
@@ -72,8 +72,8 @@ This filter hook allows you to retrieve the user portal access config data and m
 ```php
 add_filter('fluent_support/user_portal_access_config', function ($config) {
     // ...do something
-    return $config
-}, 10, 1)
+    return $config;
+}, 10, 1);
 ```
 
 **Reference**
@@ -104,8 +104,8 @@ This filter hook allows you to retrieve the customer portal localize data and mo
 ```php
 add_filter('fluent_support/customer_portal_vars', function ($vars) {
     // ...do something
-    return $vars
-}, 10, 1)
+    return $vars;
+}, 10, 1);
 ```
 
 **Reference**
@@ -135,8 +135,8 @@ This filter hook allows you to retrieve whether a customer can create a ticket, 
 ```php
 add_filter('fluent_support/can_customer_create_ticket', function ($canCreate, $customer, $data) {
     // ...do something
-    return $vars
-}, 10, 3)
+    return $vars;
+}, 10, 3);
 ```
 
 **Reference**
@@ -167,8 +167,8 @@ This filter hook allows you to retrieve whether a customer can create a response
 ```php
 add_filter('fluent_support/can_customer_create_response', function ($canCreate, $customer, $ticket,  $data) {
     // ...do something
-    return $canCreate
-}, 10, 4)
+    return $canCreate;
+}, 10, 4);
 ```
 
 **Reference**
@@ -197,8 +197,8 @@ This filter hook allows you to retrieve user profile edit link data and modify i
 ```php
 add_filter('fluent_support/person_user_edit_url', function ($userEditUrl, $instance) {
     // ...do something
-    return $userEditUrl
-}, 10, 2)
+    return $userEditUrl;
+}, 10, 2);
 ```
 
 **Reference**
@@ -226,8 +226,8 @@ This filter hook allows you to retrieve customer extra widgets data and modify i
 ```php
 add_filter('fluent_support/customer_extra_widgets', function ($widgets, $customer) {
     // ...do something
-    return $widgets
-}, 10, 2)
+    return $widgets;
+}, 10, 2);
 ```
 
 **Reference**
