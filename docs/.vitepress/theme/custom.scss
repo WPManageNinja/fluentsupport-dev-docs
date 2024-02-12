@@ -9,22 +9,6 @@
     --search-image-filter: invert(1);
 }
 
-.fs-docs-collapse {
-    padding: 0.2rem 1rem;
-    box-shadow: var(--my-shadow);
-    border-radius: 5px;
-
-    .fs-docs-title {
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 20px;
-    }
-
-    .fs-docs-content {
-        padding: 15px 0;
-    }
-}
-
 // Disable branding
 .VPPluginSearch-flex-logo {
     display: none;
@@ -97,10 +81,6 @@
     box-shadow: var(--my-shadow);
     border-radius: 5px;
 
-    .hook_dir {
-        float: right;
-    }
-
     .explain_header {
         font-weight: bold;
         font-size: 20px;
@@ -111,19 +91,24 @@
         align-items: center;
         cursor: pointer;
 
+        .header-anchor {
+            cursor: pointer;
+            font-size: 19px;
+            font-weight: bold; 
+            padding: 15px 10px;
+        }
+
+        .hook_dir {
+
+            svg {
+                width: 20px;
+                height: 20px;
+                fill: var(--vp-c-text-1);;
+            }
+
+        }
+
     }
-    
-    .header-anchor {
-        cursor: pointer;
-        font-size: 19px;
-        font-weight: bold; 
-        padding: 15px 10px;
-    }
-    
-    svg {
-        width: 20px;
-        height: 20px;
-        fill: var(--vp-c-text-1);;
-    }
+
 }
   

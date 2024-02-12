@@ -1,4 +1,6 @@
-
+---
+outline: deep
+---
 The ticket API Function provides a range of utility methods that enable you to retrieve data according to your specific requirements when working within your custom PHP Snippet or plugin.
 
 ### Initialization

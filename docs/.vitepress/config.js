@@ -45,6 +45,12 @@ export default defineConfig({
         ],
       },
       {
+        text: 'Modules',
+        items: [
+          { text: 'Custom Widget ', link: '/modules/custom_widget' }, 
+        ],
+      },
+      {
         text: 'Rest API',
         link: 'https://fluentsupport.com/rest-api/#introduction',
       },
