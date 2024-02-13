@@ -6,7 +6,10 @@ This feature allows the addition of extra widgets for customers on the view tick
 `fluent_support/customer_extra_widgets`
 
 ### Description:
-This hook allows developers to add custom widgets to the view ticket page in Fluent Support. By hooking into this filter, developers can inject their own HTML content to display additional information or functionality.
+This filter, `fluent_support/customer_extra_widgets`, serves as a gateway for developers to enhance the functionality of the view ticket page within Fluent Support. When developers utilize this filter, they can integrate custom widgets seamlessly into the view ticket interface. These widgets can contain diverse HTML content tailored to specific needs, such as presenting supplementary information, offering additional features, or facilitating user interactions.
+
+By leveraging this filter, developers gain the flexibility to extend the capabilities of Fluent Support's view ticket page according to their project requirements. This extensibility empowers them to enrich the user experience by integrating bespoke elements that cater to unique use cases or business scenarios. Additionally, developers can leverage this filter to maintain consistency with the overall design and functionality of Fluent Support while introducing customizations tailored to their applications or projects.
+
 
 ### Parameters
 - `$widgets` (array): An associative array containing information about the widgets to be displayed. Each element of the array represents a single widget and includes a unique key and an array of widget data.
@@ -23,12 +26,12 @@ add_filter('fluent_support/customer_extra_widgets', function ($widgets, $custome
     ?>
 
     <ul>
-        <li title="Custom Widget 1" class="fs_widget_li">
-            <code>Widget Title: Custom Widget 1</code><br>
+        <li title="Custom Widget List 1" class="fs_widget_li">
+            <code>Widget Title: Custom Widget List 1</code><br>
             <code>Description: This is the first custom widget</code>
         </li>
-        <li title="Custom Widget 2" class="fs_widget_li">
-            <code>Widget Title: Custom Widget 2</code><br>
+        <li title="Custom Widget List 2" class="fs_widget_li">
+            <code>Widget Title: Custom Widget List 2</code><br>
             <code>Description: This is the second custom widget</code>
         </li>
     </ul>
