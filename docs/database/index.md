@@ -212,7 +212,8 @@ This table stores the tag relations
 
 
 ## fs_taggables
-Storing the tag data
+
+This table stores the tag data
 
 <table >
     <thead>
@@ -475,7 +476,9 @@ This table stores the persons data
 
 
 ## fs_meta
-Storing meta data
+
+This table stores the  meta data 
+
 <table>
     <thead>
         <tr>
@@ -487,45 +490,47 @@ Storing meta data
     <tbody>
         <tr>
             <td>id</td>
-            <td>bigint(20) UNSIGNED</td>
-            <td>NOT NULL PRIMARY KEY AUTO_INCREMENT</td>
+            <td>bigint(20) UNSIGNED Auto Increment</td>
+            <td></td>
         </tr>
         <tr>
             <td>object_type</td>
-            <td>varchar(192)</td>
-            <td>NULL</td>
+            <td>varchar(192) NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>object_id</td>
-            <td>bigint(20)</td>
-            <td>NULL</td>
+            <td>bigint(20) NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>key</td>
-            <td>varchar(192)</td>
-            <td>NULL</td>
+            <td>varchar(192) NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>value</td>
-            <td>longtext</td>
-            <td>NULL</td>
+            <td>longtext NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>created_at</td>
-            <td>timestamp</td>
-            <td>NULL</td>
+            <td>timestamp NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>updated_at</td>
-            <td>timestamp</td>
-            <td>NULL</td>
+            <td>timestamp NULL</td>
+            <td></td>
         </tr>
     </tbody>
 </table>
 
 
 ## fs_mail_boxes
-Storing mailboxes data
+
+This table stores the  mailbox data 
+
 <table>
     <thead>
         <tr>
@@ -537,75 +542,77 @@ Storing mailboxes data
     <tbody>
         <tr>
             <td>id</td>
-            <td>bigint(20) UNSIGNED</td>
-            <td>NOT NULL PRIMARY KEY AUTO_INCREMENT</td>
+            <td>bigint(20) UNSIGNED Auto Increment</td>
+            <td></td>
         </tr>
         <tr>
             <td>name</td>
             <td>varchar(192)</td>
-            <td>NOT NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>slug</td>
             <td>varchar(192)</td>
-            <td>NOT NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>box_type</td>
-            <td>varchar(50)</td>
-            <td>DEFAULT 'web'</td>
+            <td>varchar(50) [<b>web</b>]</td>
+            <td></td>
         </tr>
         <tr>
             <td>email</td>
             <td>varchar(192)</td>
-            <td>NOT NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>mapped_email</td>
-            <td>varchar(192)</td>
-            <td>NULL</td>
+            <td>varchar(192) NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>email_footer</td>
-            <td>longtext</td>
-            <td>NULL</td>
+            <td>longtext NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>settings</td>
-            <td>longtext</td>
-            <td>NULL</td>
+            <td>longtext NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>avatar</td>
-            <td>varchar(192)</td>
-            <td>NULL</td>
+            <td>varchar(192) NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>created_by</td>
-            <td>bigint(20) UNSIGNED</td>
-            <td>NULL</td>
+            <td>bigint(20) UNSIGNED NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>is_default</td>
-            <td>ENUM('yes', 'no')</td>
-            <td>DEFAULT 'no'</td>
+            <td>ENUM('yes', 'no') [<b>no</b>]</td>
+            <td></td>
         </tr>
         <tr>
             <td>created_at</td>
-            <td>timestamp</td>
-            <td>NULL</td>
+            <td>timestamp NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>updated_at</td>
-            <td>timestamp</td>
-            <td>NULL</td>
+            <td>timestamp NULL</td>
+            <td></td>
         </tr>
     </tbody>
 </table>
 
 
 ## fs_data_metrix
-Store data metrix
+
+This table stores the data metrix
+
 <table>
     <thead>
         <tr>
@@ -617,70 +624,71 @@ Store data metrix
     <tbody>
         <tr>
             <td>id</td>
-            <td>bigint(20) UNSIGNED</td>
-            <td>NOT NULL PRIMARY KEY AUTO_INCREMENT</td>
+            <td>bigint(20) UNSIGNED Auto Increment</td>
+            <td></td>
         </tr>
         <tr>
             <td>stat_date</td>
             <td>DATE</td>
-            <td>NOT NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>data_type</td>
-            <td>varchar(100)</td>
-            <td>DEFAULT 'agent_stat'</td>
+            <td>varchar(100) [<b>agent_stat</b>]</td>
+            <td></td>
         </tr>
         <tr>
             <td>agent_id</td>
-            <td>bigint(20) UNSIGNED</td>
-            <td>NULL</td>
+            <td>bigint(20) UNSIGNED NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>replies</td>
-            <td>int(11) UNSIGNED</td>
-            <td>NULL DEFAULT 0</td>
+            <td>int(11) UNSIGNED NULL [<b>0</b>]</td>
+            <td></td>
         </tr>
         <tr>
             <td>active_tickets</td>
-            <td>int(11) UNSIGNED</td>
-            <td>NULL DEFAULT 0</td>
+            <td>int(11) UNSIGNED NULL [<b>0</b>]</td>
+            <td></td>
         </tr>
         <tr>
             <td>resolved_tickets</td>
-            <td>int(11) UNSIGNED</td>
-            <td>NULL DEFAULT 0</td>
+            <td>int(11) UNSIGNED NULL [<b>0</b>]</td>
+            <td></td>
         </tr>
         <tr>
             <td>new_tickets</td>
-            <td>int(11) UNSIGNED</td>
-            <td>NULL DEFAULT 0</td>
+            <td>int(11) UNSIGNED NULL [<b>0</b>]</td>
+            <td></td>
         </tr>
         <tr>
             <td>unassigned_tickets</td>
-            <td>int(11) UNSIGNED</td>
-            <td>NULL DEFAULT 0</td>
+            <td>int(11) UNSIGNED NULL [<b>0</b>]</td>
+            <td></td>
         </tr>
         <tr>
             <td>close_to_average</td>
-            <td>int(11) UNSIGNED</td>
-            <td>NULL DEFAULT 0</td>
+            <td>int(11) UNSIGNED NULL [<b>0</b>]</td>
+            <td></td>
         </tr>
         <tr>
             <td>created_at</td>
-            <td>timestamp</td>
-            <td>NULL</td>
+            <td>timestamp NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>updated_at</td>
-            <td>timestamp</td>
-            <td>NULL</td>
+            <td>timestamp NULL</td>
+            <td></td>
         </tr>
     </tbody>
 </table>
 
 
 ## fs_conversations
-Storing the conversation data
+
+This table stores the conversation data
 
 <table>
     <thead>
@@ -693,70 +701,71 @@ Storing the conversation data
     <tbody>
         <tr>
             <td>id</td>
-            <td>bigint(20) UNSIGNED</td>
-            <td>NOT NULL PRIMARY KEY AUTO_INCREMENT</td>
+            <td>bigint(20) UNSIGNED Auto Increment</td>
+            <td></td>
         </tr>
         <tr>
             <td>serial</td>
-            <td>int(11) UNSIGNED</td>
-            <td>DEFAULT 1</td>
+            <td>int(11) UNSIGNED [<b>1</b>]</td>
+            <td></td>
         </tr>
         <tr>
             <td>ticket_id</td>
             <td>bigint(20) UNSIGNED</td>
-            <td>NOT NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>person_id</td>
             <td>bigint(20) UNSIGNED</td>
-            <td>NOT NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>conversation_type</td>
-            <td>varchar(100)</td>
-            <td>DEFAULT 'response'</td>
+            <td>varchar(100) [<b>response</b>]</td>
+            <td></td>
         </tr>
         <tr>
             <td>content</td>
-            <td>longtext</td>
-            <td>NULL</td>
+            <td>longtext NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>source</td>
-            <td>varchar(100)</td>
-            <td>DEFAULT 'web'</td>
+            <td>varchar(100) [<b>web</b>]</td>
+            <td></td>
         </tr>
         <tr>
             <td>content_hash</td>
-            <td>varchar(192)</td>
-            <td>NULL</td>
+            <td>varchar(192) NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>message_id</td>
-            <td>varchar(192)</td>
-            <td>NULL</td>
+            <td>varchar(192) NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>is_important</td>
-            <td>ENUM('yes', 'no')</td>
-            <td>DEFAULT 'no'</td>
+            <td>ENUM('yes', 'no') [<b>no</b>]</td>
+            <td></td>
         </tr>
         <tr>
             <td>created_at</td>
-            <td>timestamp</td>
-            <td>NULL</td>
+            <td>timestamp NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>updated_at</td>
-            <td>timestamp</td>
-            <td>NULL</td>
+            <td>timestamp NULL</td>
+            <td></td>
         </tr>
     </tbody>
 </table>
 
 
 ## fs_attachments
-Storing attachment data
+
+This table stores the attachment data
 
 <table>
     <thead>
@@ -769,85 +778,86 @@ Storing attachment data
     <tbody>
         <tr>
             <td>id</td>
-            <td>bigint(20) UNSIGNED</td>
-            <td>NOT NULL PRIMARY KEY AUTO_INCREMENT</td>
+            <td>bigint(20) UNSIGNED Auto Increment</td>
+            <td></td>
         </tr>
         <tr>
             <td>ticket_id</td>
-            <td>bigint(20) UNSIGNED</td>
-            <td>NULL</td>
+            <td>bigint(20) UNSIGNED NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>person_id</td>
-            <td>bigint(20) UNSIGNED</td>
-            <td>NULL</td>
+            <td>bigint(20) UNSIGNED NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>conversation_id</td>
-            <td>bigint(20) UNSIGNED</td>
-            <td>NULL</td>
+            <td>bigint(20) UNSIGNED NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>file_type</td>
-            <td>varchar(100)</td>
-            <td>NULL</td>
+            <td>varchar(100) NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>file_path</td>
-            <td>text</td>
-            <td>NULL</td>
+            <td>text NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>full_url</td>
-            <td>text</td>
-            <td>NULL</td>
+            <td>text NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>settings</td>
-            <td>text</td>
-            <td>NULL</td>
+            <td>text NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>title</td>
-            <td>varchar(192)</td>
-            <td>NULL</td>
+            <td>varchar(192) NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>file_hash</td>
-            <td>varchar(192)</td>
-            <td>NULL</td>
+            <td>varchar(192) NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>driver</td>
-            <td>varchar(100)</td>
-            <td>DEFAULT 'local'</td>
+            <td>varchar(100) [<b>local</b>]</td>
+            <td></td>
         </tr>
         <tr>
             <td>status</td>
-            <td>varchar(100)</td>
-            <td>NULL DEFAULT 'active'</td>
+            <td>varchar(100) NULL [<b>active</b>] </td>
+            <td></td>
         </tr>
         <tr>
             <td>file_size</td>
-            <td>varchar(100)</td>
-            <td>NULL</td>
+            <td>varchar(100) NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>created_at</td>
-            <td>timestamp</td>
-            <td>NULL</td>
+            <td>timestamp NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>updated_at</td>
-            <td>timestamp</td>
-            <td>NULL</td>
+            <td>timestamp NULL</td>
+            <td></td>
         </tr>
     </tbody>
 </table>
 
 
 ## fs_activities
-Storing activities data
+
+This table stores the activities data
 
 <table>
     <thead>
@@ -860,48 +870,48 @@ Storing activities data
     <tbody>
         <tr>
             <td>id</td>
-            <td>bigint(20) UNSIGNED</td>
-            <td>NOT NULL PRIMARY KEY AUTO_INCREMENT</td>
+            <td>bigint(20) UNSIGNED Auto Increment</td>
+            <td></td>
         </tr>
         <tr>
             <td>person_id</td>
-            <td>bigint(20)</td>
-            <td>NULL</td>
+            <td>bigint(20) NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>person_type</td>
-            <td>varchar(192)</td>
-            <td>NULL</td>
+            <td>varchar(192) NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>event_type</td>
-            <td>varchar(192)</td>
-            <td>NULL</td>
+            <td>varchar(192) NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>object_id</td>
-            <td>bigint(20)</td>
-            <td>NULL</td>
+            <td>bigint(20) NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>object_type</td>
-            <td>varchar(192)</td>
-            <td>NULL</td>
+            <td>varchar(192) NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>description</td>
-            <td>mediumtext</td>
-            <td>NULL</td>
+            <td>mediumtext NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>created_at</td>
-            <td>timestamp</td>
-            <td>NULL</td>
+            <td>timestamp NULL</td>
+            <td></td>
         </tr>
         <tr>
             <td>updated_at</td>
-            <td>timestamp</td>
-            <td>NULL</td>
+            <td>timestamp NULL</td>
+            <td></td>
         </tr>
     </tbody>
 </table>
