@@ -5,7 +5,7 @@
 Fluent Support use custom database tables with options tables to store all the data. Here are the list of database tables, and it's schema to
 understand overall database design and related data attributes of each model.
 ## Schema Design
-<!-- <img :src="$withBase('/assets/img/ff-schema-design.png')" alt="Fluent Forms Schema Design" /> -->
+<img src="/assets/images/fluent-support_database_diagram.png"  title="Database diagram">
 
 ## Database Tables
 
