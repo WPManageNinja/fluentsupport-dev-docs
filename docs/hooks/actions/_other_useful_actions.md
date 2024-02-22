@@ -54,7 +54,7 @@ This action is located in <br>
 <explain-block title="fluent_support_attachment_uploaded_as_temp">
 <hr>
 <div class="fs-docs-content">
-This action is triggered when attachment uploaded as temporary. asdet
+This action is triggered when attachment uploaded as temporary
 
 **Parameters**
 - '$attachment' (object) Attachment data

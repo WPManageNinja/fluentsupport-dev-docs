@@ -26,7 +26,6 @@ Fluent Support comes in different versions:
 │   └── Traits               # Reusable Traits
 │   └── Views                # Php view files
 │   └── App.php     
-│   └── ComposerScript.php 
 │
 ├── assets                   # contains css,js, media files
 ├── boot                     # [internal] contains plugin boot files
@@ -36,5 +35,5 @@ Fluent Support comes in different versions:
 ├── resource                 # [internal] Resource Files
 ├── vendor                   # [internal] Core Framework Files
 │
-└── fluent-support.php         # Plugin entry File
+└── fluent-support.php       # Plugin entry File
 ```

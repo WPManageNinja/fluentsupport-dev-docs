@@ -1,7 +1,7 @@
 <explain-block title="fluent_support_before_ticket_create">
 <hr>
 <div class="fs-docs-content">
-This action will run to get the ticket and customer data before ticket create.
+This action is triggered before a ticket is created
 
 **Parameters**
 
@@ -30,10 +30,10 @@ This action is located in <br>
 
 </explain-block>
 
-<explain-block title="fluent_support_after_ticekt_create">
+<explain-block title="fluent_support_after_ticket_create">
 <hr>
 <div class="fs-docs-content">
-This action will run to get the ticket and customer data.
+This action is triggered after a ticket is created
 
 **Parameters**
 
@@ -445,7 +445,7 @@ This action is triggered after ticket closed by any person.
 ```php
 add_action('fluent_support/ticket_closed_by_' . $person->person_type, function($ticket, $person) {
    // Do your stuff here
-}, 20, 3);
+}, 20, 2);
 ```
 
 **Note:** `$person->person_type denotes` the type of person, whether it be an agent, user, etc.
@@ -501,7 +501,7 @@ This action is triggered after a ticket is reopened by any person.
 ```php
 add_action('fluent_support/ticket_reopen_by_' . $person->person_type, function($ticket, $person) {
    // Do your stuff here
-}, 20, 3);
+}, 20, 2);
 ```
 
 **Note:** `$person->person_type denotes` the type of person, whether it be an agent, user, etc.
