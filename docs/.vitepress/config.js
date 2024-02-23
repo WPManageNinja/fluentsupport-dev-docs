@@ -82,7 +82,8 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'twitter', link: 'https://' },
+      { icon: 'twitter', link: 'https://twitter.com/FluentSupportWP' },
     ]
   }
+  
 })

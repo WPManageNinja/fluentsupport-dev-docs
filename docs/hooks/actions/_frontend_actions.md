@@ -54,9 +54,6 @@ This action is located in <br>
 <div class="fs-docs-content">
 This action fires after creating a WP user from ticket sign up form.
 
-**Parameters**
-- '$formData' (array) User form data
-
 **Usage**
 
 ```php
