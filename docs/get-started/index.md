@@ -16,14 +16,12 @@ Fluent Support comes in different versions:
 
 ```yml
 ├── app
-│   ├── CPT                  # Custom Post Types
+│   ├── Api                  # Contains PHP API Utility classes
 │   └── Hooks                # Action and Filter Hooks
-│   └── Library              # Helper Classes
 │   └── Http                 # REST API routes, controllers, policies
 │   └── Models               # Database Models
 │   └── Modules              # Modules
 │   └── Services             # Module Services
-│   └── Traits               # Reusable Traits
 │   └── Views                # Php view files
 │   └── App.php     
 │
