@@ -55,9 +55,9 @@ add_filter('fluent_support/custom_registration_form_fields_key', function ($regi
 
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/AuthHandler.php`,
-`fluent-support/app/Models/Traits/CustomerTrait.php`,
-`fluent-support/app/Models/Ticket.php`,
+`fluent-support/app/Hooks/Handlers/AuthHandler.php`,<br>
+`fluent-support/app/Models/Traits/CustomerTrait.php`,<br>
+`fluent-support/app/Models/Ticket.php`,<br>
 `fluent-support/app/Http/Controllers/AuthController.php`
 
 </div> 
@@ -88,9 +88,9 @@ add_filter('fluent_support/before_registration_form_close', function ($content, 
 
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/AuthHandler.php`,
-`fluent-support/app/Models/Traits/CustomerTrait.php`,
-`fluent-support/app/Models/Ticket.php`,
+`fluent-support/app/Hooks/Handlers/AuthHandler.php`,<br>
+`fluent-support/app/Models/Traits/CustomerTrait.php`,<br>
+`fluent-support/app/Models/Ticket.php`,<br>
 `fluent-support/app/Http/Controllers/AuthController.php`
 
 </div>
@@ -150,7 +150,7 @@ add_filter('fluent_support/custom_registration_form_fields', function ($customFi
 
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/AuthHandler.php`,
+`fluent-support/app/Hooks/Handlers/AuthHandler.php`,<br>
 `fluent-support/app/Models/Traits/CustomerTrait.php` 
 
 </div>

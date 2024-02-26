@@ -85,7 +85,7 @@ add_filter('fluent_support/user_portal_access_config', function ($config) {
 
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/CustomerPortalHandler.php`,
+`fluent-support/app/Hooks/Handlers/CustomerPortalHandler.php`,<br>
 `fluent-support/app/Http/Policies/PortalPolicy.php`
 </div>
 </explain-block>
@@ -114,7 +114,7 @@ add_filter('fluent_support/customer_portal_vars', function ($vars) {
 
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/CustomerPortalHandler.php`,
+`fluent-support/app/Hooks/Handlers/CustomerPortalHandler.php`,<br>
 `fluent-support/app/Services/ProfileInfoService.php`
 </div>
 </explain-block>
@@ -145,7 +145,7 @@ add_filter('fluent_support/can_customer_create_ticket', function ($canCreate, $c
 
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/CustomerPortalController.php`,
+`fluent-support/app/Http/Controllers/CustomerPortalController.php`,<br>
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 </div>
 </explain-block>
@@ -177,7 +177,7 @@ add_filter('fluent_support/can_customer_create_response', function ($canCreate, 
 
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/CustomerPortalController.php`,
+`fluent-support/app/Http/Controllers/CustomerPortalController.php`,<br>
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 </div>
 </explain-block>

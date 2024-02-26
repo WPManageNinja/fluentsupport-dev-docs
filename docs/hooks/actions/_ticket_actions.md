@@ -21,10 +21,10 @@ add_action('fluent_support/before_ticket_create', function ($ticket, $customer) 
 `do_action('fluent_support/before_ticket_create', $ticketData, $customer)`
 
 This action is located in <br>
-`fluent-support/app/Http/Services/CustomerPortalService.php`,
-`fluent-support/app/Http/Models/Ticket.php`, 
-`fluent-support/app/Services/Integrations/FluentForm/FeedIntegration` ,
-`fluent-support/app/Services/Integrations/FluentCrm/CreateTicketAction` ,
+`fluent-support/app/Http/Services/CustomerPortalService.php`,<br>
+`fluent-support/app/Http/Models/Ticket.php`,<br> 
+`fluent-support/app/Services/Integrations/FluentForm/FeedIntegration`,<br>
+`fluent-support/app/Services/Integrations/FluentCrm/CreateTicketAction`,<br>
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler`
 </div>
 
@@ -53,10 +53,10 @@ add_action('fluent_support/ticket_created', function ($ticket, $customer) {
 `do_action('fluent_support/ticket_created', $ticket, $customer)`
 
 This action is located in <br>
-`fluent-support/app/Http/Services/CustomerPortalService.php`,
-`fluent-support/app/Http/Models/Ticket.php`, 
-`fluent-support/app/Services/Integrations/FluentForm/FeedIntegration` ,
-`fluent-support/app/Services/Integrations/FluentCrm/CreateTicketAction` ,
+`fluent-support/app/Http/Services/CustomerPortalService.php`,<br>
+`fluent-support/app/Http/Models/Ticket.php`,<br>
+`fluent-support/app/Services/Integrations/FluentForm/FeedIntegration`,<br>
+`fluent-support/app/Services/Integrations/FluentCrm/CreateTicketAction`,<br>
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler`
 
 </div>
@@ -82,7 +82,7 @@ add_action('fluent_support/deleting_ticket', function ($ticket) {
 `do_action('fluent_support/deleting_ticket', $this)`
 
 This action is located in <br>
-`fluent-support/app/Models/Ticket.php`,
+`fluent-support/app/Models/Ticket.php`,<br>
 `fluent-support/app/Services/Tickets/TicketService.php`
 </div>
 </explain-block>
@@ -398,8 +398,8 @@ add_action('fluent_support/agent_assigned_to_ticket', function ($ticket, $custom
 `do_action('fluent_support/agent_assigned_to_ticket', $ticket->agent, $ticket, $assigner)`
 
 This action is located in <br>
-`fluent-support/app/Models/Ticket.php`,
-`fluent-support/app/Services/Tickets/ResponseService.php`,
+`fluent-support/app/Models/Ticket.php`,<br>
+`fluent-support/app/Services/Tickets/ResponseService.php`,<br>
 `fluent-support-pro/app/Services/Workflow/ActionRunner.php`
 </div>
 </explain-block>
@@ -425,7 +425,7 @@ add_action('fluent_support/ticket_closed', function ($ticket, $person) {
 `do_action('fluent_support/ticket_closed', $ticket, $person)`
 
 This action is located in <br>
-`fluent-support/app/Services/Tickets/ResponseService.php`,
+`fluent-support/app/Services/Tickets/ResponseService.php`,<br>
 `fluent-support/app/Services/Tickets/TicketService.php`
 
 </div>
@@ -455,7 +455,7 @@ add_action('fluent_support/ticket_closed_by_' . $person->person_type, function($
 `do_action('fluent_support/ticket_closed_by_' . $person->person_type, $ticket, $person)`
 
 This action is located in <br>
-`fluent-support/app/Models/ResponseService.php`,
+`fluent-support/app/Models/ResponseService.php`,<br>
 `fluent-support/app/Services/Tickets/TicketService.php`
 
 </div>

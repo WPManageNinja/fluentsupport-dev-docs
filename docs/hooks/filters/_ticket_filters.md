@@ -394,9 +394,9 @@ add_filter('fluent_support/disabled_ticket_fields', function ($fields) {
 `apply_filters('fluent_support/disabled_ticket_fields', [])`
 
 This filter is located in <br>
-`fluent-support/app/Models/Ticket.php`,
-`fluent-support/app/Http/Controllers/UploaderController.php`,
-`fluent-support/app/Services/CustomerPortalService.php`,
+`fluent-support/app/Models/Ticket.php`,<br>
+`fluent-support/app/Http/Controllers/UploaderController.php`,<br>
+`fluent-support/app/Services/CustomerPortalService.php`,<br>
 `fluent-support-pro/app/Hooks/filters.php`
 </div>
 
@@ -426,10 +426,10 @@ add_filter('fluent_support/create_ticket_data', function ($ticketData, $customer
 `apply_filters('fluent_support/create_ticket_data', $ticketData, $customer)`
 
 This filter is located in <br>
-`fluent-support/app/Models/Ticket.php`,
-`fluent-support/app/Services/Integrations/CreateTicketAction.php`,
-`fluent-support/app/Services/CustomerPortalService.php`,
-`fluent-support/app/Services/Integrations/FluentForm/FeedIntegration.php`,
+`fluent-support/app/Models/Ticket.php`,<br>
+`fluent-support/app/Services/Integrations/CreateTicketAction.php`,<br>
+`fluent-support/app/Services/CustomerPortalService.php`,<br>
+`fluent-support/app/Services/Integrations/FluentForm/FeedIntegration.php`,<br>
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 
 </div>

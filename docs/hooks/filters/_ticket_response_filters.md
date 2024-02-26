@@ -28,7 +28,7 @@ add_filter('fluent_support/parse_smartcode_data', function ($response, $data) {
 
 
 This filter is located in <br>
-`fluent-support/app/Services/Tickets/ResponseService.php`,
+`fluent-support/app/Services/Tickets/ResponseService.php`,<br>
 `fluent-support/app/Hooks/Handlers/EmailNotificationHandler.php`
 </div>
 </explain-block>
@@ -58,7 +58,7 @@ add_filter('fluent_support/reset_waiting_since', function ($state, $content) {
 
 
 This filter is located in <br>
-`fluent-support/app/Services/Tickets/ResponseService.php`,
+`fluent-support/app/Services/Tickets/ResponseService.php`,<br>
 `fluent-support/app/Model/Tickets/Conversation.php`
 </div>
 </explain-block>

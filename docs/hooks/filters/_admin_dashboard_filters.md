@@ -194,8 +194,8 @@ add_filter('fluent_support/ticket_custom_fields', function ($fields) {
 `apply_filters('fluent_support/ticket_custom_fields', [])`
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/Menu.php`,
-`fluent-support/app/Models/Ticket.php`,
+`fluent-support/app/Hooks/Handlers/Menu.php`,<br>
+`fluent-support/app/Models/Ticket.php`,<br>
 `fluent-support/app/Services/Integrations/FluentForm/FeedIntegration.php`,
 </div>
 </explain-block>
@@ -224,7 +224,7 @@ add_filter('fluent_support/dashboard_notice', function ($dashboardNotice, $agent
 `apply_filters('fluent_support/dashboard_notice', '', $agent)`
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/AgentController.php`,
+`fluent-support/app/Http/Controllers/AgentController.php`,<br>
 `fluent-support-pro/app/Hooks/filters.php`
 </div>
 </explain-block>

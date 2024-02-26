@@ -103,7 +103,7 @@ function($createdResponse, $ticket, $person) {
 `do_action('fluent_support/' . $conversationType . '_added_by_' . $person->person_type, $response, $ticket, $person)`
 
 This action is located in <br>
-`fluent-support/app/Models/Conversation.php`,
+`fluent-support/app/Models/Conversation.php`,<br>
 `fluent-support/app/Services/Tickets/ResponseService.php`
 
 </div>
