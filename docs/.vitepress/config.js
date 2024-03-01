@@ -16,6 +16,7 @@ const options = {
 };
 
 export default defineConfig({
+  head: [['link', { rel: 'icon', href: '/assets/images/cropped-FS-logo-png-v3-1.png' }]],
   vite: { 
     plugins: [SearchPlugin(options)],
   },
@@ -24,7 +25,6 @@ export default defineConfig({
   themeConfig: {
     logo: '/assets/images/cropped-FS-logo-png-v3-1.png',
     nav: [
-      // { text: 'Home', link: '/' },
       { text: 'Get Started', link: '/get-started/' },
       {
         text: 'Architecture',
