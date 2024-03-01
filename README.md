@@ -10,4 +10,4 @@ Here you will find detailed documentation, handy code snippets and full code exa
 
 Check out our developer resources: 
 
-* [Fluent Support Developers](https://developers.fluent-support.com/)
+* [Fluent Support Developers](https://developers.fluentsupport.com/)
