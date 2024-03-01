@@ -260,7 +260,7 @@ add_action('fluent_support/run_action_' . $action->action_name, function ($actio
 }, 10, 3);
 ```
 
-**Note:** `$action->action_name` represents the type of action name.
+**Note:** `$action->action_name` represents the type of action.
 
 **Reference**
 
