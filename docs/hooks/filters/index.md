@@ -54,6 +54,11 @@ Here You can find the proper guidelines, handy code snippets, full code examples
 
 <!--@include: ./_email_notification_filters.md-->
 
+## Notification Filters
+<br />
+
+<!--@include: ./_notification_filters.md-->
+
 ## Fluent Support Pro Filters
 <br />
 
