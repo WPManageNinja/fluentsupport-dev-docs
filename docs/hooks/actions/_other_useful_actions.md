@@ -77,6 +77,63 @@ This action is located in <br>
 </div>
 </explain-block>
 
+<explain-block title="fluent_support_workflow_triggered">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a workflow is executed for a ticket.
+
+**Parameters**
+- '$workflow' (object) Workflow object
+- '$ticket' (object) Ticket object
+- '$actor' (object) Customer or agent who triggered the workflow
+- '$context' (array) Additional workflow context data
+
+**Usage**
+
+```php
+add_action('fluent_support/workflow_triggered', function ($workflow, $ticket, $actor, $context) {
+     // ...do something
+}, 10, 4);
+```
+
+**Reference**
+
+`do_action('fluent_support/workflow_triggered', $workflow, $ticket, $actor, $context)`
+
+This action is located in <br>
+`fluent-support-pro/app/Hooks/Handlers/WorkflowHandler.php`,<br>
+`fluent-support-pro/app/Http/Controllers/WorkflowsController.php`
+
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_customer_created">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a new customer record is created in Fluent Support.
+
+**Parameters**
+- '$customer' (object) Customer object
+
+**Usage**
+
+```php
+add_action('fluent_support/customer_created', function ($customer) {
+     // ...do something
+}, 10, 1);
+```
+
+**Reference**
+
+`do_action('fluent_support/customer_created', $customer)`
+
+This action is located in <br>
+`fluent-support/app/Models/Customer.php`,<br>
+`fluent-support/app/Http/Controllers/TicketController.php`
+</div>
+
+</explain-block>
+
 <explain-block title="fluent_support_after_creating_any_response">
 <hr>
 <div class="fs-docs-content">
@@ -186,6 +243,32 @@ This action is located in <br>
 
 </div>
 
+</explain-block>
+
+<explain-block title="fluent_support_slack_signature_verification_failed">
+<hr>
+<div class="fs-docs-content">
+This action is triggered when Slack webhook signature verification fails.
+
+**Parameters**
+- '$reason' (string) Verification failure reason
+
+**Usage**
+
+```php
+add_action('fluent_support/slack_signature_verification_failed', function ($reason) {
+     // ...do something
+}, 10, 1);
+```
+
+**Reference**
+
+`do_action('fluent_support/slack_signature_verification_failed', $reason)`
+
+This action is located in <br>
+`fluent-support-pro/app/Services/Integrations/WebhookSignatureVerifier.php`
+
+</div>
 </explain-block>
 
 <explain-block title="fluent_support_delete_remote_attachment_third_party_in_use">

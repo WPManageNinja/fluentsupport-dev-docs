@@ -62,6 +62,64 @@ This action is located in <br>
 </div>
 </explain-block>
 
+<explain-block title="fluent_support_ticket_created_behalf_of_customer">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after an agent creates a ticket on behalf of a customer.
+
+**Parameters**
+
+- '$createdTicket' (object) Ticket object
+- '$customer' (object) Customer object
+- '$agent' (object) Agent object who created the ticket
+
+**Usage**
+
+```php
+add_action('fluent_support/ticket_created_behalf_of_customer', function ($createdTicket, $customer, $agent) {
+     // ...do something
+}, 10, 3);
+```
+
+**Reference**
+
+`do_action('fluent_support/ticket_created_behalf_of_customer', $createdTicket, $customer, $agent)`
+
+This action is located in <br>
+`fluent-support/app/Services/Tickets/TicketService.php`
+
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_agent_initiated_ticket_response">
+<hr>
+<div class="fs-docs-content">
+This action is triggered when an agent creates the initial response while opening a ticket on behalf of a customer.
+
+**Parameters**
+
+- '$agentResponse' (object) Created response object
+- '$createdTicket' (object) Ticket object
+- '$agent' (object) Agent object
+
+**Usage**
+
+```php
+add_action('fluent_support/agent_initiated_ticket_response', function ($agentResponse, $createdTicket, $agent) {
+     // ...do something
+}, 10, 3);
+```
+
+**Reference**
+
+`do_action('fluent_support/agent_initiated_ticket_response', $agentResponse, $createdTicket, $agent)`
+
+This action is located in <br>
+`fluent-support/app/Services/Tickets/TicketService.php`
+
+</div>
+</explain-block>
+
 <explain-block title="fluent_support_when_ticket_is_being_deleted">
 <hr>
 <div class="fs-docs-content">
@@ -185,6 +243,35 @@ add_action('fluent_support/after_ticket_create_from_email', function ($createdTi
 `do_action('fluent_support/after_ticket_create_from_email', $createdTicket, $customer)`
 
 This action is located in <br>
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
+
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_response_added_by_customer">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a customer response is added to an existing ticket.
+
+**Parameters**
+- '$createdResponse' (object) Created response object
+- '$ticket' (object) Ticket object
+- '$customer' (object) Customer object
+
+**Usage**
+
+```php
+add_action('fluent_support/response_added_by_customer', function ($createdResponse, $ticket, $customer) {
+     // ...do something
+}, 10, 3);
+```
+
+**Reference**
+
+`do_action('fluent_support/response_added_by_customer', $createdResponse, $ticket, $customer)`
+
+This action is located in <br>
+`fluent-support/app/Http/Controllers/TicketController.php`,<br>
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 
 </div>

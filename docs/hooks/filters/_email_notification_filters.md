@@ -90,3 +90,45 @@ This filter is located in <br>
 `fluent-support/app/Services/EmailNotification/Settings.php`
 </div>
 </explain-block>
+
+<explain-block title="fluent_support_ticket_link_portal_options">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to add, remove, or reorder the Customer Portal destination options shown in Global Settings. Each option controls where ticket links inside email notifications redirect customers.
+
+**Parameters**
+
+- `$options` (array) Array of portal destination option arrays. Each item has two keys:
+  - `id` (string) — internal identifier used to store the selection (e.g., `'default'`, `'woocommerce'`, `'fluent_community'`)
+  - `label` (string) — display label shown in the settings UI
+
+**Built-in options (conditionally included):**
+
+| id | Label | Condition |
+|----|-------|-----------|
+| `default` | Default Portal Page | Always available |
+| `fluent_cart` | FluentCart Account Navigation | FluentCart active |
+| `woocommerce` | WooCommerce Account Navigation | WooCommerce active + Pro |
+| `fluent_community` | FluentCommunity Portal | FluentCommunity active |
+
+**Usage**
+
+```php
+add_filter('fluent_support/ticket_link_portal_options', function ($options) {
+    // add a custom portal destination
+    $options[] = [
+        'id'    => 'my_custom_portal',
+        'label' => 'My Custom Portal',
+    ];
+    return $options;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/ticket_link_portal_options', $options)`
+
+This filter is located in <br>
+`fluent-support/app/Services/EmailNotification/Settings.php`
+</div>
+</explain-block>

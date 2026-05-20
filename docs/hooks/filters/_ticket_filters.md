@@ -522,3 +522,120 @@ This filter is located in <br>
 `fluent-support/app/Services/Tickets/TicketStats.php`
 </div>
 </explain-block>
+
+<explain-block title="fluent_support_ticket_content_before_render">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to modify ticket content before WordPress formatting (wpautop, make_clickable, links_add_target) is applied. Use it to sanitize, transform, or enrich raw ticket HTML before it reaches the browser.
+
+**Parameters**
+
+- `$content` (string) The raw ticket content as stored in the database
+- `$ticket` (object) The ticket object
+
+**Usage**
+
+```php
+add_filter('fluent_support/ticket_content_before_render', function ($content, $ticket) {
+    // modify content before formatting
+    return $content;
+}, 10, 2);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/ticket_content_before_render', $ticket->content, $ticket)`
+
+This filter is located in <br>
+`fluent-support/app/Http/Controllers/TicketController.php`,<br>
+`fluent-support/app/Services/CustomerPortalService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_ticket_content_after_render">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to modify ticket content after WordPress formatting (wpautop, make_clickable, links_add_target) has been applied. Use it to further transform or wrap the fully formatted HTML before it is returned to the admin view or Customer Portal.
+
+**Parameters**
+
+- `$content` (string) The formatted ticket content after WordPress processing
+- `$ticket` (object) The ticket object
+
+**Usage**
+
+```php
+add_filter('fluent_support/ticket_content_after_render', function ($content, $ticket) {
+    // modify content after formatting
+    return $content;
+}, 10, 2);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/ticket_content_after_render', $ticketContent, $ticket)`
+
+This filter is located in <br>
+`fluent-support/app/Http/Controllers/TicketController.php`,<br>
+`fluent-support/app/Services/CustomerPortalService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_min_serial_number">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to programmatically override the minimum public ticket serial number. The value returned sets the floor for the next serial number Fluent Support assigns — if the highest existing serial number is already above your value, the next number will still increment from there.
+
+**Parameters**
+
+- `$minNumber` (int) The minimum serial number from Global Settings
+
+**Usage**
+
+```php
+add_filter('fluent_support/min_serial_number', function ($minNumber) {
+    return 5000; // force serial numbers to start at 5000 at minimum
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/min_serial_number', $minNumber)`
+
+This filter is located in <br>
+`fluent-support/app/Models/Ticket.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_ticket_prefix">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to override the public ticket number prefix on a per-ticket or per-product basis. The prefix is prepended to the serial number to form the display ticket number (e.g., `FS-1042`). Return an empty string to suppress the prefix for a specific ticket or product.
+
+**Parameters**
+
+- `$prefix` (string) The global prefix from Global Settings (may be empty)
+- `$ticket` (object|null) The ticket object, or null when called outside a ticket context
+- `$productId` (int|null) The product ID of the ticket, or null if no product is assigned
+
+**Usage**
+
+```php
+add_filter('fluent_support/ticket_prefix', function ($prefix, $ticket, $productId) {
+    // assign a different prefix per product
+    $prefixes = [
+        12 => 'BIL-',
+        15 => 'TEC-',
+    ];
+    return $prefixes[$productId] ?? $prefix;
+}, 10, 3);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/ticket_prefix', $prefix, $ticket, $productId)`
+
+This filter is located in <br>
+`fluent-support/app/Models/Ticket.php`
+</div>
+</explain-block>

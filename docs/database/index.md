@@ -855,6 +855,125 @@ This table stores the attachment data
 </table>
 
 
+## fs_notifications
+
+This table stores internal notification records created by the Internal Notifications module (added in 2.2.0).
+
+<table class="nowrap">
+    <thead>
+        <tr>
+            <th>Column</th>
+            <th>Type</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>id</td>
+            <td>bigint(20) UNSIGNED Auto Increment</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>actor_id</td>
+            <td>bigint(20) UNSIGNED NULL</td>
+            <td>ID of the person who triggered the event (from fs_persons). NULL for system-generated notifications.</td>
+        </tr>
+        <tr>
+            <td>ticket_id</td>
+            <td>bigint(20) UNSIGNED NULL</td>
+            <td>The related ticket ID</td>
+        </tr>
+        <tr>
+            <td>conversation_id</td>
+            <td>bigint(20) UNSIGNED NULL</td>
+            <td>The related conversation/response ID, if applicable</td>
+        </tr>
+        <tr>
+            <td>event_type</td>
+            <td>varchar(192) NOT NULL</td>
+            <td>Notification event type slug (e.g. <code>ticket_assigned</code>, <code>customer_replied</code>)</td>
+        </tr>
+        <tr>
+            <td>category</td>
+            <td>varchar(100) NOT NULL</td>
+            <td>Notification category: <code>mentions</code>, <code>ticket_activity</code>, or <code>automation_triggers</code></td>
+        </tr>
+        <tr>
+            <td>payload</td>
+            <td>longtext NULL</td>
+            <td>JSON-encoded contextual data for rendering the notification message</td>
+        </tr>
+        <tr>
+            <td>created_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>updated_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+
+## fs_notification_users
+
+This table tracks per-recipient read state for each internal notification (added in 2.2.0).
+
+<table class="nowrap">
+    <thead>
+        <tr>
+            <th>Column</th>
+            <th>Type</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>id</td>
+            <td>bigint(20) UNSIGNED Auto Increment</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>notification_id</td>
+            <td>bigint(20) UNSIGNED NOT NULL</td>
+            <td>Foreign key to <code>fs_notifications.id</code></td>
+        </tr>
+        <tr>
+            <td>user_id</td>
+            <td>bigint(20) UNSIGNED NOT NULL</td>
+            <td>Recipient agent person ID (from fs_persons)</td>
+        </tr>
+        <tr>
+            <td>channel</td>
+            <td>varchar(100) [<b>web</b>]</td>
+            <td>Delivery channel. Currently only <code>web</code> is used.</td>
+        </tr>
+        <tr>
+            <td>is_read</td>
+            <td>tinyint(1) [<b>0</b>]</td>
+            <td>Whether the recipient has read this notification</td>
+        </tr>
+        <tr>
+            <td>read_at</td>
+            <td>timestamp NULL</td>
+            <td>When the notification was marked as read</td>
+        </tr>
+        <tr>
+            <td>created_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>updated_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+
 ## fs_activities
 
 This table stores the activities data

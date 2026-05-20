@@ -47,7 +47,8 @@ export default defineConfig({
       {
         text: 'Modules',
         items: [
-          { text: 'Custom Widget ', link: '/modules/custom_widget' }, 
+          { text: 'Custom Widget ', link: '/modules/custom_widget' },
+          { text: 'Internal Notifications', link: '/modules/internal-notifications' },
         ],
       },
       {

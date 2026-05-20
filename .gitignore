@@ -1,1 +1,5 @@
 node_modules/
+.vitepress
+/.vitepress
+.DS_Store
+docs/.vitepress

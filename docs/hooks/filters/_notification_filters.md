@@ -1,7 +1,7 @@
 <explain-block title="fluent_support_should_send_notification">
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to programmatically control when notifications are sent. It gives you full control over email, Slack, Telegram, Discord, and WhatsApp (Twilio) notifications.
+This filter hook allows you to programmatically control when notifications are sent. It gives you control over Core email notifications and Pro notification channels such as Slack, Telegram, Discord, and Twilio.
 
 **Parameters**
 
@@ -23,6 +23,11 @@ add_filter('fluent_support/should_send_notification', function ($shouldSend, $ch
 **Reference**
 
 `apply_filters('fluent_support/should_send_notification', $shouldSend, $channel, $type, $ticket, $person)`
+
+**Availability**
+
+- `email` channel is available in Fluent Support Core
+- `slack`, `telegram`, `discord`, and `twilio` channels require Fluent Support Pro
 
 **Available Notification Types**
 
@@ -198,6 +203,9 @@ add_filter('fluent_support/should_send_notification', function ($shouldSend, $ch
 
 This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/EmailNotificationHandler.php`,<br>
-`fluent-support-pro/app/Services/Integrations/Slack/SlackApi.php`
+`fluent-support-pro/app/Services/Integrations/Slack/SlackNotification.php`,<br>
+`fluent-support-pro/app/Services/Integrations/Telegram/TelegramNotification.php`,<br>
+`fluent-support-pro/app/Services/Integrations/Discord/DiscordNotification.php`,<br>
+`fluent-support-pro/app/Services/Integrations/Twilio/TwilioNotification.php`
 </div>
 </explain-block>

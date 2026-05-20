@@ -152,4 +152,68 @@ This filter is located in <br>
 </div>
 </explain-block>
 
+<explain-block title="fluent_support_response_content_before_render">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to modify a ticket reply's content before WordPress formatting (wpautop, make_clickable, links_add_target) is applied. Use it to transform or sanitize the raw reply HTML before it is displayed.
+
+**Parameters**
+
+- `$content` (string) The raw response content as stored in the database
+- `$response` (object) The response/conversation object
+- `$ticket` (object|null) The parent ticket object, or null when called from the Customer Portal context
+
+**Usage**
+
+```php
+add_filter('fluent_support/response_content_before_render', function ($content, $response, $ticket) {
+    // modify response content before formatting
+    return $content;
+}, 10, 3);
+```
+
+**Note:** `$ticket` is `null` when this filter fires inside the Customer Portal. Always check for null before accessing ticket properties.
+
+**Reference**
+
+`apply_filters('fluent_support/response_content_before_render', $response->content, $response, $ticket)`
+
+This filter is located in <br>
+`fluent-support/app/Http/Controllers/TicketController.php`,<br>
+`fluent-support/app/Services/CustomerPortalService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_response_content_after_render">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to modify a ticket reply's content after WordPress formatting (wpautop, make_clickable, links_add_target) has been applied. Use it to further transform or wrap the fully formatted reply HTML before it is returned to the admin view or Customer Portal.
+
+**Parameters**
+
+- `$content` (string) The formatted response content after WordPress processing
+- `$response` (object) The response/conversation object
+- `$ticket` (object|null) The parent ticket object, or null when called from the Customer Portal context
+
+**Usage**
+
+```php
+add_filter('fluent_support/response_content_after_render', function ($content, $response, $ticket) {
+    // modify response content after formatting
+    return $content;
+}, 10, 3);
+```
+
+**Note:** `$ticket` is `null` when this filter fires inside the Customer Portal. Always check for null before accessing ticket properties.
+
+**Reference**
+
+`apply_filters('fluent_support/response_content_after_render', $responseContent, $response, $ticket)`
+
+This filter is located in <br>
+`fluent-support/app/Http/Controllers/TicketController.php`,<br>
+`fluent-support/app/Services/CustomerPortalService.php`
+</div>
+</explain-block>
+
 
