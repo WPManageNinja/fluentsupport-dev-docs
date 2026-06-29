@@ -354,3 +354,60 @@ This action is located in <br>
 
 </div>
 </explain-block>
+
+<explain-block title="fluent_support_ai_response_success">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after an AI provider successfully generates a response. Use it to log usage, enforce limits, or record token consumption per agent or ticket.
+
+**Parameters**
+- '$ticketId' (integer) ID of the ticket for which the response was generated
+- '$prompt' (string) The prompt sent to the AI provider
+- '$tokens' (integer) Number of tokens consumed by the request
+- '$providerName' (string) The active provider name, e.g. `'openai'`, `'gemini'`, `'anthropic'`, `'FluentBot'`
+
+**Usage**
+
+```php
+add_action('fluent_support/ai_response_success', function ($ticketId, $prompt, $tokens, $providerName) {
+     // log token usage per provider
+}, 10, 4);
+```
+
+**Reference**
+
+`do_action('fluent_support/ai_response_success', $ticketId, $prompt, $tokens, $providerName)`
+
+This action is located in <br>
+`fluent-support/app/Services/Integrations/AI/BaseAIProvider.php`,<br>
+`fluent-support/app/Services/Integrations/FluentBot/FluentBotAPI.php`
+</div>
+
+</explain-block>
+
+<explain-block title="fluent_support_mcp_loaded">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after the MCP module has registered all its tools and is fully initialised. Use it to register additional tools or modify MCP state after the default toolkit is in place.
+
+**Parameters**
+
+None.
+
+**Usage**
+
+```php
+add_action('fluent_support/mcp_loaded', function () {
+     // MCP is ready — register extra tools or modify state
+}, 10, 0);
+```
+
+**Reference**
+
+`do_action('fluent_support/mcp_loaded')`
+
+This action is located in <br>
+`fluent-support/app/Modules/MCP/MCPInit.php`
+</div>
+
+</explain-block>
