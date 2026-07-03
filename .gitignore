@@ -3,3 +3,4 @@ node_modules/
 /.vitepress
 .DS_Store
 docs/.vitepress
+.DS_Store
