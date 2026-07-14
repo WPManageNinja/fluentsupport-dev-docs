@@ -602,3 +602,31 @@ This action is located in <br>
 
 </div>
 </explain-block>
+
+<explain-block title="fluent_support_response_added_by_agent">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after an agent adds a response to a ticket.
+
+**Parameters**
+- '$response' (object) The created response object
+- '$ticket' (object) Ticket object
+- '$person' (object) Person object who added the response
+
+**Usage**
+
+```php
+add_action('fluent_support/response_added_by_agent', function ($response, $ticket, $person) {
+     // ...do something
+}, 10, 3);
+```
+
+**Reference**
+
+`do_action('fluent_support/response_added_by_agent', $response, $ticket, $person)`
+
+This action is located in <br>
+`fluent-support/app/Http/Controllers/TicketController.php`
+</div>
+
+</explain-block>

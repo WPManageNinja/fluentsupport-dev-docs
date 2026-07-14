@@ -64,6 +64,16 @@ Here You can find the proper guidelines, handy code snippets, full code examples
 
 <!--@include: ./_fluent_support_pro_filters.md-->
 
+## AI Integration Filters
+<br />
+
+<!--@include: ./_ai_filters.md-->
+
+## MCP Filters
+<br />
+
+<!--@include: ./_mcp_filters.md-->
+
 ## Other Useful Filters
 <br />
 
