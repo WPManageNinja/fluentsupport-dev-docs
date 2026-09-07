@@ -27,7 +27,7 @@ The `getProduct` method fetches product data.
 * @param int $id
 * @return: object
 */
-$product = $productApi->getCustomer($customerId);
+$product = $productApi->getProduct($id);
 ```
 
 ### createProduct($data)
@@ -64,4 +64,23 @@ This method will delete a product by using the product ID
 * @return bool True if the deletion is successful; otherwise, returns false.
 */
 $data = $productApi->deleteProduct($id);
+```
+
+### getInstance()
+If you want to get the basic `FluentSupport\App\Models\Product` model, you can achieve it with the following code
+
+```php 
+$productInstance = FluentSupportApi('products')->getInstance();
+```
+
+### Other methods
+
+In addition to the methods above, `$productApi` proxies these `Product` model query methods directly, so they can be called on the API instance itself:
+
+```php 
+$allProducts = $productApi->all();        // all products, no pagination
+$products    = $productApi->get();        // products matching any prior query constraints
+$product     = $productApi->find($id);    // find by ID, or null if not found
+$product     = $productApi->first();      // first product matching any prior query constraints
+$products    = $productApi->paginate();   // same as getProducts()
 ```

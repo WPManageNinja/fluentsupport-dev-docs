@@ -131,3 +131,35 @@ This filter is located in <br>
 `fluent-support/app/Http/Controllers/McpSettingsController.php`
 </div>
 </explain-block>
+
+<explain-block title="fluent_support_mcp_customer_list_meta">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to inject a short, plain-text status line per customer into MCP ticket-list output (e.g. a CRM/billing status line). Return an array keyed by customer ID — merge into it, don't overwrite it. Only runs for agents with the `fst_sensitive_data` capability.
+
+**Parameters**
+
+- `$lines` (array) Default `[]`. Map of `customer_id => plain-text line`, merge don't overwrite
+- `$customerIds` (int[]) Deduped customer IDs on this page
+- `$customers` (array) Map of `customer_id => loaded Customer model`
+- `$context` (array) `['surface' => string, 'agent_id' => int|null]`
+
+**Usage**
+
+```php
+add_filter('fluent_support/mcp_customer_list_meta', function ($lines, $customerIds, $customers, $context) {
+    foreach ($customerIds as $id) {
+        $lines[$id] = 'VIP customer since ' . $customers[$id]->created_at;
+    }
+    return $lines;
+}, 10, 4);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/mcp_customer_list_meta', [], $customerIds, $customers, $context)`
+
+This filter is located in <br>
+`fluent-support/app/Modules/MCP/Support/CustomerMetaEnricher.php`
+</div>
+</explain-block>

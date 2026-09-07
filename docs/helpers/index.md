@@ -43,14 +43,13 @@ Delete fluent-support Option. This is similar to WordPress's `delete_option()` f
 **Return** boolean
 
 
-### Helper::getAgentByUserId($id)
-Get agent information by user id
+### Helper::getAgentByUserId($userId = null)
+Get agent information by WordPress user id
 
 **Parameters**
-- $userId `int` required
-- $returnValue if no user ID is provided or no agent is found, it returns false; otherwise, it returns the Agent instance.
+- $userId `int` optional — defaults to the current logged-in user (`get_current_user_id()`) when omitted
 
-**Return** mixed
+**Return** `FluentSupport\App\Models\Agent|null|false` — `false` if no user ID is available (not logged in and none passed), `null` if the ID doesn't match an agent
 
 ### Helper::customerTicketPriorities()
 This function will return the list of ticket priorities for customer
@@ -113,33 +112,44 @@ public static function ticketStatusGroups()
 **Available Filter Hook:** `fluent_support/ticket_status_groups`
 
 
-### Helper::ticketStatuses()
-This function will return changeable ticket status group
-
-**Return** array
-
-**Available Filter Hook:** `fluent_support/changeable_ticket_statuses`
-
-### Helper::ticketStatusGroups()
-This function will return ticket status list
+### Helper::changeableTicketStatuses()
+This function will return the ticket status groups an agent is allowed to change a ticket to — the same as `ticketStatusGroups()`, minus the `all` and `open` groups.
 
 **Return** array
 
 Source:
 ```php 
-public static function ticketStatusGroups()
+public static function changeableTicketStatuses()
 {
-    return apply_filters('fluent_support/ticket_status_groups', [
-        'open'   => ['new', 'active'],
-        'active' => ['active'],
-        'closed' => ['closed'],
-        'new'    => ['new'],
-        'all'    => []
+    $ticketStatus = static::ticketStatusGroups();
+
+    unset($ticketStatus['all']);
+    unset($ticketStatus['open']);
+
+    return apply_filters('fluent_support/changeable_ticket_statuses', $ticketStatus);
+}
+```
+
+**Available Filter Hook:** `fluent_support/changeable_ticket_statuses`
+
+### Helper::ticketStatuses()
+This function will return the ticket status list (status key => human-readable label).
+
+**Return** array
+
+Source:
+```php 
+public static function ticketStatuses()
+{
+    return apply_filters('fluent_support/ticket_statuses', [
+        'new'    => __('New', 'fluent-support'),
+        'active' => __('Active', 'fluent-support'),
+        'closed' => __('Closed', 'fluent-support'),
     ]);
 }
 ```
 
-**Available Filter Hook:** `fluent_support/ticket_status_groups`
+**Available Filter Hook:** `fluent_support/ticket_statuses`
 
 
 

@@ -153,6 +153,21 @@ This table stores the ticket data
             <td></td>
         </tr>
         <tr>
+            <td>created_by</td>
+            <td>bigint(20) UNSIGNED NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>serial_number</td>
+            <td>bigint(20) UNSIGNED NULL, UNIQUE</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>ticket_number</td>
+            <td>varchar(192) NULL</td>
+            <td>Public ticket number, e.g. formatted with the <code>fluent_support/ticket_prefix</code> filter and <code>serial_number</code></td>
+        </tr>
+        <tr>
             <td>created_at</td>
             <td>timestamp NULL</td>
             <td></td>
@@ -166,7 +181,7 @@ This table stores the ticket data
 </table>
 
 ## fs_tag_pivot
-This table stores the tag relations
+This table stores polymorphic tag relations: which tag is attached to which record. `source_type`/`source_id` identify the tagged record (e.g. a ticket), and `tag_id` points at a row in `fs_taggables`.
 
 <table class="nowrap">
     <thead>
@@ -213,7 +228,7 @@ This table stores the tag relations
 
 ## fs_taggables
 
-This table stores the tag data
+This is a shared, polymorphic table for tag-like records — the `tag_type` column discriminates between the `Tag`, `AgentGroup`, and `TicketTag` models, which all use this table rather than having their own.
 
 <table >
     <thead>
@@ -340,7 +355,7 @@ This table stores the product data
 
 ## fs_persons
 
-This table stores the persons data
+This is a shared table for people records — both the `Agent` and `Customer` models use this table, distinguished by the `person_type` column, rather than having separate tables.
 
 <table>
     <thead>
@@ -1035,3 +1050,453 @@ This table stores the activities data
     </tbody>
 </table>
 
+## fs_ai_activity_logs
+
+<Badge type="tip" vertical="top" text="Fluent Support Core" />
+
+This table stores AI usage logs — one row per AI request made from a ticket (e.g. generating a reply, summarizing a conversation) — used for auditing and token-usage tracking.
+
+<table class="nowrap">
+    <thead>
+        <tr>
+            <th>Column</th>
+            <th>Type</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>id</td>
+            <td>bigint(20) UNSIGNED Auto Increment</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>agent_id</td>
+            <td>bigint(20) NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>ticket_id</td>
+            <td>bigint(20) NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>model_name</td>
+            <td>varchar(50) NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>tokens</td>
+            <td>mediumtext NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>prompt</td>
+            <td>longtext NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>created_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>updated_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+## fs_saved_replies
+
+<Badge type="warning" vertical="top" text="Advanced" />
+
+This table stores saved/canned replies agents can reuse when responding to tickets. The `SavedReply` model lives in Core, but this table is only created when Pro (which ships the Saved Replies feature) is active.
+
+<table class="nowrap">
+    <thead>
+        <tr>
+            <th>Column</th>
+            <th>Type</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>id</td>
+            <td>bigint(20) UNSIGNED Auto Increment</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>created_by</td>
+            <td>bigint(20) UNSIGNED NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>mailbox_id</td>
+            <td>bigint(20) UNSIGNED NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>product_id</td>
+            <td>bigint(20) UNSIGNED NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>title</td>
+            <td>varchar(192) NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>content</td>
+            <td>longtext NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>created_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>updated_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+## fs_ticket_audits
+
+<Badge type="warning" vertical="top" text="Advanced" />
+
+This table stores one AI-generated mood/sentiment audit per ticket (`mood`, `score`, `summary`), refreshed on a schedule via the AI Audit reporting module.
+
+<table class="nowrap">
+    <thead>
+        <tr>
+            <th>Column</th>
+            <th>Type</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>id</td>
+            <td>bigint(20) UNSIGNED Auto Increment</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>ticket_id</td>
+            <td>bigint(20) UNSIGNED, UNIQUE</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>mood</td>
+            <td>varchar(20) NULL</td>
+            <td>One of Happy, Neutral, Frustrated, Very Unhappy</td>
+        </tr>
+        <tr>
+            <td>score</td>
+            <td>decimal(3,1) NULL</td>
+            <td>0.0 (most negative) to 10.0 (most positive)</td>
+        </tr>
+        <tr>
+            <td>summary</td>
+            <td>text NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>status</td>
+            <td>varchar(20) [<b>failed</b>]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>error</td>
+            <td>text NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>audited_at</td>
+            <td>datetime NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>created_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>updated_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+## fs_report_snapshots
+
+<Badge type="warning" vertical="top" text="Advanced" />
+
+This table stores periodic (default every 6 hours) point-in-time snapshots of report data, keyed by `report_type`, so historical report trends can be shown without re-computing them from raw ticket data.
+
+<table class="nowrap">
+    <thead>
+        <tr>
+            <th>Column</th>
+            <th>Type</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>id</td>
+            <td>bigint(20) UNSIGNED Auto Increment</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>snapshot_time</td>
+            <td>datetime</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>report_type</td>
+            <td>varchar(50)</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>period</td>
+            <td>varchar(20) [<b>6h</b>]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>data</td>
+            <td>longtext</td>
+            <td>JSON-encoded report payload for this snapshot</td>
+        </tr>
+        <tr>
+            <td>created_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>updated_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+## fs_time_tracks
+
+<Badge type="warning" vertical="top" text="Advanced" />
+
+This table stores agent time-tracking entries against tickets (start/stop timers or manual entries), used for billing and reporting.
+
+<table class="nowrap">
+    <thead>
+        <tr>
+            <th>Column</th>
+            <th>Type</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>id</td>
+            <td>int(10) UNSIGNED Auto Increment</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>agent_id</td>
+            <td>bigint(20) UNSIGNED</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>customer_id</td>
+            <td>bigint(20) UNSIGNED</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>ticket_id</td>
+            <td>bigint(20) UNSIGNED</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>mailbox_id</td>
+            <td>bigint(20) UNSIGNED</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>started_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>completed_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>message</td>
+            <td>text NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>status</td>
+            <td>varchar(50) [<b>committed</b>]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>working_minutes</td>
+            <td>int(10) UNSIGNED [<b>0</b>]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>billable_minutes</td>
+            <td>int(10) UNSIGNED [<b>0</b>]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>is_manual</td>
+            <td>tinyint(1) [<b>0</b>]</td>
+            <td>Whether this entry was manually logged rather than timed</td>
+        </tr>
+        <tr>
+            <td>created_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>updated_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+## fs_workflows
+
+<Badge type="warning" vertical="top" text="Advanced" />
+
+This table stores workflow automation definitions — a trigger plus settings — that run one or more `fs_workflow_actions` when matched.
+
+<table class="nowrap">
+    <thead>
+        <tr>
+            <th>Column</th>
+            <th>Type</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>id</td>
+            <td>bigint(20) UNSIGNED Auto Increment</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>created_by</td>
+            <td>bigint(20) NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>priority</td>
+            <td>int(10) [<b>10</b>]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>title</td>
+            <td>varchar(192) NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>trigger_key</td>
+            <td>varchar(192) NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>trigger_type</td>
+            <td>varchar(50) [<b>manual</b>]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>settings</td>
+            <td>longtext NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>status</td>
+            <td>varchar(50) [<b>draft</b>]</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>last_ran_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>created_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>updated_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+## fs_workflow_actions
+
+<Badge type="warning" vertical="top" text="Advanced" />
+
+This table stores the individual actions belonging to a workflow (`fs_workflows`), run in sequence when the parent workflow is triggered.
+
+<table class="nowrap">
+    <thead>
+        <tr>
+            <th>Column</th>
+            <th>Type</th>
+            <th>Comment</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>id</td>
+            <td>bigint(20) UNSIGNED Auto Increment</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>title</td>
+            <td>varchar(192) NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>action_name</td>
+            <td>varchar(192) NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>workflow_id</td>
+            <td>bigint(20) NULL</td>
+            <td>References fs_workflows.id</td>
+        </tr>
+        <tr>
+            <td>settings</td>
+            <td>longtext NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>created_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>updated_at</td>
+            <td>timestamp NULL</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>

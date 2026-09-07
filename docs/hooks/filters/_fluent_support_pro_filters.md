@@ -10,7 +10,7 @@ This filter hook allows you to retrieve file storage integration settings data a
 **Usage**
 
 ```php
-add_filter('fluent_support/file_storage_integration_settings_' . $settingsKey, function ($settings) {
+add_filter('fluent_support_pro/file_storage_integration_settings_' . $settingsKey, function ($settings) {
     // ...do something
     return $settings;
 }, 10, 1);
@@ -45,7 +45,7 @@ This filter hook allows you to retrieve file upload related message and settings
 **Usage**
 
 ```php
-add_filter('fluent_support/file_storage_integration_settings_save_' . $settingsKey, 
+add_filter('fluent_support_pro/file_storage_integration_settings_save_' . $settingsKey, 
 function($message, $settings) {
     // ...do something
     return $message;
@@ -195,7 +195,7 @@ This filter hook allows you to retrieve the payload and mailbox data and modify 
 **Usage**
 
 ```php
-add_filter('fluent_support/email_piping_raw_data', function($data, $box) {
+add_filter('fluent_support_pro/email_piping_raw_data', function($data, $box) {
     // ...do something
     return $data;
 }, 10, 2);
@@ -225,7 +225,7 @@ This filter hook allows you to retrieve the payload, formatted payload and mailb
 **Usage**
 
 ```php
-add_filter('fluent_support/email_piping_data', function($formattedData, $data, $box) {
+add_filter('fluent_support_pro/email_piping_data', function($formattedData, $data, $box) {
     // ...do something
     return $formattedData;
 }, 10, 3);
@@ -237,7 +237,7 @@ add_filter('fluent_support/email_piping_data', function($formattedData, $data, $
 
 
 This filter is located in <br>
-`fluent-support-pro/app/Http/Controllers/EmailBoxController.php`
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 </div>
 </explain-block>
 
@@ -444,91 +444,6 @@ This filter is located in <br>
 </div>
 </explain-block>
 
-<explain-block title="fluent_support_disable_woo_menu">
-<summary class="fs-docs-title">fluent_support_disable_woo_menu</summary>
-<hr>
-<div class="fs-docs-content">
-This filter hook allows you to retrieve the wooCommerce menu permission to disable it or not and modify it.
-
-**Parameters**
-
-- '$data' (boolean) Disable wooCommerce menu or not
-
-**Usage**
-
-```php
-add_filter('fluent_support/disable_woo_menu', function($data) {
-    // ...do something
-    return $data;
-}, 10, 1);
-```
-
-**Reference**
-
-`apply_filters('fluent_support/disable_woo_menu', false)`
-
-
-This filter is located in <br>
-`fluent-support-pro/app/Services/Integrations/WooCommerce.php`
-</div>
-</explain-block>
-
-<explain-block title="fluent_support_woo_menu_link_position">
-<hr>
-<div class="fs-docs-content">
-This filter hook allows you to retrieve the support page link position in WooCommerce customer menu and modify it.
-
-**Parameters**
-
-- '$supportTicketPosition' (boolean) Support page link position in WooCommerce customer menu
-
-**Usage**
-
-```php
-add_filter('fluent_support/woo_menu_link_position', function($supportTicketPosition) {
-    // ...do something
-    return $supportTicketPosition;
-}, 10, 1);
-```
-
-**Reference**
-
-`apply_filters('fluent_support/woo_menu_link_position', 3)`
-
-
-This filter is located in <br>
-`fluent-support-pro/app/Services/Integrations/WooCommerce.php`
-</div>
-</explain-block>
-
-<explain-block title="fluent_support_woo_menu_label">
-<hr>
-<div class="fs-docs-content">
-This filter hook allows you to retrieve the support page link label in WooCommerce customer menu and modify it.
-
-**Parameters**
-
-- '$supportLabel' (string) Support page link label in WooCommerce customer menu
-
-**Usage**
-
-```php
-add_filter('fluent_support/woo_menu_label', function($supportLabel) {
-    // ...do something
-    return $supportLabel;
-}, 10, 1);
-```
-
-**Reference**
-
-`apply_filters('fluent_support/woo_menu_label', $supportLabel)`
-
-
-This filter is located in <br>
-`fluent-support-pro/app/Services/Integrations/WooCommerce.php`
-</div>
-</explain-block>
-
 <explain-block title="fluent_support_advanced_filter_options">
 <hr>
 <div class="fs-docs-content">
@@ -726,6 +641,219 @@ add_filter('fluent_support/workflow_actions', function($actions, $workFlow) {
 
 This filter is located in <br>
 `fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_ticket_full_match">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to enable or disable exact-subject ticket matching when piping in a reply-by-email message, alongside the existing `fluent_support/ticket_partial_match` filter.
+
+**Parameters**
+
+- `$fullMatch` (boolean) Whether to attempt a full-subject match — default `true`
+
+**Usage**
+
+```php
+add_filter('fluent_support/ticket_full_match', function ($fullMatch) {
+    return false;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/ticket_full_match', true)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_verify_webhook_signature_by_platform">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to cryptographically verify an incoming Telegram or Slack webhook payload before it's processed. `{platform}` is `telegram` or `slack`. When no callback is registered for a platform, verification is skipped and the existing token-based validation is used instead.
+
+**Parameters**
+
+- `$verified` (boolean) Default `false`
+- `$request` (object) The current request, containing the raw webhook payload
+
+**Usage**
+
+```php
+add_filter('fluent_support/verify_webhook_signature_telegram', function ($verified, $request) {
+    return my_verify_telegram_signature($request);
+}, 10, 2);
+```
+
+**Note:** `{platform}` is the incoming webhook's platform slug (`telegram` or `slack`).
+
+**Reference**
+
+`apply_filters('fluent_support/verify_webhook_signature_' . $platform, false, $request)`
+
+This filter is located in <br>
+`fluent-support/app/Http/Controllers/ChatMessageParserController.php` (fired from Core),<br>
+`fluent-support-pro/app/Services/Integrations/WebhookSignatureVerifier.php` (Pro-side implementation)
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_ai_audit_batch_limit">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to override how many candidate tickets are pulled per batch when generating AI ticket audits (mood/sentiment analysis) for a date range.
+
+**Parameters**
+
+- `$limit` (integer) Maximum tickets per audit batch — default `200`
+
+**Usage**
+
+```php
+add_filter('fluent_support/ai_audit_batch_limit', function ($limit) {
+    return 50;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/ai_audit_batch_limit', 200)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Modules/Reporting/AuditService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_generate_ticket_audit">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to override the AI prompt used to generate a ticket's mood/sentiment audit. The default prompt instructs the AI to return a JSON object with `mood`, `score`, and `summary` fields.
+
+**Parameters**
+
+- `$prompt` (string) The default audit prompt sent to the AI provider
+
+**Usage**
+
+```php
+add_filter('fluent_support/generate_ticket_audit', function ($prompt) {
+    return $prompt . "\nAlso flag any mention of a refund request.";
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/generate_ticket_audit', $prompt)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Modules/Reporting/AuditService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_doc_post_categories">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to modify the list of documentation post categories offered in the "Search Docs" AI settings, alongside `fluent_support/all_doc_post_types`.
+
+**Parameters**
+
+- `$postCategories` (array) Hierarchical category options, keyed for a flat select dropdown
+
+**Usage**
+
+```php
+add_filter('fluent_support/doc_post_categories', function ($postCategories) {
+    // ...do something
+    return $postCategories;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/doc_post_categories', $this->getHierarchicalCategoryOptions())`
+
+This filter is located in <br>
+`fluent-support-pro/app/Http/Controllers/TicketFormController.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_doc_post_categories_limit">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to override how many documentation categories are loaded when building the "Search Docs" category select in settings. This caps query/response cost on sites with very large category taxonomies.
+
+**Parameters**
+
+- `$limit` (integer) Maximum categories to load — default `500`
+
+**Usage**
+
+```php
+add_filter('fluent_support/doc_post_categories_limit', function ($limit) {
+    return 100;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/doc_post_categories_limit', 500)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Http/Controllers/TicketFormController.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_license_grace_period_days">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to override the number of grace-period days allowed after a license check fails to report a value, before Pro features are restricted.
+
+**Parameters**
+
+- `$graceDays` (integer) Grace period in days — default `15`
+
+**Usage**
+
+```php
+add_filter('fluent_support/license_grace_period_days', function ($graceDays) {
+    return 30;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/license_grace_period_days', 15)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Http/Controllers/LicenseController.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_max_webhook_payload_size">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to override the maximum accepted payload size (in bytes) for an incoming email-box webhook, to protect against memory exhaustion from oversized requests.
+
+**Parameters**
+
+- `$maxPayloadSize` (integer) Maximum payload size in bytes — default `5242880` (5 MB)
+
+**Usage**
+
+```php
+add_filter('fluent_support/max_webhook_payload_size', function ($maxPayloadSize) {
+    return 10 * 1024 * 1024; // 10 MB
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/max_webhook_payload_size', 5 * 1024 * 1024)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Http/Controllers/EmailBoxController.php`
 </div>
 </explain-block>
 

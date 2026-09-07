@@ -113,4 +113,7 @@ All MCP tool calls run in the context of the authenticated WordPress user. The t
 | `app/Modules/MCP/Tools/ManagementTools.php` | Support context and SLA data tool |
 | `app/Modules/MCP/Helpers/MCPHelper.php` | Shared formatting helpers (tickets, customers, responses, widgets) |
 | `app/Modules/MCP/Support/PermissionGate.php` | Authorization checks for MCP requests |
+| `app/Modules/MCP/Support/AbilityGuard.php` | Per-ability capability requirements (`any_of`/`all_of`) for MCP tool abilities |
+| `app/Modules/MCP/Support/TicketAccessGuard.php` | Restricts ticket-tool access by an agent's mailbox permissions |
+| `app/Modules/MCP/Support/CustomerMetaEnricher.php` | Resolves optional per-customer meta lines (CRM/billing) for MCP list output, gated on `fst_sensitive_data` |
 | `app/Http/Controllers/McpSettingsController.php` | REST API for MCP settings, toggle, install-adapter, and config snippet generation |

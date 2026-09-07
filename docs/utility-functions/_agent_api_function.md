@@ -11,8 +11,8 @@ $agentsApi = FluentSupportApi('agents');
 ### getAgents()
 ```php 
 /**
- * Fetches information for all agents.
- * @return FluentSupport\App\Models\Agent|null The agent model or null if not found.
+ * Fetches a paginated list of all agents.
+ * @return object Paginated result of FluentSupport\App\Models\Agent records.
  */
 $agents = $agentsApi->getAgents();
 ```
@@ -34,7 +34,7 @@ $agent = $agentsApi->getAgent($agentId);
  *
  * @param array $data The data to update the agent.
  * @param int $agentId The ID of the agent to update.
- * @return FluentSupport\App\Models\Agent|null The updated agent model or null if not found.
+ * @return bool True on success, false if the agent was not found or no ID was given.
  */
 $updateAgent = $agentsApi->updateAgent($data, $agentId);
 ```
@@ -55,13 +55,32 @@ $createAgent = $agentsApi->createAgentWithOrWithoutWpUser($data, $createWpUser);
 ```
 
 ### deleteAgent($id)
-DeleteAgent method will delete agent by id
-
+```php 
+/**
+ * Deletes a specific agent by ID.
+ *
+ * @param int $id The ID of the agent to delete.
+ * @return void
+ */
+$agentsApi->deleteAgent($agentId);
+```
 
 ### getInstance()
 If you want to get the basic `FluentSupport\App\Models\Agent` model, you can achieve it with the following code
 
 ```php 
 $agentInstance = FluentSupportApi('agents')->getInstance();
+```
+
+### Other methods
+
+In addition to the methods above, `$agentsApi` proxies these `Agent` model query methods directly, so they can be called on the API instance itself:
+
+```php 
+$allAgents = $agentsApi->all();          // all agents, no pagination
+$agents    = $agentsApi->get();          // agents matching any prior query constraints
+$agent     = $agentsApi->find($agentId); // find by ID, or null if not found
+$agent     = $agentsApi->first();        // first agent matching any prior query constraints
+$agents    = $agentsApi->paginate();     // same as getAgents()
 ```
 

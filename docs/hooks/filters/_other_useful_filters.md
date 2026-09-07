@@ -208,7 +208,7 @@ This filter hook allows you to retrieve Smartcode data and modify it.
 **Usage**
 
 ```php
-add_filter('fluent_support/smartcode_fallback', function ($matches, $data) {
+add_filter('fluentsupport/smartcode_fallback', function ($matches, $data) {
     // ...do something
     return $matches;
 }, 10, 2);
@@ -625,5 +625,58 @@ add_filter('fluent_support/customer_page_ticket_widgets_limit', function ($limit
 
 This filter is located in <br>
 `fluent-support/app/Models/Traits/CustomerTrait.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_get_avatar">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to override the avatar URL generated for a person (agent or customer). By default this is a Gravatar URL with a UI Avatars fallback for people who have no Gravatar.
+
+**Parameters**
+
+- `$avatarUrl` (string) The default avatar URL
+- `$email` (string) The person's email address
+
+**Usage**
+
+```php
+add_filter('fluent_support/get_avatar', function ($avatarUrl, $email) {
+    return my_custom_avatar_service($email);
+}, 10, 2);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/get_avatar', "https://www.gravatar.com/avatar/{$hash}?s=128" . $fallback, $email)`
+
+This filter is located in <br>
+`fluent-support/app/Models/Person.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_pro_upgrade_base_url">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to override the base URL used for "Upgrade to Pro" links shown throughout the admin UI.
+
+**Parameters**
+
+- `$baseUrl` (string) The default pricing page URL — default `'https://fluentsupport.com/pricing'`
+
+**Usage**
+
+```php
+add_filter('fluent_support/pro_upgrade_base_url', function ($baseUrl) {
+    return 'https://mysite.com/go/fluent-support-pro';
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/pro_upgrade_base_url', 'https://fluentsupport.com/pricing')`
+
+This filter is located in <br>
+`fluent-support/app/Services/Helper.php`
 </div>
 </explain-block>

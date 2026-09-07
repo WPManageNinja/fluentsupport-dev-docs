@@ -639,3 +639,36 @@ This filter is located in <br>
 `fluent-support/app/Models/Ticket.php`
 </div>
 </explain-block>
+
+<explain-block title="fluent_support_widgets_by_name">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to register a custom widget for the `GET widgets` REST endpoint. `{name}` is the requested widget/filter name (the `filter` request parameter, e.g. `ticket_sidebar`).
+
+**Parameters**
+
+- `$widgets` (array) Widget payload to return — default `[]`
+- `$data` (array) Sanitized request data. For `ticket_sidebar`, includes a loaded `ticket` (with its `customer` relation)
+
+**Usage**
+
+```php
+add_filter('fluent_support/widgets/ticket_sidebar', function ($widgets, $data) {
+    $widgets[] = [
+        'title' => 'My Widget',
+        'content' => 'Hello ' . $data['ticket']->customer->full_name,
+    ];
+    return $widgets;
+}, 10, 2);
+```
+
+**Note:** `{name}` is sanitized to `[a-zA-Z0-9_\-]+` before the filter is built, and any leading `fluent_support_` in the requested name is stripped first.
+
+**Reference**
+
+`apply_filters('fluent_support/widgets/' . $filter, [], $data)`
+
+This filter is located in <br>
+`fluent-support/app/Http/Controllers/WidgetsController.php`
+</div>
+</explain-block>

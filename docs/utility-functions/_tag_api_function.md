@@ -51,7 +51,7 @@ This method will Updates a tag by using the tag ID.
 * @param array $data
 * @return array|null Returns the updated tag or null.
 */
-$data = $productApi->updateProduct($id, $data);
+$data = $tagApi->updateTag($id, $data);
 ```
 
 ### deleteTag($id)
@@ -63,4 +63,23 @@ This method will delete a tag by using the tag ID
 * @return bool True if the deletion is successful; otherwise, returns false.
 */
 $data = $tagApi->deleteTag($id);
+```
+
+### getInstance()
+If you want to get the basic `FluentSupport\App\Models\Tag` model, you can achieve it with the following code
+
+```php 
+$tagInstance = FluentSupportApi('tags')->getInstance();
+```
+
+### Other methods
+
+In addition to the methods above, `$tagApi` proxies these `Tag` model query methods directly, so they can be called on the API instance itself:
+
+```php 
+$allTags = $tagApi->all();        // all tags, no pagination
+$tags    = $tagApi->get();        // tags matching any prior query constraints
+$tag     = $tagApi->find($id);    // find by ID, or null if not found
+$tag     = $tagApi->first();      // first tag matching any prior query constraints
+$tags    = $tagApi->paginate();   // same as getTags()
 ```

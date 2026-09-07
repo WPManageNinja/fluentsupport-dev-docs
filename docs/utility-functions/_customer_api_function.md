@@ -55,11 +55,11 @@ Create a customer with or without a corresponding WordPress user. If $createWpUs
  * @param bool $createWpUser - Whether to create a corresponding WordPress user.
  * @return mixed - Returns the created customer or null.
  */
-$createAgent = $agentsApi->createCustomerWithOrWithoutWpUser($data, $createWpUser);
+$createdCustomer = $customersApi->createCustomerWithOrWithoutWpUser($data, $createWpUser);
 ```
 
 ### deleteCustomer($id, $withAssociatedData)
-DeleteAgent method will delete customer with or without customer tickets and attachments
+DeleteCustomer method will delete customer with or without customer tickets and attachments
 
 ```php 
 /*
@@ -68,7 +68,7 @@ DeleteAgent method will delete customer with or without customer tickets and att
  * @param bool $withAssociatedData | this will delete all tickets and attachments of this customer
  * @return void
  */
-$createAgent = $agentsApi->createCustomerWithOrWithoutWpUser($data, $createWpUser);
+$customersApi->deleteCustomer($customerId, $withAssociatedData);
 ```
 
 ### getInstance()
@@ -76,4 +76,16 @@ If you want to get the basic `FluentSupport\App\Models\Customer` model, you can 
 
 ```php 
 $agentInstance = FluentSupportApi('customers')->getInstance();
+```
+
+### Other methods
+
+In addition to the methods above, `$customersApi` proxies these `Customer` model query methods directly, so they can be called on the API instance itself:
+
+```php 
+$allCustomers = $customersApi->all();          // all customers, no pagination
+$customers    = $customersApi->get();          // customers matching any prior query constraints
+$customer     = $customersApi->find($customerId); // find by ID, or null if not found
+$customer     = $customersApi->first();        // first customer matching any prior query constraints
+$customers    = $customersApi->paginate();     // same as getCustomers()
 ```

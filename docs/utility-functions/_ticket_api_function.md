@@ -46,10 +46,32 @@ $data = $ticketApi->addResponse($data, $agentId, $ticketId);
 
 ### createTicket($data)
 The createTicket method will create a new ticket.
+```php
 /*
  * createTicket method will create a new ticket
  * @param array $data
  * @return object| boolean
  */
 $data = $ticketApi->createTicket($data);
+```
+
+**Note:** `$data` must include `customer_id` (an existing customer), `title`, and `content` — the call returns `false` if any of these are missing.
+
+### getInstance()
+If you want to get the basic `FluentSupport\App\Models\Ticket` model, you can achieve it with the following code
+
+```php 
+$ticketInstance = FluentSupportApi('tickets')->getInstance();
+```
+
+### Other methods
+
+In addition to the methods above, `$ticketApi` proxies these `Ticket` model query methods directly, so they can be called on the API instance itself:
+
+```php 
+$allTickets = $ticketApi->all();        // all tickets, no pagination
+$tickets    = $ticketApi->get();        // tickets matching any prior query constraints
+$ticket     = $ticketApi->find($id);    // find by ID, or null if not found
+$ticket     = $ticketApi->first();      // first ticket matching any prior query constraints
+$tickets    = $ticketApi->paginate();   // same as getTickets()
 ```

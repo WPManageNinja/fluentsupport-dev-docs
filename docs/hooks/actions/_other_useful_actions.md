@@ -411,3 +411,200 @@ This action is located in <br>
 </div>
 
 </explain-block>
+
+<explain-block title="fluent_support_mcp_tool_exception">
+<hr>
+<div class="fs-docs-content">
+This action is triggered when an MCP tool's execute callback throws an exception during a tool call, in both Core and Pro-registered tools. Use it to log or alert on runtime failures without exposing exception details to the AI client.
+
+**Parameters**
+- '$context' (array) Exception context — `['exception' => Throwable, 'tool' => string, 'params' => array]`
+
+**Usage**
+
+```php
+add_action('fluent_support/mcp_tool_exception', function ($context) {
+     // log $context['exception'], $context['tool'], $context['params']
+}, 10, 1);
+```
+
+**Reference**
+
+`do_action('fluent_support/mcp_tool_exception', ['exception' => $e, 'tool' => $toolName, 'params' => $params])`
+
+This action is located in <br>
+`fluent-support/app/Modules/MCP/AbilitiesRegistrar.php`,<br>
+`fluent-support-pro/app/Modules/MCP/AbilitiesRegistrar.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_tickets_query_by_permission_ref">
+<hr>
+<div class="fs-docs-content">
+This action is triggered to let listeners scope a tickets query by the current agent's permissions before it runs. It receives the query builder by reference — mutate it directly rather than returning a value.
+
+**Parameters**
+- '$ticketsQuery' (object) Ticket query builder, passed by reference
+- '$userId' (integer|boolean) User ID to scope by, or `false` to use the current user
+
+**Usage**
+
+```php
+add_action('fluent_support/tickets_query_by_permission_ref', function (&$ticketsQuery, $userId) {
+     // mutate $ticketsQuery directly
+}, 10, 2);
+```
+
+**Note:** Registered internally by `PermissionFilterManager::filterAgentTickets()` to scope the query to tickets the current agent can access. It's fired from ticket listing, notification queries, and several MCP tool query paths.
+
+**Reference**
+
+`do_action_ref_array('fluent_support/tickets_query_by_permission_ref', [&$ticketsQuery, $userId])`
+
+This action is located in <br>
+`fluent-support/app/Http/Controllers/TicketController.php`,<br>
+`fluent-support/app/Hooks/Handlers/PermissionFilterManager.php`,<br>
+`fluent-support/app/Services/Notifications/NotificationQueryService.php`,<br>
+`fluent-support/app/Modules/MCP/Tools/ManagementTools.php`, `CustomerTools.php`, `TicketTools.php`,<br>
+`fluent-support-pro/app/Http/Controllers/WorkflowsController.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_customer_portal_tickets_query">
+<hr>
+<div class="fs-docs-content">
+This action is triggered to let listeners modify the customer's own ticket list query in the Customer Portal before it runs.
+
+**Parameters**
+- '$ticketsQuery' (object) Ticket query builder, passed by reference
+- '$customer' (object) The customer viewing their ticket list
+- '$request' (object) The current request
+
+**Usage**
+
+```php
+add_action('fluent_support/customer_portal/tickets_query', function (&$ticketsQuery, $customer, $request) {
+     // mutate $ticketsQuery directly
+}, 10, 3);
+```
+
+**Reference**
+
+`do_action_ref_array('fluent_support/customer_portal/tickets_query', [&$ticketsQuery, $customer, $request])`
+
+This action is located in <br>
+`fluent-support/app/Http/Controllers/CustomerPortalController.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_finalize_file_upload_by_driver">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after an attachment's local file is finalized on a ticket, letting a remote storage driver push it off-server.
+
+**Parameters**
+- '$attachment' (object) Attachment record, passed by reference
+- '$ticketId' (integer) Ticket ID the attachment belongs to
+
+**Usage**
+
+```php
+add_action('fluent_support/finalize_file_upload_amazon_s3', function (&$attachment, $ticketId) {
+     // upload to S3 and update $attachment with the remote path/url
+}, 10, 2);
+```
+
+**Note:** `{driver}` is the active storage driver slug — Pro ships `amazon_s3`, `cloudflare_r2`, `dropbox`, and `google_drive`.
+
+**Reference**
+
+`do_action_ref_array('fluent_support/finalize_file_upload_' . $storageDriver, [&$attachment, $ticket->id])`
+
+This action is located in <br>
+`fluent-support/app/Services/Tickets/TicketService.php`,<br>
+`fluent-support/app/Services/Tickets/ResponseService.php`,<br>
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`,<br>
+`fluent-support-pro/app/Services/FileUploadIntegration/AmazonS3/Bootstrap.php`, `CloudflareR2/Bootstrap.php`, `Dropbox/Bootstrap.php`, `GoogleDrive/Bootstrap.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_attachment_uploaded_as_temp_by_driver">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after an attachment is uploaded as a temporary file for a specific storage driver, in addition to the generic `fluent_support/attachment_uploaded_as_temp` action above.
+
+**Parameters**
+- '$attachment' (object) Attachment record, passed by reference
+- '$ticketId' (integer) Ticket ID
+
+**Usage**
+
+```php
+add_action('fluent_support/attachment_uploaded_as_temp_dropbox', function (&$attachment, $ticketId) {
+     // ...do something
+}, 10, 2);
+```
+
+**Note:** `{driver}` is the active storage driver slug — Pro ships `amazon_s3`, `cloudflare_r2`, `dropbox`, and `google_drive`.
+
+**Reference**
+
+`do_action_ref_array('fluent_support/attachment_uploaded_as_temp_' . $driver, [&$attachment, $ticketId])`
+
+This action is located in <br>
+`fluent-support/app/Http/Controllers/UploaderController.php`,<br>
+`fluent-support-pro/app/Services/FileUploadIntegration/AmazonS3/Bootstrap.php`, `CloudflareR2/Bootstrap.php`, `Dropbox/Bootstrap.php`, `GoogleDrive/Bootstrap.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_update_verification_failed">
+<hr>
+<div class="fs-docs-content">
+This action is triggered when a plugin update package fails signature/source verification and the update is blocked.
+
+**Parameters**
+- '$slug' (string) The plugin slug being updated
+- '$code' (string) Machine-readable rejection code
+- '$message' (string) Human-readable rejection message shown to the user
+
+**Usage**
+
+```php
+add_action('fluent_support/update_verification_failed', function ($slug, $code, $message) {
+     // log or alert on a blocked update
+}, 10, 3);
+```
+
+**Reference**
+
+`do_action('fluent_support/update_verification_failed', $this->slug, $code, $message)`
+
+This action is located in <br>
+`fluent-support-pro/app/Services/PluginManager/UpdateVerifier.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_verify_google_code">
+<hr>
+<div class="fs-docs-content">
+This action is triggered to handle Google Drive authorization.
+
+**Parameters**
+- '$code' (string) Google OAuth verification code
+
+**Usage**
+
+```php
+add_action('fluent_support_pro/verify_google_code', function ($code) {
+     // ...do something
+}, 10, 1);
+```
+**Reference**
+
+`do_action('fluent_support_pro/verify_google_code', $code)`
+
+This action is located in <br>
+`fluent-support-pro/app/Http/Controllers/AuthorizeController.php`
+
+</div>
+</explain-block>

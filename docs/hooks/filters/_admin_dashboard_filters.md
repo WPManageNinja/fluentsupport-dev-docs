@@ -257,4 +257,34 @@ This filter is located in <br>
 </div>
 </explain-block>
 
+<explain-block title="fluent_support_customer_delete_requires_admin">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to control whether deleting a customer requires the WordPress `manage_options` (admin) capability, rather than the standard agent delete permission.
+
+**Parameters**
+
+- `$requiresAdmin` (boolean) Whether admin capability is required — default `true`
+
+**Usage**
+
+```php
+add_filter('fluent_support/customer_delete_requires_admin', function ($requiresAdmin) {
+    // allow any agent with delete permission to delete customers
+    return false;
+}, 10, 1);
+```
+
+**Note:** This filter is applied independently (uncached) in both locations below — once in `CustomerPolicy` to actually enforce the delete permission, and once in `Menu` to expose the same flag to the admin UI. Return a deterministic value so the UI and the actual enforcement don't disagree.
+
+**Reference**
+
+`apply_filters('fluent_support/customer_delete_requires_admin', true)`
+
+This filter is located in <br>
+`fluent-support/app/Http/Policies/CustomerPolicy.php`,<br>
+`fluent-support/app/Hooks/Handlers/Menu.php`
+</div>
+</explain-block>
+
 

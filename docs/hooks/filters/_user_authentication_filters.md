@@ -677,3 +677,81 @@ This filter is located in <br>
 </div>
 </explain-block>
 
+<explain-block title="fluent_support_reset_password_link">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to override the link text used for the password reset button in the reset password email.
+
+**Parameters**
+
+- `$linkText` (string) The default link text, e.g. "Reset your password for {Site Name}"
+
+**Usage**
+
+```php
+add_filter('fluent_support/reset_password_link', function ($linkText) {
+    return 'Click here to reset your password';
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/reset_password_link', sprintf(__('Reset your password for %s', 'fluent-support'), get_bloginfo('name')))`
+
+This filter is located in <br>
+`fluent-support/app/Http/Controllers/AuthController.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_signup_verification_hourly_limit">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to override how many signup verification codes may be requested per hour before requests are rate-limited.
+
+**Parameters**
+
+- `$globalLimit` (integer) Maximum verification requests per hour — default `100`
+
+**Usage**
+
+```php
+add_filter('fluent_support/signup_verification_hourly_limit', function ($globalLimit) {
+    return 50;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/signup_verification_hourly_limit', 100)`
+
+This filter is located in <br>
+`fluent-support/app/Hooks/Handlers/EmailVerificationHandler.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_signup_verification_mail_subject">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to override the subject line of the signup verification code email.
+
+**Parameters**
+
+- `$mailSubject` (string) The default subject, e.g. "Your registration verification code for {Site Name}"
+
+**Usage**
+
+```php
+add_filter('fluent_support/signup_verification_mail_subject', function ($mailSubject) {
+    return 'Your verification code';
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/signup_verification_mail_subject', sprintf(__('Your registration verification code for %s', 'fluent-support'), get_bloginfo('name')))`
+
+This filter is located in <br>
+`fluent-support/app/Hooks/Handlers/EmailVerificationHandler.php`
+</div>
+</explain-block>
+

@@ -249,3 +249,29 @@ This filter is located in <br>
 `fluent-support-pro/app/Services/Integrations/AI/AIHelper.php`
 </div>
 </explain-block>
+
+<explain-block title="fluent_support_fluentbot_api_base_url">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to override the base URL used to call the FluentBot AI API, e.g. to point at a proxy or a self-hosted endpoint.
+
+**Parameters**
+
+- `$baseUrl` (string) The default FluentBot API base URL
+
+**Usage**
+
+```php
+add_filter('fluent_support/fluentbot_api_base_url', function ($baseUrl) {
+    return 'https://my-proxy.example.com/fluentbot';
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/fluentbot_api_base_url', static::BASE_URL)`
+
+This filter is located in <br>
+`fluent-support/app/Services/Integrations/FluentBot/FluentBotHelper.php`
+</div>
+</explain-block>
