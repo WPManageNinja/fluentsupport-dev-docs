@@ -214,29 +214,61 @@ This filter is located in <br>
 <explain-block title="fluent_support_customer_extra_widgets">
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to retrieve customer extra widgets data and modify it.
+This filter hook allows you to add widgets to the customer profile panel on the ticket and customer pages. AI agents read the same widgets through the MCP <code>get-ticket</code> tool. See <a href="/modules/custom_widget">Custom Widget</a> for a full guide.
 
 **Parameters**
 
-- '$widgets' (array) Widgets data
+- '$widgets' (array) Widgets keyed by widget key. Each widget has a 'header' or 'title', and 'body_html' for the agent UI or 'mcp' (plain data) for AI agents
 - '$customer' (object) Customer data
+- '$context' (array|null) Since 2.4.1: ['format' => 'html'|'mcp', 'keys' => string[]|null]. 'format' is what the caller wants, 'keys' the widget keys it asked for (null = all). Check it with `ProfileInfoService::isMcpWidgetRequest($context)` and `ProfileInfoService::wantsWidget($context, $key)`, guarded with `$context &&` for older versions that pass no context
 
 **Usage**
 
 ```php
-add_filter('fluent_support/customer_extra_widgets', function ($widgets, $customer) {
+add_filter('fluent_support/customer_extra_widgets', function ($widgets, $customer, $context = null) {
     // ...do something
     return $widgets;
-}, 10, 2);
+}, 10, 3);
 ```
 
 **Reference**
 
-`apply_filters('fluent_support/customer_extra_widgets', $widgets, $customer)`
+`apply_filters('fluent_support/customer_extra_widgets', $widgets, $customer, self::widgetContext($context))`
 
 
 This filter is located in <br>
-`fluent-support/app/Models/Person.php`
+`fluent-support/app/Services/ProfileInfoService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_mcp_customer_list_meta">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to add a one-line customer summary (for example plan or usage) to each row of the MCP <code>list-tickets</code> tool, shown as <code>customer_summary</code>. It fires once per list page and only for users with the "Access Private Data (Customers, Agents)" permission. Values are stripped to plain text and cut to 120 characters. See <a href="/modules/custom_widget">Custom Widget</a>.
+
+**Parameters**
+
+- '$lines' (array) [customer_id => line]. Merge into it and keep existing keys
+- '$customerIds' (array) Customer IDs on this page
+- '$customers' (array) [customer_id => Customer model], already loaded
+- '$context' (array) ['surface' => 'ticket_list', 'agent_id' => int|null]
+
+**Usage**
+
+```php
+add_filter('fluent_support/mcp_customer_list_meta', function ($lines, $customerIds, $customers, $context) {
+    // One query for every customer on the page; no remote calls.
+    return $lines;
+}, 10, 4);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/mcp_customer_list_meta', [], $customerIds, $customers, $context)`
+
+
+This filter is located in <br>
+`fluent-support/app/Modules/MCP/Support/CustomerMetaEnricher.php`
 </div>
 </explain-block>
 
