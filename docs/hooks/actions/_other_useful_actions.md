@@ -73,7 +73,8 @@ add_action('fluent_support/attachment_uploaded_as_temp', function ($attachment, 
 `do_action('fluent_support/attachment_uploaded_as_temp', $attachment, $ticketId)`
 
 This action is located in <br>
-`fluent-support/app/Http/Controllers/UploaderController.php`
+`fluent-support/app/Http/Controllers/UploaderController.php`,<br>
+`fluent-support/app/Modules/MCP/Support/AttachmentStager.php` (attachments staged by MCP tools)
 </div>
 </explain-block>
 
@@ -556,6 +557,7 @@ add_action('fluent_support/attachment_uploaded_as_temp_dropbox', function (&$att
 
 This action is located in <br>
 `fluent-support/app/Http/Controllers/UploaderController.php`,<br>
+`fluent-support/app/Modules/MCP/Support/AttachmentStager.php`,<br>
 `fluent-support-pro/app/Services/FileUploadIntegration/AmazonS3/Bootstrap.php`, `CloudflareR2/Bootstrap.php`, `Dropbox/Bootstrap.php`, `GoogleDrive/Bootstrap.php`
 </div>
 </explain-block>

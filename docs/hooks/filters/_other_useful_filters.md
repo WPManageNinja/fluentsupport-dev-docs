@@ -680,3 +680,31 @@ This filter is located in <br>
 `fluent-support/app/Services/Helper.php`
 </div>
 </explain-block>
+
+<explain-block title="fluent_support_attachment_signed_url_ttl">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change how long a signed attachment URL stays valid. The expiry is rounded to a TTL boundary so the same URL is reused for a while (browser caching), and it is always at least one full TTL ahead. Values below 5 minutes are raised to 5 minutes.
+
+Signed URLs are used for attachment links in the admin app, the customer portal and MCP tool results.
+
+**Parameters**
+
+- '$ttl' (integer) Lifetime in seconds. Default `HOUR_IN_SECONDS` (3600)
+
+**Usage**
+
+```php
+add_filter('fluent_support/attachment_signed_url_ttl', function ($ttl) {
+    return 6 * HOUR_IN_SECONDS;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/attachment_signed_url_ttl', HOUR_IN_SECONDS)`
+
+This filter is located in <br>
+`fluent-support/app/Models/Attachment.php`
+</div>
+</explain-block>

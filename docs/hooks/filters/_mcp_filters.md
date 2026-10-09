@@ -163,3 +163,84 @@ This filter is located in <br>
 `fluent-support/app/Modules/MCP/Support/CustomerMetaEnricher.php`
 </div>
 </explain-block>
+
+<explain-block title="fluent_support_mcp_prompt_names">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to add or remove the MCP prompts the Fluent Support MCP server exposes. Names must be fully qualified ability names; entries that are not strings matching `[a-z0-9-/]` are dropped, and duplicates are removed.
+
+**Parameters**
+
+- `$promptNames` (array) Prompt ability names. Default `fluent-support/triage-queue`, `fluent-support/draft-reply`, `fluent-support/summarize-ticket`, `fluent-support/support-report`
+
+**Usage**
+
+```php
+add_filter('fluent_support/mcp_prompt_names', function ($promptNames) {
+    return array_diff($promptNames, ['fluent-support/support-report']);
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/mcp_prompt_names', array_keys(PromptsRegistrar::getDefinitions()))`
+
+This filter is located in <br>
+`fluent-support/app/Modules/MCP/MCPInit.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_mcp_server_instructions">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change the instructions the Fluent Support MCP server sends to MCP clients when they connect. The default text tells the AI agent how to use the tools (workflow, care with destructive tools, dates and the result format). Append site-specific guidance rather than replacing it.
+
+**Parameters**
+
+- `$instructions` (string) The server instructions
+
+**Usage**
+
+```php
+add_filter('fluent_support/mcp_server_instructions', function ($instructions) {
+    return $instructions . "\n\nAlways sign replies as 'The Acme Support Team'.";
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/mcp_server_instructions', $instructions)`
+
+This filter is located in <br>
+`fluent-support/app/Modules/MCP/MCPInit.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_pro_mcp_tool_classes">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to add classes whose static `definitions()` method returns extra MCP tools. Pro registers each definition as a WordPress ability and adds it to the free plugin's MCP server through `fluent_support/mcp_ability_names`. This filter is available in Fluent Support Pro only.
+
+Each definition is keyed by its ability name and takes `label`, `description`, `execute_callback`, `permissions` (`any_of` / `all_of` Fluent Support permission lists; a tool with no permissions is denied), and optionally `input_schema` and `annotations`.
+
+**Parameters**
+
+- `$classes` (string[]) Fully qualified class names. Default empty
+
+**Usage**
+
+```php
+add_filter('fluent_support_pro/mcp_tool_classes', function ($classes) {
+    $classes[] = \MyPlugin\Mcp\MySupportTools::class;
+    return $classes;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support_pro/mcp_tool_classes', $classes)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Modules/MCP/AbilitiesRegistrar.php`
+</div>
+</explain-block>

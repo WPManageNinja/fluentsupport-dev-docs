@@ -193,3 +193,58 @@ This filter is located in <br>
 `fluent-support/app/Services/EmailNotification/Settings.php`
 </div>
 </explain-block>
+
+<explain-block title="fluent_support_mailbox_from_name">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change the From name of an email sent from an inbox. The From address is always the inbox email, so replies thread back; only the display name changes. By default the name follows the inbox's From name setting: the inbox name, the replying agent's full name, or a custom template parsed with smartcodes. The name is cleaned (no line breaks, quotes, angle brackets or unparsed smartcodes) and falls back to the inbox name.
+
+**Parameters**
+
+- '$name' (string) The From display name
+- '$mailbox' (object) The `MailBox` model the email is sent from
+- '$agent' (object|null) The `Agent` who wrote the email, or `null` for system emails
+
+**Usage**
+
+```php
+add_filter('fluent_support/mailbox_from_name', function ($name, $mailbox, $agent) {
+    if ($agent) {
+        return $agent->first_name . ' from ' . $mailbox->name;
+    }
+    return $name;
+}, 10, 3);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/mailbox_from_name', $name, $this, $agent)`
+
+This filter is located in <br>
+`fluent-support/app/Models/MailBox.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_mark_automated_emails">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to turn off the "automated email" headers. System-generated emails to customers (ticket confirmations, closed notices, agent alerts) get `Auto-Submitted: auto-generated` (RFC 3834) and `X-Auto-Response-Suppress: All` so autoresponders do not answer them; an answer would come back through email piping and could start a mail loop. Replies an agent writes are not marked.
+
+**Parameters**
+
+- '$mark' (boolean) Whether to add the headers. Default `true`
+
+**Usage**
+
+```php
+add_filter('fluent_support/mark_automated_emails', '__return_false');
+```
+
+**Reference**
+
+`apply_filters('fluent_support/mark_automated_emails', true)`
+
+This filter is located in <br>
+`fluent-support/app/Hooks/Handlers/EmailNotificationHandler.php`
+</div>
+</explain-block>

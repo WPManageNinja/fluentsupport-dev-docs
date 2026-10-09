@@ -533,7 +533,7 @@ This filter is located in <br>
 </div>
 </explain-block>
 
-<explain-block title="fluent_support_workflow_response_added_by_customer_">
+<explain-block title="fluent_support_workflow_response_added_by_customer_supported_conditions">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the response added by customer supported conditions data and modify it.
@@ -585,6 +585,114 @@ add_filter('fluent_support/workflow_ticket_closed_supported_conditions', functio
 `apply_filters('fluent_support/workflow_ticket_closed_supported_conditions', $supportedConditions)`
 
 <b>`$supportedConditions` is used here as an illustrative variable to represent the raw array value found in the main filter, demonstrating the ticket closed supported conditions data.</b>
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_workflow_ticket_reopen_supported_conditions">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change the conditions available to the "On Ticket Reopened" workflow trigger (`fluent_support/ticket_reopen`). This filter is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$supportedConditions' (array) Condition keys, for example `customer.email`, `ticket.priority`, `ticket.source`, `ticket.tags`
+
+**Usage**
+
+```php
+add_filter('fluent_support/workflow_ticket_reopen_supported_conditions', function($supportedConditions) {
+    // ...do something
+    return $supportedConditions;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/workflow_ticket_reopen_supported_conditions', $supportedConditions)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_workflow_response_added_by_agent_supported_conditions">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change the conditions available to the "On Agent Response" workflow trigger (`fluent_support/response_added_by_agent`). This filter is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$supportedConditions' (array) Condition keys, for example `customer.email`, `ticket.priority`, `ticket.source`, `ticket.tags`
+
+**Usage**
+
+```php
+add_filter('fluent_support/workflow_response_added_by_agent_supported_conditions', function($supportedConditions) {
+    // ...do something
+    return $supportedConditions;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/workflow_response_added_by_agent_supported_conditions', $supportedConditions)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_workflow_agent_assigned_to_ticket_supported_conditions">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change the conditions available to the "On Agent Assigned" workflow trigger (`fluent_support/agent_assigned_to_ticket`). This filter is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$supportedConditions' (array) Condition keys, for example `customer.email`, `ticket.priority`, `ticket.source`, `ticket.tags`
+
+**Usage**
+
+```php
+add_filter('fluent_support/workflow_agent_assigned_to_ticket_supported_conditions', function($supportedConditions) {
+    // ...do something
+    return $supportedConditions;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/workflow_agent_assigned_to_ticket_supported_conditions', $supportedConditions)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_workflow_agent_feedback_received_supported_conditions">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change the conditions available to the "On Customer Feedback" workflow trigger (`fluent_support/agent_feedback_received`). This filter is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$supportedConditions' (array) Condition keys, for example `customer.email`, `ticket.priority`, `ticket.source`, `ticket.tags`, `feedback.rating`
+
+**Usage**
+
+```php
+add_filter('fluent_support/workflow_agent_feedback_received_supported_conditions', function($supportedConditions) {
+    // ...do something
+    return $supportedConditions;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/workflow_agent_feedback_received_supported_conditions', $supportedConditions)`
 
 This filter is located in <br>
 `fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`
@@ -859,4 +967,227 @@ This filter is located in <br>
 </div>
 </explain-block>
 
+<explain-block title="fluent_support_telegram_request_timeout">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change the timeout, in seconds, of requests to the Telegram Bot API. Requests are sent inside the request that fired the event, so keep it short. This filter is available in Fluent Support Pro only.
 
+**Parameters**
+
+- '$timeout' (integer) Timeout in seconds. Default `10`
+
+**Usage**
+
+```php
+add_filter('fluent_support/telegram_request_timeout', function ($timeout) {
+    return 5;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/telegram_request_timeout', 10)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Integrations/Telegram/TelegramApi.php`
+</div>
+</explain-block>
+
+### Email Piping Filters
+
+<explain-block title="fluent_support_pro_email_piping_classification">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change how an incoming piped email is classified before it reaches the ticket flow. This filter is available in Fluent Support Pro only.
+
+- `normal`: handled as usual.
+- `automated`: machine mail that answers nothing (`Auto-Submitted: auto-generated`, `Precedence: bulk`, a `mailer-daemon@` sender, an auto-reply-like subject). It goes through the normal flow, but no automatic email is sent back to it.
+- `auto_reply`: an out-of-office or vacation reply. Added as an internal note on the ticket it threads to (sender must be the customer or a CC), otherwise dropped.
+- `bounce`: a delivery failure. Added as an internal note on the ticket whose email bounced, otherwise dropped.
+
+**Parameters**
+
+- '$kind' (string) `normal`, `automated`, `auto_reply` or `bounce`
+- '$data' (array) Raw pipe payload (`headers`, `subject`, `bounce`, `body_text`, ...)
+
+**Usage**
+
+```php
+add_filter('fluent_support_pro/email_piping_classification', function ($kind, $data) {
+    // Treat our monitoring alerts as normal tickets
+    if ($kind === 'automated' && strpos((string) ($data['subject'] ?? ''), '[Monitor]') === 0) {
+        return 'normal';
+    }
+    return $kind;
+}, 10, 2);
+```
+
+**Reference**
+
+`apply_filters('fluent_support_pro/email_piping_classification', $kind, $data)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/AutoMailHandler.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_pro_auto_reply_guard_max">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change how many automatic emails (the "ticket created" confirmation, and a workflow reply to a customer's email) may be sent to one customer within a 3-hour window for tickets that came in by email. It stops two autoresponders from looping. Replies an agent writes are never held. This filter is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$max' (integer) Maximum automatic emails per window. Default `10`
+- '$customerId' (integer) Customer ID
+
+**Usage**
+
+```php
+add_filter('fluent_support_pro/auto_reply_guard_max', function ($max, $customerId) {
+    return 20;
+}, 10, 2);
+```
+
+**Reference**
+
+`apply_filters('fluent_support_pro/auto_reply_guard_max', self::MAX_PER_WINDOW, $customerId)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/AutoReplyGuard.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_pro_auto_reply_guard_max_same_subject">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change how many automatic emails with the same subject may be sent to one customer within the 3-hour window (see `fluent_support_pro/auto_reply_guard_max`). This filter is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$max' (integer) Maximum automatic emails per subject per window. Default `2`
+- '$customerId' (integer) Customer ID
+
+**Usage**
+
+```php
+add_filter('fluent_support_pro/auto_reply_guard_max_same_subject', function ($max, $customerId) {
+    return 3;
+}, 10, 2);
+```
+
+**Reference**
+
+`apply_filters('fluent_support_pro/auto_reply_guard_max_same_subject', self::MAX_SAME_SUBJECT, $customerId)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/AutoReplyGuard.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_pro_email_subject_match_days">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change how recent a ticket's last activity must be for a piped reply to be matched to it by subject, when the email's threading headers do not identify the ticket. Only emails that look like replies (a `Re:` style prefix or threading headers) are matched by subject. Values below 1 are raised to 1. This filter is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$days' (integer) Number of days. Default `30`
+
+**Usage**
+
+```php
+add_filter('fluent_support_pro/email_subject_match_days', function ($days) {
+    return 14;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support_pro/email_subject_match_days', 30)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_pro_email_threading_headers">
+<hr>
+<div class="fs-docs-content">
+This filter hook decides whether Pro rewrites the `In-Reply-To` and `References` headers of a customer email for a ticket. When on, the email replies to the customer's own latest message and carries a signed ticket reference (`fst.{ticketId}.{sig}@{host}`) so the customer's reply threads back to the ticket through email piping. It runs on `fluent_support/mail_to_customer_header` (priority 20). This filter is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$enabled' (boolean) Whether to add threading headers. Default `true`
+- '$ticket' (object) The ticket the email is for
+- '$data' (array) The data passed to `fluent_support/mail_to_customer_header`
+
+**Usage**
+
+```php
+add_filter('fluent_support_pro/email_threading_headers', function ($enabled, $ticket, $data) {
+    return $enabled;
+}, 10, 3);
+```
+
+**Reference**
+
+`apply_filters('fluent_support_pro/email_threading_headers', true, $ticket, $data)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/EmailThreading.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_pro_email_piping_fetch_interval">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change how often Pro pulls missed piped emails from the piping service (an Action Scheduler job, `fluent_support_pro/fetch_piped_emails`). The default depends on the webhook health: 30 minutes when webhooks are arriving, 5 minutes when the last pull found a missed email or no webhook has arrived yet. The minimum is 60 seconds. Not used when `FLUENTSUPPORT_ENABLE_CUSTOM_PIPE` is defined. This filter is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$interval' (integer) Seconds until the next fetch
+- '$health' (string) `healthy`, `degraded` or `unknown`
+
+**Usage**
+
+```php
+add_filter('fluent_support_pro/email_piping_fetch_interval', function ($interval, $health) {
+    return $health === 'healthy' ? HOUR_IN_SECONDS : $interval;
+}, 10, 2);
+```
+
+**Reference**
+
+`apply_filters('fluent_support_pro/email_piping_fetch_interval', $interval, self::getWebhookHealth())`
+
+This filter is located in <br>
+`fluent-support-pro/app/Hooks/Handlers/EmailPipingRetryHandler.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_pro_pipe_feature_sync_budget">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change how many seconds one scheduled fetch run may spend telling the piping service which features each existing mailbox handles (bounce delivery). Mailboxes left over wait for the next run. This filter is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$seconds' (integer|float) Time budget in seconds. Default `15`
+
+**Usage**
+
+```php
+add_filter('fluent_support_pro/pipe_feature_sync_budget', function ($seconds) {
+    return 5;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support_pro/pipe_feature_sync_budget', self::FEATURE_SYNC_BUDGET)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Hooks/Handlers/EmailPipingRetryHandler.php`
+</div>
+</explain-block>

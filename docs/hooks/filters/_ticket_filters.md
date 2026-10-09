@@ -347,11 +347,11 @@ This filter is located in <br>
 <explain-block title="fluent_support_ticket_custom_fields">
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to retrieve custom fields and modify it.
+This filter hook allows you to retrieve the ticket custom fields and modify them. Core returns an empty array; Fluent Support Pro fills it with the custom fields configured in the ticket form (`CustomFieldsService::getFieldLabels('admin')`). The result is used in the admin app, the ticket model, the Fluent Forms feed integration and the Pro Slack, Telegram and Discord notifications.
 
 **Parameters**
 
-- '$customFields' (array) Custom fields
+- '$customFields' (array) Ticket custom fields, keyed by field slug
 
 **Usage**
 
@@ -367,7 +367,12 @@ add_filter('fluent_support/ticket_custom_fields', function ($customFields) {
 `apply_filters('fluent_support/ticket_custom_fields', [])`
 
 This filter is located in <br>
-`fluent-support/app/Models/Ticket.php`
+`fluent-support/app/Models/Ticket.php`,<br>
+`fluent-support/app/Hooks/Handlers/Menu.php`,<br>
+`fluent-support/app/Services/Integrations/FluentForm/FeedIntegration.php`,<br>
+`fluent-support-pro/app/Services/Integrations/Slack/SlackNotification.php`,<br>
+`fluent-support-pro/app/Services/Integrations/Telegram/TelegramNotification.php`,<br>
+`fluent-support-pro/app/Services/Integrations/Discord/DiscordNotification.php`
 </div>
 </explain-block>
 
@@ -670,5 +675,32 @@ add_filter('fluent_support/widgets/ticket_sidebar', function ($widgets, $data) {
 
 This filter is located in <br>
 `fluent-support/app/Http/Controllers/WidgetsController.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_ticket_source_filter_options">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change the ticket sources offered by the advanced filter's Source field (Fluent Support Pro) and the workflow "Ticket Source" condition. Add an entry for a custom source you write to `fs_tickets.source`. The `__none__` key matches tickets with no recorded source (older tickets); it is left out of the workflow condition.
+
+**Parameters**
+
+- '$options' (array) Source slug => label. Defaults: `web`, `email`, `agent_initiated`, `mcp`, `telegram`, `slack`, `whatsapp`, `awesome-support`, `freshdesk`, `helpscout`, `js-helpdesk`, `support-candy`, `zendesk`, `__none__`
+
+**Usage**
+
+```php
+add_filter('fluent_support/ticket_source_filter_options', function ($options) {
+    $options['my_chat_widget'] = __('Chat widget', 'my-plugin');
+    return $options;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/ticket_source_filter_options', $options)`
+
+This filter is located in <br>
+`fluent-support/app/Models/Ticket.php` (used by `fluent-support-pro/app/Services/ProHelper.php` and `fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`)
 </div>
 </explain-block>

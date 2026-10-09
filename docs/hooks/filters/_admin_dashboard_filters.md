@@ -171,35 +171,6 @@ This filter is located in <br>
 </div>
 </explain-block>
 
-<explain-block title="fluent_support_ticket_custom_fields">
-<hr>
-<div class="fs-docs-content">
-This filter hook allows you to retrieve the ticket custom fields data and modify it.
-
-**Parameters**
-
-- '$fields' (array) ticket custom fields
-
-**Usage**
-
-```php
-add_filter('fluent_support/ticket_custom_fields', function ($fields) {
-    // ...do something
-    return $fields;
-}, 10, 1);
-```
-
-**Reference**
-
-`apply_filters('fluent_support/ticket_custom_fields', [])`
-
-This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/Menu.php`,<br>
-`fluent-support/app/Models/Ticket.php`,<br>
-`fluent-support/app/Services/Integrations/FluentForm/FeedIntegration.php`,
-</div>
-</explain-block>
-
 <explain-block title="fluent_support_dashboard_notice">
 <hr>
 <div class="fs-docs-content">

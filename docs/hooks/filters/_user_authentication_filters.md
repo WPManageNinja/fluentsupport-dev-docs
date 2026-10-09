@@ -34,7 +34,7 @@ This filter is located in <br>
 <explain-block title="fluent_support_custom_registration_form_fields_key">
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to retrieve custom registration form field keys and modify them.
+This filter hook allows you to retrieve custom registration form field keys and modify them. In `Helper::getCustomRegistrationFieldKeys()` the default is the keys enabled in the business settings (`custom_registration_form_field`) that are also known registration field options; a non-array return is treated as an empty list. The other two call sites start from an empty array.
 
 **Parameters**
 
@@ -50,17 +50,15 @@ add_filter('fluent_support/custom_registration_form_fields_key', function ($regi
 ```
 
 **Reference**
-`apply_filters('fluent_support/custom_registration_form_fields_key', Helper::getBusinessSettings('custom_registration_form_field'))
-`
 
+`apply_filters('fluent_support/custom_registration_form_fields_key', array_values($keys))`,<br>
+`apply_filters('fluent_support/custom_registration_form_fields_key', [])`
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/AuthHandler.php`,<br>
+`fluent-support/app/Services/Helper.php`,<br>
 `fluent-support/app/Models/Traits/CustomerTrait.php`,<br>
-`fluent-support/app/Models/Ticket.php`,<br>
-`fluent-support/app/Http/Controllers/AuthController.php`
-
-</div> 
+`fluent-support/app/Http/Controllers/TicketController.php`
+</div>
 </explain-block>
 
 <explain-block title="fluent_support_before_registration_form_close"> 
@@ -328,8 +326,9 @@ This filter hook allows you to retrieve and modify registration success message 
 
 **Parameters**
 
-- '$data' (array) Success message and redirect url data
+- '$data' (array) Success message and redirect url data: `message` (string) and `redirect` (string)
 
+The returned `redirect` is passed through `wp_validate_redirect()`, so a URL on another host falls back to the portal URL.
 
 **Usage**
 
@@ -352,39 +351,6 @@ This filter is located in <br>
 
 
 </div>
-</explain-block>
-
-<explain-block title="fluent_support_signup_complete_response">
-<hr>
-<div class="fs-docs-content">
-This filter hook allows you to retrieve and modify registration success message and redirect URL data.
-
-**Parameters**
-
-- '$data' (array) Success message and redirect url data
-
-
-**Usage**
-
-```php
-add_filter('fluent_support/signup_complete_response', function ($data) {
-    // ...do something
-    return $data;
-}, 10, 1);
-```
-
-**Reference**
-`apply_filters('fluent_support/signup_complete_response', [
-    'message' => __('Successfully registered to the site.', 'fluent-support'),
-    'redirect' => Arr::get($formData, '__redirect_to', Helper::getPortalBaseUrl())
-])`
-
-
-This filter is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
-
-
-</div> 
 </explain-block>
 
 <explain-block title="fluent_support_use_native_login"> 
@@ -755,3 +721,27 @@ This filter is located in <br>
 </div>
 </explain-block>
 
+<explain-block title="fluent_support_use_fluent_auth_forms">
+<hr>
+<div class="fs-docs-content">
+This filter hook decides whether the customer portal login and signup forms are rendered by FluentAuth when FluentAuth is installed, even if FluentAuth's own forms setting is off. It runs on `init` priority 1, so add it from a plugin or the theme's `functions.php`. By default the portal adopts FluentAuth's forms unless Fluent Support's own portal 2FA (`enable_two_fa`) is on, because switching would turn that 2FA off and FluentAuth's 2FA may not cover customer roles.
+
+**Parameters**
+
+- '$adopt' (boolean) Whether to use FluentAuth's forms. Default `true`, or `false` while Fluent Support's 2FA is enabled
+
+**Usage**
+
+```php
+// Keep Fluent Support's own portal forms even when FluentAuth is active
+add_filter('fluent_support/use_fluent_auth_forms', '__return_false');
+```
+
+**Reference**
+
+`apply_filters('fluent_support/use_fluent_auth_forms', $adopt)`
+
+This filter is located in <br>
+`fluent-support/app/Services/FluentAuthBridge.php`
+</div>
+</explain-block>
