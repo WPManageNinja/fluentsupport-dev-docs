@@ -58,7 +58,7 @@ add_filter('fluent_support/customer_extra_widgets', function ($widgets, $custome
 
 ## Widgets for AI Agents (MCP)
 
-AI agents connected through the Fluent Support MCP server read the same widgets when they call `get-ticket`. They don't need HTML. Since Fluent Support 2.4.1 the filter receives a third argument, `$context`, that says what the caller wants, so a widget can return plain data to agents and skip work nobody asked for.
+AI agents connected through the Fluent Support MCP server read the same widgets when they call `get-ticket`. They don't need HTML. Since Fluent Support 2.4.5 the filter receives a third argument, `$context`, that says what the caller wants, so a widget can return plain data to agents and skip work nobody asked for.
 
 ### The `$context` argument
 
@@ -177,3 +177,7 @@ add_filter('fluent_support/mcp_customer_list_meta', function ($lines, $customerI
 - It only runs for users with the "Access Private Data (Customers, Agents)" permission, since the line can carry billing or CRM details.
 
 
+
+## Widgets from a Remote Portal main site
+
+With [Remote Portal](/modules/remote_portal), the same filter also runs on the main site through the Fluent Support Client plugin, and those widgets reach the support site keyed `<key>_remote`. See [Customer widgets from the main site](/modules/remote_portal#customer-widgets-from-the-main-site).

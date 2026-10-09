@@ -463,7 +463,7 @@ This filter is located in <br>
 
 </explain-block>
 
-<explain-block title="fluent_support_fst_menu_url_base">
+<explain-block title="fst_menu_url_base">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve fluent support admin url base data and modify it.
@@ -475,7 +475,7 @@ This filter hook allows you to retrieve fluent support admin url base data and m
 **Usage**
 
 ```php
-add_filter('fluent_support/fst_menu_url_base', function ($urlBase) {
+add_filter('fst_menu_url_base', function ($urlBase) {
     // ...do something
     return $urlBase;
 }, 10, 1);
@@ -493,7 +493,7 @@ This filter is located in <br>
 </div>
 </explain-block>
 
-<explain-block title="fluent_support_fst_quick_links">
+<explain-block title="fst_quick_links">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve list of quick links data and modify it.
@@ -505,7 +505,7 @@ This filter hook allows you to retrieve list of quick links data and modify it.
 **Usage**
 
 ```php
-add_filter('fluent_support/fst_quick_links', function ($quickLinks) {
+add_filter('fst_quick_links', function ($quickLinks) {
     // ...do something
     return $quickLinks;
 }, 10, 1);
@@ -513,7 +513,7 @@ add_filter('fluent_support/fst_quick_links', function ($quickLinks) {
 
 **Reference**
 
-`apply_filters('fst_quick_links', $quickLinks))`
+`apply_filters('fst_quick_links', $quickLinks)`
 
 <b>`$quickLinks` is used here as an illustrative variable to represent the raw array value found in the main filter, demonstrating the quick links data such as active tickets, total tickets, etc.</b>
 

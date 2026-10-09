@@ -202,7 +202,13 @@ This action is located in <br>
 
 <hr>
 <div class="fs-docs-content">
-This action is triggered after creating any customer.
+This action is triggered after a new customer record is created. It fires only when the row was actually saved, so a failed insert never triggers it.
+
+It fires from three places:
+
+- `Customer::maybeCreateCustomer()`, used by the customer portal, email piping, importers and the Fluent Forms and FluentCRM integrations whenever a ticket comes from an unknown email
+- `TicketController::createTicket()`, when an agent creates a ticket in the admin for a new customer
+- the MCP `create-ticket` tool (`TicketTools::createTicket()`), when an AI agent opens a ticket for an email that has no customer yet
 
 **Parameters**
 - '$customer' (object) Customer data
@@ -219,7 +225,9 @@ add_action('fluent_support/customer_created', function ($customer) {
 `do_action('fluent_support/customer_created', $customer)`
 
 This action is located in <br>
-`fluent-support/app/Models/Customer.php`
+`fluent-support/app/Models/Customer.php`,<br>
+`fluent-support/app/Http/Controllers/TicketController.php`,<br>
+`fluent-support/app/Modules/MCP/Tools/TicketTools.php`
 </div>
 
 </explain-block>

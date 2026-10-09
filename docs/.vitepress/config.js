@@ -49,6 +49,7 @@ export default defineConfig({
         items: [
           { text: 'Custom Widget ', link: '/modules/custom_widget' },
           { text: 'Internal Notifications', link: '/modules/internal-notifications' },
+          { text: 'Remote Portal', link: '/modules/remote_portal' },
         ],
       },
       {

@@ -196,7 +196,7 @@ This filter is located in <br>
 
 </explain-block>
 
-<explain-block title="fluent_support_smartcode_fallback">
+<explain-block title="fluentsupport_smartcode_fallback">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve Smartcode data and modify it.
@@ -223,7 +223,7 @@ This filter is located in <br>
 </div>
 </explain-block>
 
-<explain-block title="fluent_support_smartcode_fallback_callback">
+<explain-block title="fluentsupport_smartcode_fallback_callback">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve fallback behavior for smartcodes and modify it.

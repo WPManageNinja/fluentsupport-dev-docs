@@ -220,7 +220,7 @@ This filter hook allows you to add widgets to the customer profile panel on the 
 
 - '$widgets' (array) Widgets keyed by widget key. Each widget has a 'header' or 'title', and 'body_html' for the agent UI or 'mcp' (plain data) for AI agents
 - '$customer' (object) Customer data
-- '$context' (array|null) Since 2.4.1: ['format' => 'html'|'mcp', 'keys' => string[]|null]. 'format' is what the caller wants, 'keys' the widget keys it asked for (null = all). Check it with `ProfileInfoService::isMcpWidgetRequest($context)` and `ProfileInfoService::wantsWidget($context, $key)`, guarded with `$context &&` for older versions that pass no context
+- '$context' (array|null) Since 2.4.5: ['format' => 'html'|'mcp', 'keys' => string[]|null]. 'format' is what the caller wants, 'keys' the widget keys it asked for (null = all). Check it with `ProfileInfoService::isMcpWidgetRequest($context)` and `ProfileInfoService::wantsWidget($context, $key)`, guarded with `$context &&` for older versions that pass no context
 
 **Usage**
 

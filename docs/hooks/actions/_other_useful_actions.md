@@ -155,13 +155,16 @@ function($createdResponse, $ticket, $person) {
 
 **Note:** `$conversationType` is a dynamically assigned conversation type (some hooks use it as `$convoType`). Here, `$person->person_type` contain the type of person, whether it be an agent, user, etc.
 
+**Published drafts:** `fluent_support/response_added_by_agent` also fires when a draft reply is published, either from the admin "Approve" action or the MCP `publish-draft-reply` tool. In that case `$person` is the agent who wrote the draft, not the agent who approved it (it falls back to the approver only when the draft has no author). The draft is already saved as a `response` when the action fires.
+
 **Reference**
 
-`do_action('fluent_support/' . $conversationType . '_added_by_' . $person->person_type, $response, $ticket, $person)`
+`do_action('fluent_support/' . $convoType . '_added_by_' . $person->person_type, $createdResponse, $ticket, $person)`
+
+`do_action('fluent_support/response_added_by_' . $sender->person_type, $response, $ticket, $sender)` (draft publish)
 
 This action is located in <br>
-`fluent-support/app/Models/Conversation.php`,<br>
-`fluent-support/app/Services/Tickets/ResponseService.php`
+`fluent-support/app/Services/Tickets/ResponseService.php` (`fireResponseHooks()` and `publishDraft()`)
 
 </div>
 </explain-block>

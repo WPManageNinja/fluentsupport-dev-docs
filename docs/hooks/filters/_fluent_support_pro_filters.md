@@ -1,4 +1,4 @@
-<explain-block title="fluent_support_file_storage_integration_settings">
+<explain-block title="fluent_support_pro_file_storage_integration_settings">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve file storage integration settings data and modify it.
@@ -32,7 +32,7 @@ This filter is located in <br>
 </div>
 </explain-block>
 
-<explain-block title="fluent_support_file_storage_integration_settings_save">
+<explain-block title="fluent_support_pro_file_storage_integration_settings_save">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve file upload related message and settings data and modify it.
@@ -182,7 +182,7 @@ This filter is located in <br>
 
 </explain-block>
 
-<explain-block title="fluent_support_email_piping_raw_data">
+<explain-block title="fluent_support_pro_email_piping_raw_data">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the payload and mailbox data and modify it.
@@ -211,7 +211,7 @@ This filter is located in <br>
 </div>
 </explain-block>
 
-<explain-block title="fluent_support_email_piping_data">
+<explain-block title="fluent_support_pro_email_piping_data">
 <hr>
 <div class="fs-docs-content">
 This filter hook allows you to retrieve the payload, formatted payload and mailbox data and modify it.
@@ -363,24 +363,26 @@ This filter is located in <br>
 <explain-block title="fluent_support_ticket_partial_match">
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to retrieve ticket partially match data modify it..
+This filter hook decides whether a piped email reply may be matched to an existing ticket by part of its subject when no ticket has the exact same title. It is off by default (`false`), because a few shared words would put new questions on old tickets. Return `true` to turn it back on.
+
+When it is on, only subjects of six words or more get a partial match, on their middle three words. The match is limited to the customer's tickets that are not closed, in the same mailbox, and updated in the last 30 days (see `fluent_support_pro/email_subject_match_days`). New emails that are not replies are never matched by subject.
+
+This filter is available in Fluent Support Pro only.
 
 **Parameters**
 
-- '$partialMatch' (boolean) Ticket partially match or not
+- '$partialMatch' (boolean) Whether to try a partial subject match. Default `false`
 
 **Usage**
 
 ```php
-add_filter('fluent_support/ticket_partial_match', function( $partialMatch) {
-    // ...do something
-    return $partialMatch;
-}, 10, 1);
+// Turn partial subject matching back on for piped email replies
+add_filter('fluent_support/ticket_partial_match', '__return_true');
 ```
 
 **Reference**
 
-`apply_filters('fluent_support/ticket_partial_match', true)`
+`apply_filters('fluent_support/ticket_partial_match', false)`
 
 
 This filter is located in <br>

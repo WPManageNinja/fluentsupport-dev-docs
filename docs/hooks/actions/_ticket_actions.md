@@ -535,14 +535,14 @@ add_action('fluent_support/ticket_closed_by_' . $person->person_type, function($
 }, 20, 2);
 ```
 
-**Note:** `$person->person_type denotes` the type of person, whether it be an agent, user, etc.
+**Note:** `$person->person_type` denotes the type of person, whether it be an agent, user, etc.
 
 **Reference**
 
 `do_action('fluent_support/ticket_closed_by_' . $person->person_type, $ticket, $person)`
 
 This action is located in <br>
-`fluent-support/app/Models/ResponseService.php`,<br>
+`fluent-support/app/Services/Tickets/ResponseService.php`,<br>
 `fluent-support/app/Services/Tickets/TicketService.php`
 
 </div>
@@ -551,7 +551,9 @@ This action is located in <br>
 <explain-block title="fluent_support_ticket_reopen">
 <hr>
 <div class="fs-docs-content">
-This action is triggered after a ticket is reopened.
+This action is triggered after a closed ticket is reopened, whether by an agent (ticket view, bulk action, MCP tools), a customer (portal reply or reopen button) or an incoming piped email (Pro).
+
+Both reopen actions are fired by `TicketService::fireReopenHooks()`. `TicketService::reopen()` calls it right after the ticket is saved as `active`. When an MCP reply reopens a ticket, the reopen, reply and any assignment run in one database transaction, and the reopen actions fire only after that transaction commits, before the assignment and reply actions.
 
 **Parameters**
 - '$ticket' (object) Ticket data
@@ -569,7 +571,8 @@ add_action('fluent_support/ticket_reopen', function ($ticket, $person) {
 `do_action('fluent_support/ticket_reopen', $ticket, $person)`
 
 This action is located in <br>
-`fluent-support/app/Services/Tickets/TicketService.php`
+`fluent-support/app/Services/Tickets/TicketService.php` (`fireReopenHooks()`), called from `TicketService::reopen()` and, after commit, from<br>
+`fluent-support/app/Modules/MCP/Tools/ResponseTools.php`
 
 </div>
 </explain-block>
@@ -577,7 +580,7 @@ This action is located in <br>
 <explain-block title="fluent_support_after_ticket_reopen_by_any_person">
 <hr>
 <div class="fs-docs-content">
-This action is triggered after a ticket is reopened by any person.
+This action is triggered after a closed ticket is reopened, with the person type in the hook name (`fluent_support/ticket_reopen_by_agent`, `fluent_support/ticket_reopen_by_customer`). It fires right after `fluent_support/ticket_reopen`, from `TicketService::fireReopenHooks()`, so it follows the same timing, including the after-commit timing for MCP replies.
 
 **Parameters**
 - '$ticket' (object) Ticket data
@@ -591,14 +594,15 @@ add_action('fluent_support/ticket_reopen_by_' . $person->person_type, function($
 }, 20, 2);
 ```
 
-**Note:** `$person->person_type denotes` the type of person, whether it be an agent, user, etc.
+**Note:** `$person->person_type` denotes the type of person, whether it be an agent, user, etc.
 
 **Reference**
 
 `do_action('fluent_support/ticket_reopen_by_' . $person->person_type, $ticket, $person)`
 
 This action is located in <br>
-`fluent-support/app/Services/Tickets/TicketService.php`
+`fluent-support/app/Services/Tickets/TicketService.php` (`fireReopenHooks()`), called from `TicketService::reopen()` and, after commit, from<br>
+`fluent-support/app/Modules/MCP/Tools/ResponseTools.php`
 
 </div>
 </explain-block>
@@ -625,8 +629,44 @@ add_action('fluent_support/response_added_by_agent', function ($response, $ticke
 
 `do_action('fluent_support/response_added_by_agent', $response, $ticket, $person)`
 
+It also fires when a draft reply is published (admin Approve or the MCP `publish-draft-reply` tool). Then `$person` is the draft's author, not the approver.
+
 This action is located in <br>
-`fluent-support/app/Http/Controllers/TicketController.php`
+`fluent-support/app/Services/Tickets/ResponseService.php`
 </div>
 
+</explain-block>
+
+<explain-block title="fluent_support_agent_feedback_received">
+<hr>
+<div class="fs-docs-content">
+This action is triggered when a customer rates an agent's reply in the customer portal with a like or a dislike (since 2.4.5).
+
+It fires when a reply gets a new rating, or when the customer switches the rating from like to dislike (or back). Clicking the same rating again removes it and fires nothing. Each rating value fires at most once per reply, so a reply can trigger this action at most twice (once for `like`, once for `dislike`). Clicking back and forth, or removing and re-adding a rating, does not fire it again. Only agent replies (`response` conversations written by an agent) can be rated.
+
+Fluent Support Pro uses this action as the "On Customer Feedback" workflow trigger.
+
+**Parameters**
+- '$rating' (string) `like` or `dislike`
+- '$conversation' (object) The rated reply (Conversation model)
+- '$ticket' (object) Ticket data
+- '$customer' (object) The customer who left the rating
+
+**Usage**
+
+```php
+add_action('fluent_support/agent_feedback_received', function ($rating, $conversation, $ticket, $customer) {
+    if ($rating === 'dislike') {
+        // ...flag the reply for review
+    }
+}, 10, 4);
+```
+**Reference**
+
+`do_action('fluent_support/agent_feedback_received', $rating, $conversation, $ticket, $ticket->customer)`
+
+This action is located in <br>
+`fluent-support/app/Services/CustomerPortalService.php`
+
+</div>
 </explain-block>
