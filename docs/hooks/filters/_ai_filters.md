@@ -275,3 +275,31 @@ This filter is located in <br>
 `fluent-support/app/Services/Integrations/FluentBot/FluentBotHelper.php`
 </div>
 </explain-block>
+
+<explain-block title="fs_ai_request_timeout">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change the HTTP timeout for requests Fluent Support sends to your own AI provider (OpenAI, Anthropic or Google Gemini, set up under AI Model Setup). Raise it if long ticket summaries or reply drafts time out.
+
+The same hook name is also read by the FluentBot integration with its own defaults, so a callback that ignores the incoming value changes both.
+
+**Parameters**
+
+- '$timeout' (integer) Timeout in seconds. Default `60`
+
+**Usage**
+
+```php
+add_filter('fs_ai_request_timeout', function ($timeout) {
+    return max($timeout, 120);
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fs_ai_request_timeout', 60)`
+
+This filter is located in <br>
+`fluent-support/app/Services/Integrations/AI/BaseAIProvider.php`
+</div>
+</explain-block>

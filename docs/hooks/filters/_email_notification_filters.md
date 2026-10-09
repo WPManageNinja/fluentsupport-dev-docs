@@ -248,3 +248,85 @@ This filter is located in <br>
 `fluent-support/app/Hooks/Handlers/EmailNotificationHandler.php`
 </div>
 </explain-block>
+
+<explain-block title="fluent_support_email_claim_mail_subject">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change the subject of the email that asks a customer to confirm a new support address (the support email claim sent from the Customer Portal).
+
+**Parameters**
+
+- '$subject' (string) The subject. Default `[Site Name] Confirm your support email address`
+- '$customer' (object) The customer record being moved to the new address
+
+**Usage**
+
+```php
+add_filter('fluent_support/email_claim_mail_subject', function ($subject, $customer) {
+    return 'Please confirm your new support email';
+}, 10, 2);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/email_claim_mail_subject', $subject, $customer)`
+
+This filter is located in <br>
+`fluent-support/app/Services/EmailClaimService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_email_claim_mail_body">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change the HTML body of the support address confirmation email. The body is wrapped in Fluent Support's notification email template after this filter runs. Keep the confirmation link in your body, or the customer can't confirm.
+
+**Parameters**
+
+- '$body' (string) The HTML body (greeting, explanation and a Confirm this address button)
+- '$customer' (object) The customer record being moved to the new address
+- '$target' (string) The email address being confirmed
+- '$link' (string) The confirmation URL
+
+**Usage**
+
+```php
+add_filter('fluent_support/email_claim_mail_body', function ($body, $customer, $target, $link) {
+    return '<p>Hi ' . esc_html($customer->first_name) . ',</p>'
+        . '<p><a href="' . esc_url($link) . '">Confirm ' . esc_html($target) . '</a></p>';
+}, 10, 4);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/email_claim_mail_body', $body, $customer, $target, $link)`
+
+This filter is located in <br>
+`fluent-support/app/Services/EmailClaimService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_email_template_show_border">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to remove the divider line in Fluent Support's email templates. In the ticket notification template it is the line above the footer; in the classic template it is the line under the content block. Note the hook name uses underscores only, with no slash.
+
+**Parameters**
+
+- '$showBorder' (boolean) Whether to draw the border. Default `true`
+
+**Usage**
+
+```php
+add_filter('fluent_support_email_template_show_border', '__return_false');
+```
+
+**Reference**
+
+`apply_filters('fluent_support_email_template_show_border', true)`
+
+This filter is located in <br>
+`fluent-support/app/Views/emails/ticket_template.php`,<br>
+`fluent-support/app/Views/emails/classic_template.php`
+</div>
+</explain-block>

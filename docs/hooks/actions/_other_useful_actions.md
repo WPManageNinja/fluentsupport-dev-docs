@@ -613,3 +613,134 @@ This action is located in <br>
 
 </div>
 </explain-block>
+<explain-block title="fluent_support_main_tickets_query">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after the admin ticket list query has been built (filters, search and sort applied) and before it is paginated. Use it to add your own constraints to the agent ticket list. The query builder is passed by reference, so change it in place instead of returning a value.
+
+It also fires inside the internal notifications query, where it scopes the ticket relation of each notification. In that call `$args` is an empty array.
+
+**Check the name for your version.** Fluent Support 2.4.5 and earlier fire this only with a backslash: `fluent_support\main_tickets_query`. Later versions fire the backslash name and then the slash name. Use the backslash name to support every version, and listen on only one of the two, or your callback runs twice.
+
+Core uses the backslash name internally (`PermissionFilterManager::filterAgentTicketsByMailboxes()`) to apply agent mailbox restrictions.
+
+**Parameters**
+- '$ticketsQuery' (object) Ticket query builder, passed by reference
+- '$args' (array) The query arguments: `with`, `filter_type` (`simple` or `advanced`), `filters_groups`, `filters_groups_raw`, `sort_by`, `sort_type`, `limit`, `offset`, `simple_filters`, `customer_id`, `search`. Empty array when fired from the notifications query
+
+**Usage**
+
+```php
+add_action('fluent_support/main_tickets_query', function ($ticketsQuery, $args) {
+    // Hide tickets from one product in the agent ticket list
+    $ticketsQuery->where('product_id', '!=', 12);
+}, 10, 2);
+```
+
+**Reference**
+
+`do_action_ref_array('fluent_support/main_tickets_query', [&$ticketsQuery, $this->args])`
+
+This action is located in <br>
+`fluent-support/app/Services/TicketQueryService.php`,<br>
+`fluent-support/app/Services/Notifications/NotificationQueryService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_tickets_filter_by_provider">
+<hr>
+<div class="fs-docs-content">
+This action is triggered once for each filter provider in each group of the advanced ticket filter. The dynamic part `{provider}` is the first element of the filter's `source` (for example `tickets`, `customer` or `agent`). Groups are OR-ed together; providers inside a group are AND-ed. The query builder is passed by reference, so add your `where` clauses to it in place.
+
+Fluent Support Pro registers the `tickets`, `customer` and `agent` providers (on the backslash names). Register your own provider name to support a custom filter source.
+
+**Check the name for your version.** Fluent Support 2.4.5 and earlier fire this only with a backslash: `fluent_support\tickets_filter_{provider}`. Later versions fire the backslash name and then the slash name. Use the backslash name to support every version, and listen on only one of the two, or your callback runs twice.
+
+**Parameters**
+- '$query' (object) Query builder for the current filter group, passed by reference
+- '$items' (array) The filter items for this provider in this group. Each item has `property` (second element of `source`), `operator` and `value`
+
+**Usage**
+
+```php
+add_action('fluent_support/tickets_filter_my_source', function ($query, $items) {
+    foreach ($items as $item) {
+        if ($item['property'] === 'priority' && $item['operator'] === '=') {
+            $query->where('client_priority', sanitize_text_field($item['value']));
+        }
+    }
+}, 10, 2);
+```
+
+**Reference**
+
+`do_action_ref_array('fluent_support/tickets_filter_' . $providerName, [&$q, $items])`
+
+This action is located in <br>
+`fluent-support/app/Services/TicketQueryService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_customer_email_verified_change">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a customer's contact email moves to a new, proven address. Before it fires, Fluent Support rotates the hash of every ticket the customer owns (so signed links sent to the old inbox stop working) and logs a `fluent_support/customer_email_changed` activity.
+
+It fires when the linked WordPress account's email change was confirmed by WordPress (`verified`) or made by someone else who can edit that account (`administrator`), when the customer confirms a support address claim from the portal (`claimed`), and when an agent changes the customer's email from the admin (`agent`).
+
+**Parameters**
+- '$customer' (object) The customer model, already saved with the new email
+- '$previousEmail' (string) The email the customer had before the change
+- '$reason' (string) How the change was proven: `verified`, `administrator`, `claimed` or `agent`
+
+**Usage**
+
+```php
+add_action('fluent_support/customer_email_verified_change', function ($customer, $previousEmail, $reason) {
+    // Keep an external CRM in sync
+    my_crm_update_email($previousEmail, $customer->email);
+}, 10, 3);
+```
+
+**Reference**
+
+`do_action('fluent_support/customer_email_verified_change', $customer, $previousEmail, $reason)`
+
+This action is located in <br>
+`fluent-support/app/Services/ProfileInfoService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_merging_customer_records">
+<hr>
+<div class="fs-docs-content">
+This action is triggered while one customer record is folded into another during a support email claim. When a customer confirms a new address from the portal, any unlinked customer record already holding that address is absorbed into theirs.
+
+It fires after core has moved the source record's tickets, conversations, attachments, activities, notifications and person meta, and before the source record is deleted. The source is deleted only if nothing still points at it, so move any rows you keep keyed by the customer's person ID here. Fluent Support Pro uses this hook to move time tracking entries.
+
+**Parameters**
+- '$source' (object) The customer record being absorbed (removed afterwards)
+- '$target' (object) The customer record it is merged into
+
+**Usage**
+
+```php
+add_action('fluent_support/merging_customer_records', function ($source, $target) {
+    global $wpdb;
+    $wpdb->update(
+        $wpdb->prefix . 'my_customer_notes',
+        ['customer_id' => $target->id],
+        ['customer_id' => $source->id]
+    );
+}, 10, 2);
+```
+
+**Reference**
+
+`do_action('fluent_support/merging_customer_records', $source, $target)`
+
+This action is located in <br>
+`fluent-support/app/Services/EmailClaimService.php`,<br>
+`fluent-support-pro/app/Hooks/actions.php` (listener)
+</div>
+</explain-block>
