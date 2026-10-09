@@ -241,34 +241,4 @@ This filter is located in <br>
 </div>
 </explain-block>
 
-<explain-block title="fluent_support_mcp_customer_list_meta">
-<hr>
-<div class="fs-docs-content">
-This filter hook allows you to add a one-line customer summary (for example plan or usage) to each row of the MCP <code>list-tickets</code> tool, shown as <code>customer_summary</code>. It fires once per list page and only for users with the "Access Private Data (Customers, Agents)" permission. Values are stripped to plain text and cut to 120 characters. See <a href="/modules/custom_widget">Custom Widget</a>.
-
-**Parameters**
-
-- '$lines' (array) [customer_id => line]. Merge into it and keep existing keys
-- '$customerIds' (array) Customer IDs on this page
-- '$customers' (array) [customer_id => Customer model], already loaded
-- '$context' (array) ['surface' => 'ticket_list', 'agent_id' => int|null]
-
-**Usage**
-
-```php
-add_filter('fluent_support/mcp_customer_list_meta', function ($lines, $customerIds, $customers, $context) {
-    // One query for every customer on the page; no remote calls.
-    return $lines;
-}, 10, 4);
-```
-
-**Reference**
-
-`apply_filters('fluent_support/mcp_customer_list_meta', [], $customerIds, $customers, $context)`
-
-
-This filter is located in <br>
-`fluent-support/app/Modules/MCP/Support/CustomerMetaEnricher.php`
-</div>
-</explain-block>
 

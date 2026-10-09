@@ -135,7 +135,7 @@ This filter is located in <br>
 <explain-block title="fluent_support_mcp_customer_list_meta">
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to inject a short, plain-text status line per customer into MCP ticket-list output (e.g. a CRM/billing status line). Return an array keyed by customer ID — merge into it, don't overwrite it. Only runs for agents with the `fst_sensitive_data` capability.
+This filter hook allows you to inject a short, plain-text status line per customer into MCP ticket-list output (e.g. a CRM/billing status line). Return an array keyed by customer ID — merge into it, don't overwrite it. Only runs for agents with the `fst_sensitive_data` capability. The line is shown as `customer_summary` on each `list-tickets` row, stripped to plain text and cut to 120 characters. See [Custom Widget](/modules/custom_widget).
 
 **Parameters**
 
