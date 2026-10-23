@@ -310,7 +310,8 @@ add_filter('fluent_support/can_user_add_tags_to_customer', function ($canAddTags
 `apply_filters('fluent_support/can_user_add_tags_to_customer', $canAddTags)`
 
 This filter is located in <br>
-`fluent-support/app/Models/Ticket.php`
+`fluent-support/app/Services/FluentCRMServices.php`,<br>
+`fluent-support/app/Services/Helper.php`
 </div>
 </explain-block>
 
@@ -399,10 +400,10 @@ add_filter('fluent_support/disabled_ticket_fields', function ($fields) {
 `apply_filters('fluent_support/disabled_ticket_fields', [])`
 
 This filter is located in <br>
-`fluent-support/app/Models/Ticket.php`,<br>
+`fluent-support-pro/app/Hooks/filters.php`,<br>
 `fluent-support/app/Http/Controllers/UploaderController.php`,<br>
 `fluent-support/app/Services/CustomerPortalService.php`,<br>
-`fluent-support-pro/app/Hooks/filters.php`
+`fluent-support/app/Services/Tickets/TicketService.php`
 </div>
 
 </explain-block>
@@ -431,12 +432,82 @@ add_filter('fluent_support/create_ticket_data', function ($ticketData, $customer
 `apply_filters('fluent_support/create_ticket_data', $ticketData, $customer)`
 
 This filter is located in <br>
-`fluent-support/app/Models/Ticket.php`,<br>
-`fluent-support/app/Services/Integrations/CreateTicketAction.php`,<br>
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`,<br>
 `fluent-support/app/Services/CustomerPortalService.php`,<br>
+`fluent-support/app/Services/Integrations/FluentCrm/CreateTicketAction.php`,<br>
 `fluent-support/app/Services/Integrations/FluentForm/FeedIntegration.php`,<br>
-`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
+`fluent-support/app/Services/Tickets/TicketService.php`
 
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_custom_field_required_before_ticket_create">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change the validation rules for a ticket a customer submits from the customer portal. Add a rule to make a field required, or remove one. Fluent Support Pro uses it to require the custom fields marked as required.
+
+**Parameters**
+
+- '$dataRules' (array) Validation rules, with two keys:
+  - 'required_fields' (array) Field name => rule. Default `['title' => 'required', 'content' => 'required']`. Custom fields use `custom_data.{slug}`
+  - 'error_messages' (array) `{field}.{rule}` => message shown when the rule fails
+
+**Usage**
+
+```php
+add_filter('fluent_support/custom_field_required_before_ticket_create', function ($dataRules) {
+    $dataRules['required_fields']['client_priority'] = 'required';
+    $dataRules['error_messages']['client_priority.required'] = __('Please choose a priority', 'my-plugin');
+    return $dataRules;
+}, 10, 1);
+```
+
+**Reference**
+
+`$this->app->applyCustomFilters('custom_field_required_before_ticket_create', $dataRules)`
+
+The plugin adds the `fluent_support/` prefix, so hook into `fluent_support/custom_field_required_before_ticket_create`.
+
+This filter is located in <br>
+`fluent-support/app/Http/Controllers/CustomerPortalController.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_custom_field_required_by_conditions_before_ticket_create">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change the validation rules for a portal ticket based on what the customer submitted, for example to require a field only for one product. It runs after `fluent_support/custom_field_required_before_ticket_create` and the product requirement setting. Fluent Support Pro uses it to drop required custom fields whose display conditions do not match.
+
+**Parameters**
+
+- '$data' (array) Rules and submitted values:
+  - 'required_fields' (array) Field name => rule
+  - 'error_messages' (array) `{field}.{rule}` => message
+  - 'custom_data' (array) Submitted custom field values, keyed by slug (sanitized)
+  - 'default_data' (array) Submitted `ticket_title` and `ticket_content`, plus `ticket_product_id` and `ticket_client_priority` when sent
+
+Only `required_fields` and `error_messages` are used from the returned array. If both are missing, the ticket is rejected with an "Invalid form data submitted" error.
+
+**Usage**
+
+```php
+add_filter('fluent_support/custom_field_required_by_conditions_before_ticket_create', function ($data) {
+    if ((int) ($data['default_data']['ticket_product_id'] ?? 0) === 12) {
+        $data['required_fields']['custom_data.order_id'] = 'required';
+        $data['error_messages']['custom_data.order_id.required'] = __('Order ID is required', 'my-plugin');
+    }
+    return $data;
+}, 10, 1);
+```
+
+**Reference**
+
+`$this->app->applyCustomFilters('custom_field_required_by_conditions_before_ticket_create', $data)`
+
+The plugin adds the `fluent_support/` prefix, so hook into `fluent_support/custom_field_required_by_conditions_before_ticket_create`.
+
+This filter is located in <br>
+`fluent-support/app/Http/Controllers/CustomerPortalController.php`
 </div>
 </explain-block>
 
@@ -463,7 +534,7 @@ add_filter('fluent_support/previous_ticket_widgets_limit', function ($limit) {
 `apply_filters('fluent_support/previous_ticket_widgets_limit', 10)`
 
 This filter is located in <br>
-`fluent-support/app/Models/Ticket.php`
+`fluent-support/app/Http/Controllers/TicketController.php`
 </div>
 
 </explain-block>
@@ -701,6 +772,66 @@ add_filter('fluent_support/ticket_source_filter_options', function ($options) {
 `apply_filters('fluent_support/ticket_source_filter_options', $options)`
 
 This filter is located in <br>
-`fluent-support/app/Models/Ticket.php` (used by `fluent-support-pro/app/Services/ProHelper.php` and `fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`)
+`fluent-support/app/Models/Ticket.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_ticket_close_activity_source">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to mark a ticket close as a system event when an agent's reply closes the ticket. Return `automatic` or `automation` and the activity line reads as a system event instead of something the replying agent did. Fluent Support Pro uses it for inactive-ticket auto-close.
+
+Available since Fluent Support 2.4.7.
+
+**Parameters**
+
+- '$source' (string) Empty for a close by the person replying
+- '$ticket' (object) Ticket object
+
+**Usage**
+
+```php
+add_filter('fluent_support/ticket_close_activity_source', function ($source, $ticket) {
+    if (defined('MY_PLUGIN_CLOSING_TICKETS')) {
+        return 'automation';
+    }
+    return $source;
+}, 10, 2);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/ticket_close_activity_source', '', $ticket)`
+
+This filter is located in <br>
+`fluent-support/app/Services/Tickets/ResponseService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_contact_search_partial_allowed">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to decide whether the current agent may search contacts by part of a name or email when creating a ticket for a customer. By default only agents with the `fst_sensitive_data` permission can. Other agents find a customer by their full email address only. Support staff and administrators are never offered as contacts.
+
+Available since Fluent Support 2.4.7.
+
+**Parameters**
+
+- '$allowed' (boolean) Whether the agent has the `fst_sensitive_data` permission
+
+**Usage**
+
+```php
+add_filter('fluent_support/contact_search_partial_allowed', function ($allowed) {
+    return $allowed || current_user_can('manage_options');
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/contact_search_partial_allowed', PermissionManager::currentUserCan('fst_sensitive_data'))`
+
+This filter is located in <br>
+`fluent-support/app/Http/Controllers/CustomerController.php`
 </div>
 </explain-block>

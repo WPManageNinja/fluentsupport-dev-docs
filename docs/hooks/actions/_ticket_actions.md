@@ -5,13 +5,13 @@ This action is triggered before a ticket is created
 
 **Parameters**
 
-- '$ticket' (object) Ticket object
+- '$ticketData' (array) Ticket data about to be saved
 - '$customer' (object) Customer object
 
 **Usage**
 
 ```php
-add_action('fluent_support/before_ticket_create', function ($ticket, $customer) {
+add_action('fluent_support/before_ticket_create', function ($ticketData, $customer) {
      // ...do something
 }, 20, 2);
 ```
@@ -21,11 +21,11 @@ add_action('fluent_support/before_ticket_create', function ($ticket, $customer) 
 `do_action('fluent_support/before_ticket_create', $ticketData, $customer)`
 
 This action is located in <br>
-`fluent-support/app/Http/Services/CustomerPortalService.php`,<br>
-`fluent-support/app/Http/Models/Ticket.php`,<br> 
-`fluent-support/app/Services/Integrations/FluentForm/FeedIntegration`,<br>
-`fluent-support/app/Services/Integrations/FluentCrm/CreateTicketAction`,<br>
-`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler`
+`fluent-support/app/Services/CustomerPortalService.php`,<br>
+`fluent-support/app/Services/Tickets/TicketService.php`,<br>
+`fluent-support/app/Services/Integrations/FluentForm/FeedIntegration.php`,<br>
+`fluent-support/app/Services/Integrations/FluentCrm/CreateTicketAction.php`,<br>
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 </div>
 
 </explain-block>
@@ -53,11 +53,11 @@ add_action('fluent_support/ticket_created', function ($ticket, $customer) {
 `do_action('fluent_support/ticket_created', $ticket, $customer)`
 
 This action is located in <br>
-`fluent-support/app/Http/Services/CustomerPortalService.php`,<br>
-`fluent-support/app/Http/Models/Ticket.php`,<br>
-`fluent-support/app/Services/Integrations/FluentForm/FeedIntegration`,<br>
-`fluent-support/app/Services/Integrations/FluentCrm/CreateTicketAction`,<br>
-`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler`
+`fluent-support/app/Services/CustomerPortalService.php`,<br>
+`fluent-support/app/Services/Tickets/TicketService.php`,<br>
+`fluent-support/app/Services/Integrations/FluentForm/FeedIntegration.php`,<br>
+`fluent-support/app/Services/Integrations/FluentCrm/CreateTicketAction.php`,<br>
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 
 </div>
 </explain-block>
@@ -271,7 +271,7 @@ add_action('fluent_support/response_added_by_customer', function ($createdRespon
 `do_action('fluent_support/response_added_by_customer', $createdResponse, $ticket, $customer)`
 
 This action is located in <br>
-`fluent-support/app/Http/Controllers/TicketController.php`,<br>
+`fluent-support/app/Services/Tickets/ResponseService.php` (as `'fluent_support/response_added_by_' . $sender->person_type`),<br>
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 
 </div>
@@ -468,25 +468,27 @@ This action is located in <br>
 This action is triggered after a ticket is assigned to an agent.
 
 **Parameters**
-- '$ticket' (integer) Ticket data
-- '$customer' (object) Customer data
-- '$agent' (object) Agent data
-
+- '$agent' (object) The agent the ticket is now assigned to
+- '$ticket' (object) Ticket object
+- '$assigner' (object) The agent (or person) who made the assignment
+- '$previousAgentId' (integer|null) ID of the agent the ticket was assigned to before. Not passed when a Pro workflow assigns the ticket, so give it a default.
 
 **Usage**
 
 ```php
-add_action('fluent_support/agent_assigned_to_ticket', function ($ticket, $customer, $agent) {
+add_action('fluent_support/agent_assigned_to_ticket', function ($agent, $ticket, $assigner, $previousAgentId = null) {
      // ...do something
-}, 10, 3);
+}, 10, 4);
 ```
 **Reference**
 
-`do_action('fluent_support/agent_assigned_to_ticket', $ticket->agent, $ticket, $assigner)`
+`do_action('fluent_support/agent_assigned_to_ticket', $ticket->agent, $ticket, $assigner, $previousAgentId)`
 
 This action is located in <br>
-`fluent-support/app/Models/Ticket.php`,<br>
+`fluent-support/app/Http/Controllers/TicketController.php`,<br>
 `fluent-support/app/Services/Tickets/ResponseService.php`,<br>
+`fluent-support/app/Hooks/Handlers/AsyncActionHandler.php`,<br>
+`fluent-support/app/Modules/MCP/Helpers/MCPHelper.php`,<br>
 `fluent-support-pro/app/Services/Workflow/ActionRunner.php`
 </div>
 </explain-block>

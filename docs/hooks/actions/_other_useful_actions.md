@@ -275,14 +275,14 @@ This action is located in <br>
 </div>
 </explain-block>
 
-<explain-block title="fluent_support_delete_remote_attachment_third_party_in_use">
+<explain-block title="fluent_support_delete_remote_attachment_by_driver">
 <hr>
 <div class="fs-docs-content">
-This action is triggered after delete remote attachment.
+This action is triggered when Fluent Support deletes the remote copy of an attachment. Deletes run in the background (Action Scheduler and the hourly cron), after the ticket or reply is gone.
 
 **Parameters**
 - '$attachment' (object) attachment data
-- '$ticketID' (integer) Ticket ID
+- '$ticketID' (integer|null) Ticket ID the attachment belonged to, or `null` when it was not on a ticket
 
 **Usage**
 
@@ -292,14 +292,16 @@ add_action('fluent_support/delete_remote_attachment_' . $attachment->driver, fun
 }, 10, 2);
 ```
 
-**Note:** `$attachment->driver` the type of person, whether it be an agent, user, etc.
+**Note:** `$attachment->driver` is the storage driver slug stored on the attachment, such as `amazon_s3` or `dropbox`.
+
+**Since 2.4.7:** this hook fires only for a storage driver that is not registered through the [`fluent_support/storage_drivers`](/hooks/filters/#fluent_support_storage_drivers) filter. Fluent Support Pro 2.4.7 registers its drivers, so they no longer go through this hook. New drivers should implement `StorageDriverInterface` instead.
 
 **Reference**
 
-`do_action('fluent_support/delete_remote_attachment_' . $attachment->driver, $attachment, $ticket->id)`
+`do_action('fluent_support/delete_remote_attachment_' . $attachment->driver, $attachment, $attachment->ticket_id)`
 
 This action is located in <br>
-`fluent-support/app/Hooks/CleanupHandler.php`
+`fluent-support/app/Services/Storage/StorageManager.php`
 
 </div>
 </explain-block>
@@ -518,17 +520,17 @@ add_action('fluent_support/finalize_file_upload_amazon_s3', function (&$attachme
 }, 10, 2);
 ```
 
-**Note:** `{driver}` is the active storage driver slug — Pro ships `amazon_s3`, `cloudflare_r2`, `dropbox`, and `google_drive`.
+**Note:** `{driver}` is the active storage driver slug.
+
+**Since 2.4.7:** this hook fires only for a storage driver that is not registered through the [`fluent_support/storage_drivers`](/hooks/filters/#fluent_support_storage_drivers) filter. Fluent Support Pro 2.4.7 registers its drivers, so they no longer go through this hook. New drivers should implement `StorageDriverInterface` instead.
 
 **Reference**
 
-`do_action_ref_array('fluent_support/finalize_file_upload_' . $storageDriver, [&$attachment, $ticket->id])`
+`do_action_ref_array('fluent_support/finalize_file_upload_' . $key, [&$attachment, $ticketId])`
 
 This action is located in <br>
-`fluent-support/app/Services/Tickets/TicketService.php`,<br>
-`fluent-support/app/Services/Tickets/ResponseService.php`,<br>
-`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`,<br>
-`fluent-support-pro/app/Services/FileUploadIntegration/AmazonS3/Bootstrap.php`, `CloudflareR2/Bootstrap.php`, `Dropbox/Bootstrap.php`, `GoogleDrive/Bootstrap.php`
+`fluent-support/app/Services/Storage/StorageManager.php` (`finalize()`),<br>
+`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php` (only with Fluent Support older than 2.4.7)
 </div>
 </explain-block>
 
@@ -549,16 +551,16 @@ add_action('fluent_support/attachment_uploaded_as_temp_dropbox', function (&$att
 }, 10, 2);
 ```
 
-**Note:** `{driver}` is the active storage driver slug — Pro ships `amazon_s3`, `cloudflare_r2`, `dropbox`, and `google_drive`.
+**Note:** `{driver}` is the active storage driver slug.
+
+**Since 2.4.7:** this hook fires only for a storage driver that is not registered through the [`fluent_support/storage_drivers`](/hooks/filters/#fluent_support_storage_drivers) filter. Fluent Support Pro 2.4.7 registers its drivers, so they no longer go through this hook. New drivers should implement `StorageDriverInterface` instead.
 
 **Reference**
 
-`do_action_ref_array('fluent_support/attachment_uploaded_as_temp_' . $driver, [&$attachment, $ticketId])`
+`do_action_ref_array('fluent_support/attachment_uploaded_as_temp_' . $key, [&$attachment, $ticketId])`
 
 This action is located in <br>
-`fluent-support/app/Http/Controllers/UploaderController.php`,<br>
-`fluent-support/app/Modules/MCP/Support/AttachmentStager.php`,<br>
-`fluent-support-pro/app/Services/FileUploadIntegration/AmazonS3/Bootstrap.php`, `CloudflareR2/Bootstrap.php`, `Dropbox/Bootstrap.php`, `GoogleDrive/Bootstrap.php`
+`fluent-support/app/Services/Storage/StorageManager.php` (`afterTempUpload()`)
 </div>
 </explain-block>
 

@@ -1191,3 +1191,60 @@ This filter is located in <br>
 `fluent-support-pro/app/Hooks/Handlers/EmailPipingRetryHandler.php`
 </div>
 </explain-block>
+
+<explain-block title="fluent_support_pro_storage_allow_private_endpoint">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows an S3-compatible storage endpoint on a private or local address, such as a MinIO server on your own network. By default Fluent Support Pro only accepts an endpoint that resolves to a public address.
+
+Available since Fluent Support Pro 2.4.7.
+
+**Parameters**
+
+- '$allow' (boolean) Default `false`
+- '$host' (string) The endpoint host
+
+**Usage**
+
+```php
+add_filter('fluent_support_pro/storage_allow_private_endpoint', function ($allow, $host) {
+    return $host === 'minio.internal';
+}, 10, 2);
+```
+
+**Reference**
+
+`apply_filters('fluent_support_pro/storage_allow_private_endpoint', false, $host)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/FileUploadIntegration/S3Compatible/S3CompatibleDriver.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_pro_storage_stream_threshold">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change the file size above which Fluent Support Pro streams an upload from disk with cURL. Smaller files go through `wp_remote_request()` and follow your WordPress HTTP settings. Streaming keeps large uploads out of memory.
+
+Available since Fluent Support Pro 2.4.7.
+
+**Parameters**
+
+- '$bytes' (integer) Threshold in bytes. Default `16 * MB_IN_BYTES`
+
+**Usage**
+
+```php
+add_filter('fluent_support_pro/storage_stream_threshold', function ($bytes) {
+    return 8 * MB_IN_BYTES;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support_pro/storage_stream_threshold', 16 * MB_IN_BYTES)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/FileUploadIntegration/Support/Http.php`
+</div>
+</explain-block>

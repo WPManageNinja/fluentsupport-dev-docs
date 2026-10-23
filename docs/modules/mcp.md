@@ -23,11 +23,12 @@ AI Client (Claude Desktop / Cursor / Codex)
 FluentHub MCP Adapter  ←──  fluent_support/mcp_loaded
     │
     ▼
-Fluent Support Tool Registry
-    ├── TicketTools       (list, get, create, update, close, reopen, delete, merge, activity)
-    ├── ResponseTools     (reply, list saved replies)
-    ├── CustomerTools     (search, get)
-    └── ManagementTools   (support context, agent list, products, tags, mailboxes, SLA stats)
+Fluent Support Abilities (fluent-support/*)
+    ├── TicketTools       (list, get, create, update, close, delete, merge, split, activity)
+    ├── ResponseTools     (reply, internal notes, drafts, saved replies)
+    ├── CustomerTools     (search, customer tickets, update)
+    ├── ManagementTools   (support context, ticket views, insights, tags, mentions, bulk actions)
+    └── PromptsRegistrar  (triage-queue, draft-reply, summarize-ticket, support-report)
 ```
 
 ## Enabling MCP
@@ -41,49 +42,71 @@ MCP is configured from **Global Settings → MCP for AI Agents** in the Fluent S
 
 ## Available Tools
 
+Every tool is a WordPress ability named `fluent-support/{tool}`. AI clients should call `get-support-context` first: it returns the agent's identity, queue, IDs for agents, products, mailboxes and tags, and the ticket views.
+
 ### Ticket Tools
 
 | Tool | Description |
 |------|-------------|
-| `list_tickets` | List tickets with filters (status, agent, product, mailbox, priority, tags, date range, search) |
-| `get_ticket` | Retrieve a full ticket including conversation thread, customer history, custom fields, and integration data |
-| `create_ticket` | Create a new ticket on behalf of a customer |
-| `update_ticket` | Update title, status, priority, product, mailbox, or assigned agent |
-| `close_ticket` | Close a ticket, optionally sending a final reply and/or internal note |
-| `reopen_ticket` | Reopen a closed ticket |
-| `delete_ticket` | Permanently delete a ticket (requires appropriate permission) |
-| `merge_tickets` | Merge one or more tickets into a target ticket (requires Pro) |
-| `get_ticket_activity` | Retrieve the activity log for a ticket (last 50 events) |
+| `list-tickets` | List and filter tickets (status, agent, product, mailbox, priority, tags, waiting on, dates, search), with cursor paging |
+| `get-ticket` | Get a ticket with its conversation, customer history, custom fields and integration data |
+| `create-ticket` | Create a ticket on behalf of a customer; creates the customer if the email is new |
+| `update-ticket` | Change title, priority, status, product, mailbox or assigned agent |
+| `close-ticket` | Close a ticket, optionally with a final reply and an internal note |
+| `delete-ticket` | Permanently delete a ticket |
+| `get-ticket-activity` | Get the activity timeline for a ticket |
+| `merge-tickets` | Merge duplicate tickets into one (requires Pro) |
+| `split-ticket` | Move one message out of a ticket into a new ticket (requires Pro) |
 
 ### Response Tools
 
 | Tool | Description |
 |------|-------------|
-| `reply_to_ticket` | Post an agent reply to a ticket |
-| `list_saved_replies` | List the current agent's saved replies, with optional search and product filter |
+| `reply-to-ticket` | Send a customer-visible reply, or save it as a draft with `draft=true` |
+| `add-internal-note` | Add an agent-only note; `@[agent_id:Name]` mentions notify an agent |
+| `update-response` | Replace the text of your own draft reply or internal note |
+| `delete-response` | Delete your own draft reply or internal note |
+| `publish-draft-reply` | Send a draft reply, the same as Approve in the ticket view |
+| `list-saved-replies` | List your saved replies, with optional search and product filter |
 
 ### Customer Tools
 
 | Tool | Description |
 |------|-------------|
-| `search_customers` | Search customers by name or email with ticket counts |
-| `get_customer` | Retrieve a customer profile with their full ticket history |
+| `search-customers` | Search customers by name or email |
+| `get-customer-tickets` | Get a customer's tickets by email, name or ID |
+| `update-customer` | Change a customer's name, title, note or address |
 
 ### Management Tools
 
 | Tool | Description |
 |------|-------------|
-| `get_support_context` | Return team structure — agents, products, mailboxes, tags, ticket stats, and SLA settings. AI clients call this first to orient themselves. |
+| `get-support-context` | Start here: agent identity, queue, reference IDs, ticket views and guidelines |
+| `get-ticket-views` | Current counts for each ticket queue, the same views as the ticket list sidebar |
+| `get-support-insights` | Team performance for a period: volume, response and resolution times, per-agent numbers |
+| `tag-ticket` | Add or remove tags on a ticket |
+| `get-mentions` | Tickets where you were @mentioned |
+| `bulk-action` | Close, assign, tag or reply to several tickets at once |
+
+### Prompts
+
+| Prompt | Description |
+|--------|-------------|
+| `triage-queue` | Propose an action for each ticket waiting on an agent, sending nothing until approved |
+| `draft-reply` | Read a ticket and save a draft reply for review |
+| `summarize-ticket` | Summarize a ticket for a teammate, optionally as an internal note |
+| `support-report` | Write a short report on volume, response times and workload for a period |
 
 ## Permissions
 
 All MCP tool calls run in the context of the authenticated WordPress user. The tools enforce:
 
 - Agent record must exist for the WordPress user — anonymous or customer accounts cannot call tools
-- Mailbox restrictions: agents restricted to specific mailboxes cannot read or write tickets in other mailboxes
-- Assignment permission: reassigning tickets via `update_ticket` requires the `fst_assign_agents` capability
-- Delete permission: `delete_ticket` respects ticket deletion permissions
-- Merge requires Fluent Support Pro
+- Each ability requires the matching Fluent Support permission, listed in `AbilityGuard` (for example `fst_view_tickets` to read tickets, `fst_sensitive_data` for customer tools, `fst_view_all_reports` for `get-support-insights`)
+- Mailbox restrictions and ticket visibility: agents restricted to specific mailboxes, or to their own tickets, cannot read or write other tickets
+- Assignment permission: reassigning tickets via `update-ticket` requires the `fst_assign_agents` capability
+- `update-response` and `delete-response` only change the agent's own drafts and notes
+- `merge-tickets` requires Fluent Support Pro and `fst_merge_tickets`; `split-ticket` requires Fluent Support Pro and `fst_split_ticket`
 
 ## Extension Points
 
@@ -98,7 +121,7 @@ All MCP tool calls run in the context of the authenticated WordPress user. The t
 - [`fluent_support/mcp_server_namespace`](/hooks/filters/#fluent_support_mcp_server_namespace) — change the server identifier registered with FluentHub
 - [`fluent_support/mcp_server_route`](/hooks/filters/#fluent_support_mcp_server_route) — change the MCP endpoint route segment
 - [`fluent_support/mcp_ability_names`](/hooks/filters/#fluent_support_mcp_ability_names) — add or remove WordPress Abilities API capability names used for MCP authentication
-- [`fluent_support/mcp_ai_guidelines`](/hooks/filters/#fluent_support_mcp_ai_guidelines) — modify the AI system guidelines returned in `get_support_context`
+- [`fluent_support/mcp_ai_guidelines`](/hooks/filters/#fluent_support_mcp_ai_guidelines) — modify the AI system guidelines returned in `get-support-context`
 - [`fluent_support/mcp_is_local_dev`](/hooks/filters/#fluent_support_mcp_is_local_dev) — override whether the site is treated as a local/self-signed dev environment
 
 ## Key Files
@@ -106,7 +129,9 @@ All MCP tool calls run in the context of the authenticated WordPress user. The t
 | File | Purpose |
 |------|---------|
 | `app/Modules/MCP/MCPInit.php` | Module bootstrap — registers tools, sets up transport gate |
-| `app/Modules/MCP/AbilitiesRegistrar.php` | Registers Fluent Support capabilities with the WordPress Abilities API |
+| `app/Modules/MCP/AbilitiesRegistrar.php` | Registers the `fluent-support/*` tools with the WordPress Abilities API |
+| `app/Modules/MCP/PromptsRegistrar.php` | Registers the MCP prompts (`triage-queue`, `draft-reply`, `summarize-ticket`, `support-report`) |
+| `app/Modules/MCP/Resources/ResourceProvider.php` | MCP resources such as `stats/overview` |
 | `app/Modules/MCP/Tools/TicketTools.php` | Ticket CRUD and activity tool implementations |
 | `app/Modules/MCP/Tools/ResponseTools.php` | Reply and saved-reply tool implementations |
 | `app/Modules/MCP/Tools/CustomerTools.php` | Customer search and profile tool implementations |
