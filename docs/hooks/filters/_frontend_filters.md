@@ -114,8 +114,9 @@ add_filter('fluent_support/customer_portal_vars', function ($vars) {
 
 
 This filter is located in <br>
+`fluent-support-pro/app/Http/Controllers/RemotePortalController.php`,<br>
 `fluent-support/app/Hooks/Handlers/CustomerPortalHandler.php`,<br>
-`fluent-support/app/Services/ProfileInfoService.php`
+`fluent-support/app/Http/Controllers/TicketController.php`
 </div>
 </explain-block>
 

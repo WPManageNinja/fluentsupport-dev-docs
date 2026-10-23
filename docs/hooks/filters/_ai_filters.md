@@ -303,3 +303,67 @@ This filter is located in <br>
 `fluent-support/app/Services/Integrations/AI/BaseAIProvider.php`
 </div>
 </explain-block>
+
+<explain-block title="fluent_support_ai_default_model">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change the model Fluent Support uses when the AI settings are set to **Default**, or when the saved model is no longer offered. Each provider has a recommended model: `claude-sonnet-5-5` (Anthropic), `gpt-6.1-sol` (OpenAI) and `gemini-3.8-flash` (Gemini).
+
+Available since Fluent Support 2.4.7.
+
+**Parameters**
+
+- '$model' (string) The provider's recommended model ID
+- '$provider' (string) Provider name: `Anthropic`, `OpenAI` or `Gemini`
+
+**Usage**
+
+```php
+add_filter('fluent_support/ai_default_model', function ($model, $provider) {
+    if ($provider === 'OpenAI') {
+        return 'gpt-6.1';
+    }
+    return $model;
+}, 10, 2);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/ai_default_model', $this->getRecommendedModel(), $this->getProviderName())`
+
+This filter is located in <br>
+`fluent-support/app/Services/Integrations/AI/BaseAIProvider.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_ai_system_prompt">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change the system prompt Fluent Support Pro sends with AI requests. The built-in reply prompt asks for a short answer to the latest customer message, in the customer's language, with no sign-off and only facts from the ticket. An agent's own instruction in the AI box still overrides these defaults.
+
+Available since Fluent Support Pro 2.4.7.
+
+**Parameters**
+
+- '$prompt' (string) The built-in system prompt
+- '$type' (string) `reply` for a reply draft, `modify` for editing selected text
+
+**Usage**
+
+```php
+add_filter('fluent_support/ai_system_prompt', function ($prompt, $type) {
+    if ($type === 'reply') {
+        $prompt .= "\nAlways address the customer by their first name.";
+    }
+    return $prompt;
+}, 10, 2);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/ai_system_prompt', $prompt, $type)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Services/Integrations/AI/AIHelper.php`
+</div>
+</explain-block>

@@ -58,8 +58,7 @@ add_filter('fluent_support/reset_waiting_since', function ($state, $content) {
 
 
 This filter is located in <br>
-`fluent-support/app/Services/Tickets/ResponseService.php`,<br>
-`fluent-support/app/Model/Tickets/Conversation.php`
+`fluent-support/app/Services/Tickets/ResponseService.php`
 </div>
 </explain-block>
 

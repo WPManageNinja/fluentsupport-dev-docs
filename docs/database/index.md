@@ -844,12 +844,12 @@ This table stores the attachment data
         <tr>
             <td>driver</td>
             <td>varchar(100) [<b>local</b>]</td>
-            <td></td>
+            <td>Storage driver key: <code>local</code>, or a remote driver such as <code>amazon_s3</code>, <code>cloudflare_r2</code>, <code>s3_compatible</code>, <code>dropbox</code>, <code>google_drive</code> (Pro)</td>
         </tr>
         <tr>
             <td>status</td>
             <td>varchar(100) NULL [<b>active</b>] </td>
-            <td></td>
+            <td><code>active</code>, <code>in-active</code> (uploaded but not yet attached to a ticket or reply), or <code>deleting</code> (remote file waiting for the background delete job; the row is detached from its ticket, reply and person)</td>
         </tr>
         <tr>
             <td>file_size</td>

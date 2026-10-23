@@ -135,10 +135,8 @@ add_filter('fluent_support/storage_drivers_info', function ($drivers) {
 
 `apply_filters('fluent_support/storage_drivers_info', $drivers)`
 
-<b>`$drivers` is used here as an illustrative variable to represent the raw array value found in the main filter, demonstrating information about Storage drivers, including the local driver, Dropbox driver, etc.</b>
-
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/SettingsController.php`
+`fluent-support/app/Services/Storage/StorageManager.php`
 </div>
 </explain-block>
 
@@ -339,7 +337,7 @@ add_filter('fluentsupport_allow_share_essential', function ($allowShareEssential
 `apply_filters('fluentsupport_allow_share_essential', Helper::getOption('_share_essential', 'no') == 'yes')`
 
 This filter is located in <br>
-`fluent-support/app/Services/Tickets/Importer/MigratorService.php`
+`fluent-support/app/Services/Integrations/Maintenance.php`
 </div>
 </explain-block>
 
@@ -597,8 +595,10 @@ add_filter('fluent_support/external_attachment_url', function ($url, $attachment
 
 `apply_filters('fluent_support/external_attachment_url', $attachment->full_url, $attachment)`
 
+**Since 2.4.7:** this filter runs only for a storage driver that is not registered through [`fluent_support/storage_drivers`](#fluent_support_storage_drivers). A registered driver serves files through its own `getDownloadUrl()`.
+
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/ExternalPages.php`
+`fluent-support/app/Services/Storage/StorageManager.php`
 </div>
 </explain-block>
 
@@ -706,5 +706,184 @@ add_filter('fluent_support/attachment_signed_url_ttl', function ($ttl) {
 
 This filter is located in <br>
 `fluent-support/app/Models/Attachment.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_max_per_page">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change the largest page size a paginated list returns. Fluent Support caps `per_page` so one request cannot return a whole table. The default matches the largest size the admin UI offers.
+
+Available since Fluent Support 2.4.7.
+
+**Parameters**
+
+- '$maxPerPage' (integer) Largest allowed page size. Default `150`
+
+**Usage**
+
+```php
+add_filter('fluent_support/max_per_page', function ($maxPerPage) {
+    return 200;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/max_per_page', 150)`
+
+This filter is located in <br>
+`fluent-support/app/Models/Model.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_storage_drivers">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to register a remote file storage driver. Return an array of objects that implement `FluentSupport\App\Services\Storage\StorageDriverInterface`, keyed by the value the driver writes to `fs_attachments.driver`. `StorageManager` calls a registered driver directly for uploads, deletes, downloads and local copies. Fluent Support Pro registers Amazon S3, Cloudflare R2, S3-compatible, Dropbox and Google Drive this way.
+
+A driver that is not registered here still works through the older per-driver hooks (`fluent_support/attachment_uploaded_as_temp_{driver}`, `fluent_support/finalize_file_upload_{driver}`, `fluent_support/delete_remote_attachment_{driver}` and `fluent_support/external_attachment_url`).
+
+Available since Fluent Support 2.4.7.
+
+**Parameters**
+
+- '$drivers' (array) Registered drivers, keyed by driver key
+
+**Usage**
+
+```php
+add_filter('fluent_support/storage_drivers', function ($drivers) {
+    $drivers['my_storage'] = new MyStorageDriver(); // implements StorageDriverInterface
+    return $drivers;
+}, 10, 1);
+```
+
+The interface methods are `getKey()`, `isConfigured()`, `upload($attachment, $ticketId)`, `delete($attachment)`, `getDownloadUrl($attachment)`, `stream($attachment)`, `getLocalCopy($attachment, $maxBytes = 0)` and `getStatus()`.
+
+**Reference**
+
+`apply_filters('fluent_support/storage_drivers', [])`
+
+This filter is located in <br>
+`fluent-support/app/Services/Storage/StorageManager.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_mail_attachments_max_bytes">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change the largest total size of files attached to one email. Files past the limit go out as download links instead of attachments.
+
+Available since Fluent Support 2.4.7.
+
+**Parameters**
+
+- '$maxBytes' (integer) Total size in bytes. Default `10 * MB_IN_BYTES`
+
+**Usage**
+
+```php
+add_filter('fluent_support/mail_attachments_max_bytes', function ($maxBytes) {
+    return 20 * MB_IN_BYTES;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/mail_attachments_max_bytes', 10 * MB_IN_BYTES)`
+
+This filter is located in <br>
+`fluent-support/app/Services/Storage/MailAttachments.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_attachment_email_url_ttl">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change how long attachment links in emails and privacy exports stay signed. The link is bound to the ticket hash, so rotating the hash revokes it. After it expires, the link still works for anyone who can see the ticket.
+
+Available since Fluent Support 2.4.7.
+
+**Parameters**
+
+- '$ttl' (integer) Lifetime in seconds. Default `30 * DAY_IN_SECONDS`, minimum one day
+
+**Usage**
+
+```php
+add_filter('fluent_support/attachment_email_url_ttl', function ($ttl) {
+    return 7 * DAY_IN_SECONDS;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/attachment_email_url_ttl', 30 * DAY_IN_SECONDS)`
+
+This filter is located in <br>
+`fluent-support/app/Models/Attachment.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_attachment_login_url">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to change where a logged-out visitor goes when their attachment link has expired. After login, the visitor returns to the file and the access check lets them in.
+
+Available since Fluent Support 2.4.7.
+
+**Parameters**
+
+- '$loginUrl' (string) Login URL. Default `wp_login_url($currentUrl)`
+- '$currentUrl' (string) The attachment URL to return to
+
+**Usage**
+
+```php
+add_filter('fluent_support/attachment_login_url', function ($loginUrl, $currentUrl) {
+    return add_query_arg('redirect_to', rawurlencode($currentUrl), home_url('/support-login/'));
+}, 10, 2);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/attachment_login_url', wp_login_url($currentUrl), $currentUrl)`
+
+This filter is located in <br>
+`fluent-support/app/Hooks/Handlers/ExternalPages.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_attachment_local_copy">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows a storage driver that is not registered through `fluent_support/storage_drivers` to supply a local copy of a remote file, so Fluent Support can attach it to an email. Return an absolute path to a temporary file, or `null` when you can't. Fluent Support deletes the file when it is done.
+
+Available since Fluent Support 2.4.7.
+
+**Parameters**
+
+- '$path' (string|null) Default `null`
+- '$attachment' (object) Attachment record
+- '$maxBytes' (integer) Give up when the file is larger than this. `0` means no limit
+
+**Usage**
+
+```php
+add_filter('fluent_support/attachment_local_copy', function ($path, $attachment, $maxBytes) {
+    if ($attachment->driver !== 'my_storage') {
+        return $path;
+    }
+    return my_storage_download_to_temp($attachment, $maxBytes);
+}, 10, 3);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/attachment_local_copy', null, $attachment, $maxBytes)`
+
+This filter is located in <br>
+`fluent-support/app/Services/Storage/StorageManager.php`
 </div>
 </explain-block>

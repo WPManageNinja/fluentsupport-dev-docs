@@ -202,10 +202,7 @@ add_filter('fluent_support/should_send_notification', function ($shouldSend, $ch
 ```
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/EmailNotificationHandler.php`,<br>
-`fluent-support-pro/app/Services/Integrations/Slack/SlackNotification.php`,<br>
-`fluent-support-pro/app/Services/Integrations/Telegram/TelegramNotification.php`,<br>
-`fluent-support-pro/app/Services/Integrations/Discord/DiscordNotification.php`,<br>
-`fluent-support-pro/app/Services/Integrations/Twilio/TwilioNotification.php`
+`fluent-support-pro/app/Services/Integrations/ChatNotificationIntegration.php`,<br>
+`fluent-support/app/Hooks/Handlers/EmailNotificationHandler.php`
 </div>
 </explain-block>

@@ -86,10 +86,7 @@ add_filter('fluent_support/before_registration_form_close', function ($content, 
 
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/AuthHandler.php`,<br>
-`fluent-support/app/Models/Traits/CustomerTrait.php`,<br>
-`fluent-support/app/Models/Ticket.php`,<br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Hooks/Handlers/AuthHandler.php`
 
 </div>
 </explain-block>
