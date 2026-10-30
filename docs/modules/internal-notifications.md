@@ -35,35 +35,50 @@ Each notification is identified by an `event_type` slug. The table below lists a
 
 ### Creating a Custom Notification
 
-Use `NotificationService::createNotification()` to dispatch an internal notification from your own plugin or theme code.
+Use the static `NotificationService::notify()` method to dispatch an internal notification from your own plugin or theme code.
 
 ```php
-use FluentSupport\App\Services\Notifications\NotificationService;
+use FluentSupport\App\Modules\Notifications\NotificationService;
 
-$notificationService = new NotificationService();
-
-$notificationService->createNotification(
+/**
+ * @param string $event      One of the event types above (or a NotificationService constant)
+ * @param array  $data       ticket_id, actor_id, conversation_id, payload
+ * @param int[]  $recipients Agent IDs (fs_persons.id) to notify
+ * @return \FluentSupport\App\Models\Notification|null
+ */
+$notification = NotificationService::notify(
+    NotificationService::TICKET_ASSIGNED, // 'ticket_assigned'
     [
-        'actor_id'        => $agentPersonId,   // int|null — who performed the action
-        'ticket_id'       => $ticket->id,       // int
-        'conversation_id' => $response->id,     // int|null
-        'event_type'      => 'ticket_assigned', // see event type table above
-        'channel'         => 'web',             // only 'web' is supported
+        'actor_id'        => $agentPersonId,   // int|null, who performed the action
+        'ticket_id'       => $ticket->id,      // int
+        'conversation_id' => $response->id,    // int|null
         'payload'         => [
             'ticket_title'    => $ticket->title,
             'ticket_priority' => $ticket->priority,
         ],
     ],
-    [$recipientPersonId] // array of fs_persons.id values to notify
+    [$recipientPersonId]
 );
 ```
 
 **Important notes:**
 
-- `createNotification()` returns `null` and does nothing if the Internal Notifications feature is disabled in Global Settings, if the specific event category is disabled, or if the recipients list is empty after filtering.
-- Self-notifications are suppressed by default (the `actor_id` is removed from the recipients list unless the **Allow Self Notifications** setting is enabled).
-- `$recipientPersonIds` must contain values from `fs_persons.id` (not WordPress user IDs).
-- The `event_type` must be one of the eight built-in slugs in the table above. Passing an unrecognized type throws an `InvalidArgumentException`.
+- `notify()` returns `null` and does nothing if Internal Notifications is disabled in Global Settings, if that event is turned off in the notification settings, or if the recipients list is empty after filtering. `agent_mentioned` has no setting and cannot be turned off on its own.
+- Self-notifications are suppressed by default: the `actor_id` is removed from the recipients unless the **Allow Self Notifications** setting is enabled.
+- Recipients must be agent IDs from `fs_persons.id`, not WordPress user IDs. Duplicates and empty values are removed.
+- Notifications are always stored for the `web` channel; there is no channel argument.
+- Use one of the eight built-in event types. The type is not validated: an unknown value is stored with no category (and raises an undefined-index PHP notice), so it won't show under any category filter.
+
+### Reading Notifications
+
+The same class reads an agent's notifications. All methods are static and take the agent's `fs_persons.id`:
+
+| Method | Returns |
+|---|---|
+| `query($personId, $filters = [])` | Query builder for the agent's notifications, newest first, limited to tickets the agent can still see. `$filters`: `status` (`read` / `unread`), `category`, `ticket_id`. `null` while the feature is off |
+| `unreadCount($personId, $filters = [])` | Unread count (`int`). `$filters`: `category`, `ticket_id` |
+| `markRead($personId, $notificationId = null)` | Marks one notification read, or all of them when the ID is omitted. Returns the rows changed |
+| `isEnabled()` | Whether Internal Notifications is turned on |
 
 ---
 

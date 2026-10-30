@@ -26,6 +26,7 @@ $agents = $agentsApi->getAgents();
 */
 $agent = $agentsApi->getAgent($agentId);
 ```
+Returns `null` when no agent has that ID.
 
 ### updateAgent($data, $agentId)
 ```php 
@@ -40,7 +41,10 @@ $updateAgent = $agentsApi->updateAgent($data, $agentId);
 ```
 
 ### createAgentWithOrWithoutWpUser($data, $createWpUser)
-Create an agent with or without a corresponding WordPress user. If $createWpUser is true.
+Create an agent with or without a corresponding WordPress user.
+
+- Without a WordPress user, `$data['email']` is required. The call returns `false` if the email is invalid or an agent with that email already exists.
+- With `$createWpUser = true`, `$data['username']` and `$data['email']` are used to create the user; `$data['password']` is optional (a random one is generated). The call returns `false` if the username is taken or the user could not be created.
 ```php 
 /**
  * createAgentWithOrWithoutWpUser method creates a new agent, with or without a corresponding WordPress user.
@@ -49,7 +53,7 @@ Create an agent with or without a corresponding WordPress user. If $createWpUser
  *
  * @param array $data - Data for creating the agent.
  * @param bool $createWpUser - Whether to create a corresponding WordPress user.
- * @return mixed - Returns the created agent or null.
+ * @return object|false - Returns the created agent or false.
  */
 $createAgent = $agentsApi->createAgentWithOrWithoutWpUser($data, $createWpUser);
 ```

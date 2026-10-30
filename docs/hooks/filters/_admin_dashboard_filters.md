@@ -50,7 +50,7 @@ add_filter('fluent_support/base_url', function ($baseUrl) {
 
 **Reference**
 
-`apply_filters('fluent_support/base_url', admin_url('admin.php?page=fluent-support#/')`
+`apply_filters('fluent_support/base_url', admin_url('admin.php?page=fluent-support#/'))`
 
 
 This filter is located in <br>
@@ -195,8 +195,7 @@ add_filter('fluent_support/dashboard_notice', function ($dashboardNotice, $agent
 `apply_filters('fluent_support/dashboard_notice', '', $agent)`
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/AgentController.php`,<br>
-`fluent-support-pro/app/Hooks/filters.php`
+`fluent-support/app/Modules/Reports/ReportController.php`
 </div>
 </explain-block>
 
@@ -253,8 +252,8 @@ add_filter('fluent_support/customer_delete_requires_admin', function ($requiresA
 `apply_filters('fluent_support/customer_delete_requires_admin', true)`
 
 This filter is located in <br>
-`fluent-support/app/Http/Policies/CustomerPolicy.php`,<br>
-`fluent-support/app/Hooks/Handlers/Menu.php`
+`fluent-support/app/Hooks/Handlers/Menu.php`,<br>
+`fluent-support/app/Modules/Customers/CustomerPolicy.php`
 </div>
 </explain-block>
 

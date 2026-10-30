@@ -42,7 +42,7 @@ add_action('fluent_support_loading_app', function ($app) {
 
 **Reference**
 
-`do_action('fluent_support_loading_app', $app`
+`do_action('fluent_support_loading_app', $app)`
 
 This action is located in <br>
 `fluent-support/app/Hooks/Handlers/Menu.php`

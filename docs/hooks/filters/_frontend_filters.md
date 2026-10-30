@@ -146,7 +146,7 @@ add_filter('fluent_support/can_customer_create_ticket', function ($canCreate, $c
 
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/CustomerPortalController.php`,<br>
+`fluent-support/app/Modules/CustomerPortal/PortalController.php`,<br>
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 </div>
 </explain-block>
@@ -178,7 +178,7 @@ add_filter('fluent_support/can_customer_create_response', function ($canCreate, 
 
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/CustomerPortalController.php`,<br>
+`fluent-support/app/Modules/CustomerPortal/PortalController.php`,<br>
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
 </div>
 </explain-block>

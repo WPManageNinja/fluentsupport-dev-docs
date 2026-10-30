@@ -26,10 +26,11 @@ The getTicket method retrieves data for a specific ticket.
 /*
 * getTicket method will return a specific ticket by id
 * @param int $id
-* @return: object|false
+* @return: object|null
 */
 $ticket = $ticketApi->getTicket($id);
 ```
+Returns `null` when no ticket has that ID. With Fluent Support Pro active, the ticket includes `custom_fields`.
 
 ### addResponse($data, $agentId, $ticketId)
 The addResponse method will create a response by agent for a specific ticket.
@@ -39,10 +40,21 @@ The addResponse method will create a response by agent for a specific ticket.
 * @param array $data
 * @param int $agentId
 * @param int $ticketId
-* @return array|boolean
+* @return array|false
 */
 $data = $ticketApi->addResponse($data, $agentId, $ticketId);
 ```
+
+`$data` keys:
+
+- `content` (string, required): the reply HTML. The call returns `false` when it is empty
+- `conversation_type` (string): `response` (default) or `note` for an internal note
+- `close_ticket` (string): `yes` to close the ticket with the reply
+- `cc_emails` (array): extra email addresses to copy
+- `attachments` (array): IDs of files already uploaded for this ticket
+- `source` (string): where the reply came from, default `web`
+
+On success it returns an array with `response` (the new Conversation), `ticket` and `update_data`.
 
 ### createTicket($data)
 The createTicket method will create a new ticket.

@@ -737,7 +737,7 @@ This table stores the conversation data
         <tr>
             <td>conversation_type</td>
             <td>varchar(100) [<b>response</b>]</td>
-            <td></td>
+            <td>Examples: <code>response</code>, <code>note</code>. Pro Scheduled Replies also use <code>schedule</code> (pending), <code>schedule_cancelled</code> (cancelled); see Modules &rarr; Scheduled Replies</td>
         </tr>
         <tr>
             <td>content</td>

@@ -50,6 +50,8 @@ export default defineConfig({
           { text: 'Custom Widget ', link: '/modules/custom_widget' },
           { text: 'Internal Notifications', link: '/modules/internal-notifications' },
           { text: 'Remote Portal', link: '/modules/remote_portal' },
+          { text: 'Scheduled Replies', link: '/modules/scheduled-replies' },
+          { text: 'System Tools', link: '/modules/system-tools' },
         ],
       },
       {

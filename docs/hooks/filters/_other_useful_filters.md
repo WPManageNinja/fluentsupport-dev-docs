@@ -310,7 +310,7 @@ add_filter('fluent_support/migrator_class_mapper', function ($classMapper) {
         ])`
 
 This filter is located in <br>
-`fluent-support/app/Services/Tickets/Importer/MigratorService.php`
+`fluent-support/app/Modules/TicketImport/Importers/BaseImporter.php`
 </div>
 </explain-block>
 
@@ -368,7 +368,7 @@ add_filter('fluent_support/can_customer_access_portal', function ($canAccess, $c
 `apply_filters('fluent_support/can_customer_access_portal', true, $customer)`
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/CustomerPortalController.php`
+`fluent-support/app/Modules/CustomerPortal/PortalController.php`
 </div>
 </explain-block>
 
@@ -401,7 +401,7 @@ add_filter('fluent_support/can_customer_access_ticket', function ($canAccess, $c
 `apply_filters('fluent_support/can_customer_access_ticket', true, $customer, $ticket, $action)`
 
 This filter is located in <br>
-`fluent-support/app/Services/CustomerPortalService.php`
+`fluent-support/app/Modules/CustomerPortal/PortalService.php`
 </div>
 </explain-block>
 
@@ -516,7 +516,7 @@ add_filter('fluent_support/ticket_import_chunk_limit', function ($limit) {
 `apply_filters('fluent_support/ticket_import_chunk_limit', 20)`
 
 This filter is located in <br>
-`fluent-support/app/Services/Tickets/Importer/BaseImporter.php`
+`fluent-support/app/Modules/TicketImport/Importers/BaseImporter.php`
 </div>
 </explain-block>
 
@@ -542,7 +542,7 @@ add_filter('fluent_support/fs_tickets_updated_since', function ($date) {
 `apply_filters('fluent_support/fs_tickets_updated_since', '2010-01-19T02:00:00Z')`
 
 This filter is located in <br>
-`fluent-support/app/Services/Tickets/Importer/BaseImporter.php`
+`fluent-support/app/Modules/TicketImport/Importers/BaseImporter.php`
 </div>
 </explain-block>
 
@@ -624,7 +624,7 @@ add_filter('fluent_support/customer_page_ticket_widgets_limit', function ($limit
 `apply_filters('fluent_support/customer_page_ticket_widgets_limit', 20)`
 
 This filter is located in <br>
-`fluent-support/app/Models/Traits/CustomerTrait.php`
+`fluent-support/app/Modules/Customers/CustomerController.php`
 </div>
 </explain-block>
 
@@ -798,6 +798,33 @@ This filter is located in <br>
 </div>
 </explain-block>
 
+<explain-block title="fluent_support_mail_attachments_fetch_seconds">
+<hr>
+<div class="fs-docs-content">
+This filter hook sets the most seconds one request spends fetching remote (cloud storage) files to attach to emails. Files not fetched in time are sent as links instead.
+
+**Parameters**
+
+- '$seconds' (int|float) Time budget in seconds. Default `15`; `0` means no limit
+
+**Usage**
+
+```php
+add_filter('fluent_support/mail_attachments_fetch_seconds', function ($seconds) {
+    // ...do something
+    return $seconds;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/mail_attachments_fetch_seconds', 15)`
+
+This filter is located in <br>
+`fluent-support/app/Services/Storage/MailAttachments.php`
+</div>
+</explain-block>
+
 <explain-block title="fluent_support_attachment_email_url_ttl">
 <hr>
 <div class="fs-docs-content">
@@ -885,5 +912,86 @@ add_filter('fluent_support/attachment_local_copy', function ($path, $attachment,
 
 This filter is located in <br>
 `fluent-support/app/Services/Storage/StorageManager.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_system_tools_tables">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to add tables to the System Tools > Database Health page (since 2.4.5). Items without a `name` or `title` are dropped. Create the tables in `fluent_support/system_tools_database_repair` so **Repair** can restore them.
+
+**Parameters**
+
+- '$definitions' (array) Each item: `name` (without the WordPress prefix), `title`, optional `lazy` (bool, created on first use)
+
+**Usage**
+
+```php
+add_filter('fluent_support/system_tools_tables', function ($definitions) {
+    $definitions[] = ['name' => 'my_addon_logs', 'title' => 'My Add-on Logs'];
+    return $definitions;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/system_tools_tables', $definitions)`
+
+This filter is located in <br>
+`fluent-support/app/Modules/SystemTools/DatabaseHealth.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_system_tools_cleanup_types">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to add log types that the System Tools > Data Cleanup page can count and delete (since 2.4.5). Items missing `key`, `title`, or a callable `count` / `delete` are ignored.
+
+**Parameters**
+
+- '$types' (array) Each item: `key`, `title`, `count` (`callable(string $cutoff): int`) and `delete` (`callable(string $cutoff, int $limit): int`, rows removed, at most `$limit`)
+
+**Usage**
+
+```php
+add_filter('fluent_support/system_tools_cleanup_types', function ($types) {
+    // ...do something
+    return $types;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/system_tools_cleanup_types', [])`
+
+This filter is located in <br>
+`fluent-support/app/Modules/SystemTools/DataCleanup.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_system_tools_cron_events">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to add scheduled tasks to the System Tools > Cron Job Monitor page (since 2.4.5). Items without `hook`, `title` or `interval` are dropped.
+
+**Parameters**
+
+- '$jobs' (array) Each item: `hook`, `title`, `interval` (seconds), `scheduler` (`wp_cron` by default, or `action_scheduler`)
+
+**Usage**
+
+```php
+add_filter('fluent_support/system_tools_cron_events', function ($jobs) {
+    $jobs[] = ['hook' => 'my_addon_hourly', 'title' => 'My Add-on Sync', 'interval' => HOUR_IN_SECONDS];
+    return $jobs;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/system_tools_cron_events', $jobs)`
+
+This filter is located in <br>
+`fluent-support/app/Modules/SystemTools/CronMonitor.php`
 </div>
 </explain-block>

@@ -83,7 +83,7 @@ This filter is located in <br>
 <explain-block title="fluent_support_generate_response">
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to modify the prompt sent to the AI provider when an agent requests a generated reply suggestion for a ticket.
+This filter hook allows you to modify the prompt sent to the AI provider when an agent requests a generated reply suggestion for a ticket. This filter is available in Fluent Support Pro only.
 
 **Parameters**
 
@@ -104,14 +104,14 @@ add_filter('fluent_support/generate_response', function ($prompt, $ticket) {
 `apply_filters('fluent_support/generate_response', $prompt, $ticket)`
 
 This filter is located in <br>
-`fluent-support/app/Services/Integrations/FluentBot/FluentBotHelper.php`
+`fluent-support-pro/app/Services/Integrations/AI/AIHelper.php`
 </div>
 </explain-block>
 
 <explain-block title="fluent_support_generate_ticket_summary">
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to modify the prompt used when the AI summarises a ticket conversation.
+This filter hook allows you to modify the prompt used when the AI summarises a ticket conversation. This filter is available in Fluent Support Pro only.
 
 **Parameters**
 
@@ -130,14 +130,14 @@ add_filter('fluent_support/generate_ticket_summary', function ($prompt) {
 `apply_filters('fluent_support/generate_ticket_summary', $prompt)`
 
 This filter is located in <br>
-`fluent-support/app/Services/Integrations/FluentBot/FluentBotHelper.php`
+`fluent-support-pro/app/Services/Integrations/AI/AIHelper.php`
 </div>
 </explain-block>
 
 <explain-block title="fluent_support_find_customer_sentiment">
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to modify the prompt used when the AI analyses customer sentiment for a ticket.
+This filter hook allows you to modify the prompt used when the AI analyses customer sentiment for a ticket. This filter is available in Fluent Support Pro only.
 
 **Parameters**
 
@@ -156,14 +156,14 @@ add_filter('fluent_support/find_customer_sentiment', function ($prompt) {
 `apply_filters('fluent_support/find_customer_sentiment', $prompt)`
 
 This filter is located in <br>
-`fluent-support/app/Services/Integrations/FluentBot/FluentBotHelper.php`
+`fluent-support-pro/app/Services/Integrations/AI/AIHelper.php`
 </div>
 </explain-block>
 
 <explain-block title="fluent_support_modify_selected_text">
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to modify the prompt used when an agent asks the AI to rewrite or refine a selected portion of their reply text.
+This filter hook allows you to modify the prompt used when an agent asks the AI to rewrite or refine a selected portion of their reply text. This filter is available in Fluent Support Pro only.
 
 **Parameters**
 
@@ -182,14 +182,14 @@ add_filter('fluent_support/modify_selected_text', function ($prompt) {
 `apply_filters('fluent_support/modify_selected_text', $prompt)`
 
 This filter is located in <br>
-`fluent-support/app/Services/Integrations/FluentBot/FluentBotHelper.php`
+`fluent-support-pro/app/Services/Integrations/AI/AIHelper.php`
 </div>
 </explain-block>
 
 <explain-block title="fluent_support_get_create_response_preset_prompts">
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to add, remove, or modify the preset prompt buttons shown in the AI response generator panel when an agent is composing a reply.
+This filter hook allows you to add, remove, or modify the preset prompt buttons shown in the AI response generator panel when an agent is composing a reply. This filter is available in Fluent Support Pro only.
 
 **Parameters**
 
@@ -213,7 +213,6 @@ add_filter('fluent_support/get_create_response_preset_prompts', function ($prese
 `apply_filters('fluent_support/get_create_response_preset_prompts', $presets)`
 
 This filter is located in <br>
-`fluent-support/app/Services/Integrations/FluentBot/FluentBotHelper.php`,<br>
 `fluent-support-pro/app/Services/Integrations/AI/AIHelper.php`
 </div>
 </explain-block>
@@ -221,7 +220,7 @@ This filter is located in <br>
 <explain-block title="fluent_support_get_modify_response_preset_prompts">
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to add, remove, or modify the preset prompt buttons shown in the AI text-refinement panel when an agent selects text in their reply.
+This filter hook allows you to add, remove, or modify the preset prompt buttons shown in the AI text-refinement panel when an agent selects text in their reply. This filter is available in Fluent Support Pro only.
 
 **Parameters**
 
@@ -245,34 +244,7 @@ add_filter('fluent_support/get_modify_response_preset_prompts', function ($prese
 `apply_filters('fluent_support/get_modify_response_preset_prompts', $presets)`
 
 This filter is located in <br>
-`fluent-support/app/Services/Integrations/FluentBot/FluentBotHelper.php`,<br>
 `fluent-support-pro/app/Services/Integrations/AI/AIHelper.php`
-</div>
-</explain-block>
-
-<explain-block title="fluent_support_fluentbot_api_base_url">
-<hr>
-<div class="fs-docs-content">
-This filter hook allows you to override the base URL used to call the FluentBot AI API, e.g. to point at a proxy or a self-hosted endpoint.
-
-**Parameters**
-
-- `$baseUrl` (string) The default FluentBot API base URL
-
-**Usage**
-
-```php
-add_filter('fluent_support/fluentbot_api_base_url', function ($baseUrl) {
-    return 'https://my-proxy.example.com/fluentbot';
-}, 10, 1);
-```
-
-**Reference**
-
-`apply_filters('fluent_support/fluentbot_api_base_url', static::BASE_URL)`
-
-This filter is located in <br>
-`fluent-support/app/Services/Integrations/FluentBot/FluentBotHelper.php`
 </div>
 </explain-block>
 

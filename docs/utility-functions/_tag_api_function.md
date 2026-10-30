@@ -24,10 +24,11 @@ The getTag method retrieves data for a specific tag.
 /*
 * getTag method returns a specific tag by id
 * @param int $id
-* @return: object
+* @return: object|null
 */
 $tag = $tagApi->getTag($id);
 ```
+Returns `null` when no tag has that ID.
 
 ### createTag($data)
 This method Creates a new tag.
@@ -36,7 +37,7 @@ This method Creates a new tag.
 * createTag method will create a new tag
 *
 * @param array $data The data to create the tag.
-* @return array|null Returns the created tag or null.
+* @return object|null Returns the created tag, or null when `title` is empty.
 */
 $data = $tagApi->createTag($data);
 ```
@@ -49,7 +50,7 @@ This method will Updates a tag by using the tag ID.
 * updateTag method will update tag by id
 * @param int $id
 * @param array $data
-* @return array|null Returns the updated tag or null.
+* @return bool|null True on success, null when no ID or data was given or the tag was not found.
 */
 $data = $tagApi->updateTag($id, $data);
 ```
@@ -60,13 +61,13 @@ This method will delete a tag by using the tag ID
 /*
 * deleteTag method will delete tag by id
 * @param int $id
-* @return bool True if the deletion is successful; otherwise, returns false.
+* @return bool|null True if the deletion is successful, null when the tag was not found.
 */
 $data = $tagApi->deleteTag($id);
 ```
 
 ### getInstance()
-If you want to get the basic `FluentSupport\App\Models\Tag` model, you can achieve it with the following code
+If you want to get the basic `FluentSupport\App\Models\TicketTag` model, you can achieve it with the following code
 
 ```php 
 $tagInstance = FluentSupportApi('tags')->getInstance();

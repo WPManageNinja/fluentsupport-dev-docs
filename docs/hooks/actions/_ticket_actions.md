@@ -21,11 +21,7 @@ add_action('fluent_support/before_ticket_create', function ($ticketData, $custom
 `do_action('fluent_support/before_ticket_create', $ticketData, $customer)`
 
 This action is located in <br>
-`fluent-support/app/Services/CustomerPortalService.php`,<br>
-`fluent-support/app/Services/Tickets/TicketService.php`,<br>
-`fluent-support/app/Services/Integrations/FluentForm/FeedIntegration.php`,<br>
-`fluent-support/app/Services/Integrations/FluentCrm/CreateTicketAction.php`,<br>
-`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
+`fluent-support/app/Services/Tickets/TicketService.php`
 </div>
 
 </explain-block>
@@ -53,11 +49,7 @@ add_action('fluent_support/ticket_created', function ($ticket, $customer) {
 `do_action('fluent_support/ticket_created', $ticket, $customer)`
 
 This action is located in <br>
-`fluent-support/app/Services/CustomerPortalService.php`,<br>
-`fluent-support/app/Services/Tickets/TicketService.php`,<br>
-`fluent-support/app/Services/Integrations/FluentForm/FeedIntegration.php`,<br>
-`fluent-support/app/Services/Integrations/FluentCrm/CreateTicketAction.php`,<br>
-`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`
+`fluent-support/app/Services/Tickets/TicketService.php`
 
 </div>
 </explain-block>
@@ -140,7 +132,6 @@ add_action('fluent_support/deleting_ticket', function ($ticket) {
 `do_action('fluent_support/deleting_ticket', $this)`
 
 This action is located in <br>
-`fluent-support/app/Models/Ticket.php`,<br>
 `fluent-support/app/Services/Tickets/TicketService.php`
 </div>
 </explain-block>
@@ -167,7 +158,7 @@ add_action('fluent_support/ticket_tag_added', function ($tagId, $ticket) {
 `do_action('fluent_support/ticket_tag_added', $tagId, $this)`
 
 This action is located in <br>
-`fluent-support/app/Models/Ticket.php`
+`fluent-support/app/Services/Tickets/TicketService.php`
 </div>
 </explain-block>
 <explain-block title="fluent_support_after_ticket_tag_removed">
@@ -192,7 +183,7 @@ add_action('fluent_support/ticket_tag_removed', function ($tagId, $ticket) {
 `do_action('fluent_support/ticket_tag_removed', $tagId, $this)`
 
 This action is located in <br>
-`fluent-support/app/Models/Ticket.php`
+`fluent-support/app/Services/Tickets/TicketService.php`
 </div>
 </explain-block>
 
@@ -485,11 +476,7 @@ add_action('fluent_support/agent_assigned_to_ticket', function ($agent, $ticket,
 `do_action('fluent_support/agent_assigned_to_ticket', $ticket->agent, $ticket, $assigner, $previousAgentId)`
 
 This action is located in <br>
-`fluent-support/app/Http/Controllers/TicketController.php`,<br>
-`fluent-support/app/Services/Tickets/ResponseService.php`,<br>
-`fluent-support/app/Hooks/Handlers/AsyncActionHandler.php`,<br>
-`fluent-support/app/Modules/MCP/Helpers/MCPHelper.php`,<br>
-`fluent-support-pro/app/Services/Workflow/ActionRunner.php`
+`fluent-support/app/Services/Tickets/TicketService.php`
 </div>
 </explain-block>
 
@@ -514,7 +501,6 @@ add_action('fluent_support/ticket_closed', function ($ticket, $person) {
 `do_action('fluent_support/ticket_closed', $ticket, $person)`
 
 This action is located in <br>
-`fluent-support/app/Services/Tickets/ResponseService.php`,<br>
 `fluent-support/app/Services/Tickets/TicketService.php`
 
 </div>
@@ -668,7 +654,260 @@ add_action('fluent_support/agent_feedback_received', function ($rating, $convers
 `do_action('fluent_support/agent_feedback_received', $rating, $conversation, $ticket, $ticket->customer)`
 
 This action is located in <br>
-`fluent-support/app/Services/CustomerPortalService.php`
+`fluent-support/app/Modules/CustomerPortal/PortalService.php`
 
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_ticket_status_changed">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a ticket status changes, from any path (the admin ticket screen, bulk actions, MCP, workflows). It also fires when a ticket is closed or reopened, so it covers every non-silent status change.
+
+**Parameters**
+
+- '$ticket' (object) Ticket data
+- '$oldStatus' (string) Previous status
+- '$newStatus' (string) New status
+- '$by' (object|null) The person (agent) who made the change. `null` only for an automation with no agent
+
+**Usage**
+
+```php
+add_action('fluent_support/ticket_status_changed', function ($ticket, $oldStatus, $newStatus, $by) {
+     // ...do something
+}, 10, 4);
+```
+
+**Reference**
+
+`do_action('fluent_support/ticket_status_changed', $ticket, $oldStatus, $newStatus, $by)`
+
+This action is located in <br>
+`fluent-support/app/Services/Tickets/TicketService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_ticket_priority_changed">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after the admin priority of a ticket changes.
+
+**Parameters**
+
+- '$ticket' (object) Ticket data
+- '$oldPriority' (string) Previous priority
+- '$newPriority' (string) New priority
+- '$by' (object|null) The person (agent) who made the change. `null` only for an automation with no agent
+
+**Usage**
+
+```php
+add_action('fluent_support/ticket_priority_changed', function ($ticket, $oldPriority, $newPriority, $by) {
+     // ...do something
+}, 10, 4);
+```
+
+**Reference**
+
+`do_action('fluent_support/ticket_priority_changed', $ticket, $oldPriority, $newPriority, $by)`
+
+This action is located in <br>
+`fluent-support/app/Services/Tickets/TicketService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_ticket_updated">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after any of a ticket's changeable fields (`title`, `status`, `priority`, `client_priority`, `product_id`, `customer_id`) change. It fires once per update with every changed field.
+
+**Parameters**
+
+- '$ticket' (object) Ticket data
+- '$changed' (array) The changed fields: `field => [from, to]`
+- '$by' (object|null) The person (agent) who made the change. `null` only for an automation with no agent
+
+**Usage**
+
+```php
+add_action('fluent_support/ticket_updated', function ($ticket, $changed, $by) {
+     // ...do something
+}, 10, 3);
+```
+
+**Reference**
+
+`do_action('fluent_support/ticket_updated', $ticket, $changed, $by)`
+
+This action is located in <br>
+`fluent-support/app/Services/Tickets/TicketService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_ticket_unassigned">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after the assigned agent is removed from a ticket. It does not fire when the ticket had no agent.
+
+**Parameters**
+
+- '$ticket' (object) Ticket data
+- '$previousAgentId' (int) ID of the agent who was removed
+- '$by' (object|null) The person who unassigned the ticket. `null` for an automation with no agent
+
+**Usage**
+
+```php
+add_action('fluent_support/ticket_unassigned', function ($ticket, $previousAgentId, $by) {
+     // ...do something
+}, 10, 3);
+```
+
+**Reference**
+
+`do_action('fluent_support/ticket_unassigned', $ticket, $previousAgentId, $by)`
+
+This action is located in <br>
+`fluent-support/app/Services/Tickets/TicketService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_ticket_watchers_added">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after one or more agents are added as watchers of a ticket. Agents who were already watching are left out of `$agentIds`.
+
+**Parameters**
+
+- '$ticket' (object) Ticket data
+- '$agentIds' (array) IDs of the agents added
+- '$by' (object|null) The person who added them
+
+**Usage**
+
+```php
+add_action('fluent_support/ticket_watchers_added', function ($ticket, $agentIds, $by) {
+     // ...do something
+}, 10, 3);
+```
+
+**Reference**
+
+`do_action('fluent_support/ticket_watchers_added', $ticket, $added, $by)`
+
+This action is located in <br>
+`fluent-support/app/Services/Tickets/TicketService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_ticket_watchers_removed">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after one or more watchers are removed from a ticket. It only fires when at least one agent was actually removed.
+
+**Parameters**
+
+- '$ticket' (object) Ticket data
+- '$agentIds' (array) IDs of the agents removed
+- '$by' (object|null) The person who removed them
+
+**Usage**
+
+```php
+add_action('fluent_support/ticket_watchers_removed', function ($ticket, $agentIds, $by) {
+     // ...do something
+}, 10, 3);
+```
+
+**Reference**
+
+`do_action('fluent_support/ticket_watchers_removed', $ticket, $removed, $by)`
+
+This action is located in <br>
+`fluent-support/app/Services/Tickets/TicketService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_response_updated">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a reply, internal note or draft is edited.
+
+**Parameters**
+
+- '$response' (object) The edited response (Conversation model)
+- '$ticket' (object) Ticket data
+- '$by' (object) The person who edited it
+
+**Usage**
+
+```php
+add_action('fluent_support/response_updated', function ($response, $ticket, $by) {
+     // ...do something
+}, 10, 3);
+```
+
+**Reference**
+
+`do_action('fluent_support/response_updated', $response, Ticket::find($response->ticket_id), $by)`
+
+This action is located in <br>
+`fluent-support/app/Services/Tickets/ResponseService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_response_deleted">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a reply, internal note or draft is deleted. The row is already gone from the database when it fires.
+
+**Parameters**
+
+- '$response' (object) The deleted response (Conversation model)
+- '$ticket' (object) Ticket data
+- '$by' (object) The person who deleted it
+
+**Usage**
+
+```php
+add_action('fluent_support/response_deleted', function ($response, $ticket, $by) {
+     // ...do something
+}, 10, 3);
+```
+
+**Reference**
+
+`do_action('fluent_support/response_deleted', $response, $ticket, $by)`
+
+This action is located in <br>
+`fluent-support/app/Services/Tickets/ResponseService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_ticket_content_updated">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a site admin replaces a ticket's opening message, for example to remove sensitive data (since 2.5.0). The previous text is not kept; an activity line is added to the ticket instead.
+
+**Parameters**
+
+- '$ticket' (object) The updated ticket (Ticket model)
+- '$by' (object) The person who edited the message
+
+**Usage**
+
+```php
+add_action('fluent_support/ticket_content_updated', function ($ticket, $by) {
+     // ...do something
+}, 10, 2);
+```
+
+**Reference**
+
+`do_action('fluent_support/ticket_content_updated', $ticket, $by)`
+
+This action is located in <br>
+`fluent-support/app/Services/Tickets/TicketService.php`
 </div>
 </explain-block>

@@ -432,10 +432,6 @@ add_filter('fluent_support/create_ticket_data', function ($ticketData, $customer
 `apply_filters('fluent_support/create_ticket_data', $ticketData, $customer)`
 
 This filter is located in <br>
-`fluent-support-pro/app/Services/Integrations/FluentEmailPiping/ByMailHandler.php`,<br>
-`fluent-support/app/Services/CustomerPortalService.php`,<br>
-`fluent-support/app/Services/Integrations/FluentCrm/CreateTicketAction.php`,<br>
-`fluent-support/app/Services/Integrations/FluentForm/FeedIntegration.php`,<br>
 `fluent-support/app/Services/Tickets/TicketService.php`
 
 </div>
@@ -804,7 +800,7 @@ add_filter('fluent_support/ticket_close_activity_source', function ($source, $ti
 `apply_filters('fluent_support/ticket_close_activity_source', '', $ticket)`
 
 This filter is located in <br>
-`fluent-support/app/Services/Tickets/ResponseService.php`
+`fluent-support/app/Services/Tickets/TicketService.php`
 </div>
 </explain-block>
 
@@ -832,6 +828,150 @@ add_filter('fluent_support/contact_search_partial_allowed', function ($allowed) 
 `apply_filters('fluent_support/contact_search_partial_allowed', PermissionManager::currentUserCan('fst_sensitive_data'))`
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/CustomerController.php`
+`fluent-support/app/Modules/Customers/CustomerController.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_tickets_list">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to modify a page of the admin ticket list before it is returned.
+
+**Parameters**
+
+- '$tickets' (object) Paginated tickets (LengthAwarePaginator)
+
+**Usage**
+
+```php
+add_filter('fluent_support/tickets_list', function ($tickets) {
+    // ...do something
+    return $tickets;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/tickets_list', $tickets)`
+
+This filter is located in <br>
+`fluent-support/app/Http/Controllers/TicketController.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_ticket_view_data">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to modify the data returned for the single ticket screen in the admin.
+
+**Parameters**
+
+- '$data' (array) Ticket view response: `ticket`, `responses`, `agent_id` and, when present, `watchers` and `fluentcrm_profile`
+- '$ticket' (object) The viewed ticket
+- '$scheduledRows' (object) Unsent scheduled replies (Collection), kept out of `responses`
+
+**Usage**
+
+```php
+add_filter('fluent_support/ticket_view_data', function ($data, $ticket, $scheduledRows) {
+    // ...do something
+    return $data;
+}, 10, 3);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/ticket_view_data', $data, $ticket, $scheduledRows)`
+
+This filter is located in <br>
+`fluent-support/app/Http/Controllers/TicketController.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_custom_field_labels">
+<hr>
+<div class="fs-docs-content">
+This filter hook supplies the ticket custom field definitions used by `Ticket::customData()`. Fluent Support Pro answers it; without Pro it returns an empty array and tickets have no custom data.
+
+**Parameters**
+
+- '$fields' (array) Custom field definitions keyed by field slug
+- '$scope' (string) `admin` or `public` (customer portal)
+
+**Usage**
+
+```php
+add_filter('fluent_support/custom_field_labels', function ($fields, $scope) {
+    // ...do something
+    return $fields;
+}, 10, 2);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/custom_field_labels', [], $scope)`
+
+This filter is located in <br>
+`fluent-support/app/Models/Ticket.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_custom_fields_rendered">
+<hr>
+<div class="fs-docs-content">
+This filter hook supplies the rendered custom fields shown in the admin ticket sidebar. Fluent Support Pro answers it.
+
+**Parameters**
+
+- '$renderedFields' (array) Rendered custom fields
+- '$customer' (object) The ticket's customer
+- '$scope' (string) Always `admin` here
+
+**Usage**
+
+```php
+add_filter('fluent_support/custom_fields_rendered', function ($renderedFields, $customer, $scope) {
+    // ...do something
+    return $renderedFields;
+}, 10, 3);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/custom_fields_rendered', [], $ticket->customer, 'admin')`
+
+This filter is located in <br>
+`fluent-support/app/Http/Controllers/TicketController.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_schedule_response">
+<hr>
+<div class="fs-docs-content">
+This filter hook schedules an agent reply instead of sending it, when the reply request contains `scheduled_at`. Fluent Support Pro answers it; if nothing returns response data, the request fails with "Scheduling replies needs Fluent Support Pro."
+
+**Parameters**
+
+- '$responseData' (array|null) `null` until a handler schedules the reply; return the response data
+- '$data' (array) The reply payload
+- '$agent' (object) The replying agent
+- '$ticket' (object) Ticket data
+- '$scheduledAt' (int) Unix timestamp to send at
+
+**Usage**
+
+```php
+add_filter('fluent_support/schedule_response', function ($responseData, $data, $agent, $ticket, $scheduledAt) {
+    // ...do something
+    return $responseData;
+}, 10, 5);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/schedule_response', null, $data, $agent, $ticket, $scheduledAt)`
+
+This filter is located in <br>
+`fluent-support/app/Http/Controllers/ResponseController.php`
 </div>
 </explain-block>

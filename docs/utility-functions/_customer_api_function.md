@@ -25,35 +25,39 @@ The `getCustomer` method fetches customer data.
 /*
 * getCustomer method will return a specific customer by id
 * @param int $customerId 
-* @return object|boolean
+* @return object|null
 */
 $customer = $customersApi->getCustomer($customerId);
 ```
+Returns `null` when no customer has that ID.
 
-### updateCustomer($data, $agentId)
-This method update the customer data 
+### updateCustomer($data, $customerId)
+This method updates the customer data.
 ```php 
 /*
  * updateCustomer method will update the specific customer by id
  *
  * @param array $data
- * @param int $customer_id
- * @return object|boolean
+ * @param int $customerId
+ * @return bool True on success, false if the customer was not found or no ID was given.
  */
-$customer = $customersApi->updateCustomer($data, $agentId);
+$updated = $customersApi->updateCustomer($data, $customerId);
 ```
 
 ### createCustomerWithOrWithoutWpUser($data, $createWpUser)
-Create a customer with or without a corresponding WordPress user. If $createWpUser is true.
+Create a customer with or without a corresponding WordPress user.
+
+- Without a WordPress user, `$data['email']` is required. The call returns `false` if the email is invalid or a customer with that email already exists.
+- With `$createWpUser = true`, `$data['username']` and `$data['email']` are used to create the user; `$data['password']` is optional (a random one is generated). The call returns `false` if the username is taken or the user could not be created.
 ```php 
 /*
  * createCustomerWithOrWithoutWpUser method creates a new customer, with or without a corresponding WordPress user.
  * If creating a WordPress user is requested, the process involves first creating the WordPress user,
- * and upon successful creation, proceeds to create a Fluent Support agent.
+ * and upon successful creation, proceeds to create a Fluent Support customer.
  *
- * @param array $data - Data for creating the agent.
+ * @param array $data - Data for creating the customer.
  * @param bool $createWpUser - Whether to create a corresponding WordPress user.
- * @return mixed - Returns the created customer or null.
+ * @return object|false - Returns the created customer or false.
  */
 $createdCustomer = $customersApi->createCustomerWithOrWithoutWpUser($data, $createWpUser);
 ```
@@ -75,7 +79,7 @@ $customersApi->deleteCustomer($customerId, $withAssociatedData);
 If you want to get the basic `FluentSupport\App\Models\Customer` model, you can achieve it with the following code
 
 ```php 
-$agentInstance = FluentSupportApi('customers')->getInstance();
+$customerInstance = FluentSupportApi('customers')->getInstance();
 ```
 
 ### Other methods

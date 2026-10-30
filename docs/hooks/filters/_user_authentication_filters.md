@@ -27,7 +27,7 @@ add_filter('fluent_support/login_form_args', function ($loginArgs) {
 
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/AuthHandler.php`
+`fluent-support/app/Modules/Auth/AuthForms.php`
 </div>
 </explain-block>
 
@@ -86,7 +86,7 @@ add_filter('fluent_support/before_registration_form_close', function ($content, 
 
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/AuthHandler.php`
+`fluent-support/app/Modules/Auth/AuthForms.php`
 
 </div>
 </explain-block>
@@ -115,7 +115,7 @@ add_filter('fluent_support/registration_form_fields', function ($fields) {
 <b>`$fields` is used here as an illustrative variable to represent the raw array value found in the main filter, demonstrating the registration form fields data.</b>
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/AuthHandler.php`
+`fluent-support/app/Modules/Auth/AuthForms.php`
 
 </div>
 </explain-block>
@@ -145,8 +145,8 @@ add_filter('fluent_support/custom_registration_form_fields', function ($customFi
 
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/AuthHandler.php`,<br>
-`fluent-support/app/Models/Traits/CustomerTrait.php` 
+`fluent-support/app/Modules/Auth/AuthForms.php`,<br>
+`fluent-support/app/Modules/Customers/CustomerController.php`
 
 </div>
 </explain-block>
@@ -183,7 +183,7 @@ add_filter('fluent_support/reset_password_form', function ($field) {
 
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/AuthHandler.php`,
+`fluent-support/app/Modules/Auth/AuthForms.php`
 
 
 </div>
@@ -213,7 +213,7 @@ add_filter('fluent_support/signup_loading_icon', function ($loadingIcon) {
 
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/AuthHandler.php`
+`fluent-support/app/Modules/Auth/AuthForms.php`
 
 
 </div>
@@ -250,7 +250,7 @@ add_filter('fluent_support/auth_shortcode_defaults', function ($shortCodeDefault
 
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/AuthHandler.php`
+`fluent-support/app/Modules/Auth/AuthForms.php`
 
 
 </div>
@@ -280,7 +280,7 @@ add_filter('fluent_support/signup_form_data', function ($formData) {
 
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthController.php`
 
 
 </div>
@@ -310,7 +310,7 @@ add_filter('fluent_support/signup_create_user_error', function ($errorMessage) {
 
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthController.php`
 
 
 </div>
@@ -344,36 +344,7 @@ add_filter('fluent_support/signup_complete_response', function ($data) {
 
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
-
-
-</div>
-</explain-block>
-
-<explain-block title="fluent_support_use_native_login"> 
-<hr>
-<div class="fs-docs-content">
-This filter hook allows you to retrieve and modify native login data.
-
-**Parameters**
-
-- '$useNativeLogin' (boolean) Use native login or not
-
-**Usage**
-
-```php
-add_filter('fluent_support_use_native_login', function ($useNativeLogin) {
-    // ...do something
-    return $useNativeLogin;
-}, 10, 1);
-```
-
-**Reference**
-`apply_filters('fluent_support_use_native_login', true)`
-
-
-This filter is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthController.php`
 
 
 </div>
@@ -402,7 +373,7 @@ add_filter('fluent_support/signup_validation_rules', function ($rules) {
 
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthController.php`
 
 
 </div>
@@ -431,7 +402,7 @@ add_filter('fluent_support/reset_password_mail_subject', function ($subject) {
 
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthController.php`
 
 
 </div>
@@ -462,7 +433,7 @@ add_filter('fluent_support/reset_password_message', function ($message, $user_da
 
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthController.php`
 
 
 </div>
@@ -492,7 +463,7 @@ add_filter('fluent_support/signup_validation_messages', function ($arg, $rules) 
 
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthController.php`
 
 
 </div>
@@ -521,7 +492,7 @@ add_filter('fluent_support/signup_email', function ($email) {
 
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthService.php`
 
 
 </div>
@@ -550,7 +521,7 @@ add_filter('fluent_support/signup_username', function ($userName) {
 
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthService.php`
 
 </div>
 </explain-block>
@@ -578,7 +549,7 @@ add_filter('fluent_support/signup_password', function ($password) {
 
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthService.php`
 
 </div>
 </explain-block>
@@ -606,7 +577,7 @@ add_filter('fluent_support/update_user_data', function ($data) {
 
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthService.php`
 
 </div>
 
@@ -635,7 +606,8 @@ add_filter('fluent_support/user_role', function ($setRole) {
 
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthService.php`,<br>
+`fluent-support/app/Modules/Auth/FluentAuthBridge.php`
 
 </div>
 </explain-block>
@@ -662,7 +634,7 @@ add_filter('fluent_support/reset_password_link', function ($linkText) {
 `apply_filters('fluent_support/reset_password_link', sprintf(__('Reset your password for %s', 'fluent-support'), get_bloginfo('name')))`
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthController.php`
 </div>
 </explain-block>
 
@@ -688,7 +660,7 @@ add_filter('fluent_support/signup_verification_hourly_limit', function ($globalL
 `apply_filters('fluent_support/signup_verification_hourly_limit', 100)`
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/EmailVerificationHandler.php`
+`fluent-support/app/Modules/Auth/AuthController.php`
 </div>
 </explain-block>
 
@@ -714,7 +686,7 @@ add_filter('fluent_support/signup_verification_mail_subject', function ($mailSub
 `apply_filters('fluent_support/signup_verification_mail_subject', sprintf(__('Your registration verification code for %s', 'fluent-support'), get_bloginfo('name')))`
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/EmailVerificationHandler.php`
+`fluent-support/app/Modules/Auth/AuthService.php`
 </div>
 </explain-block>
 
@@ -739,6 +711,6 @@ add_filter('fluent_support/use_fluent_auth_forms', '__return_false');
 `apply_filters('fluent_support/use_fluent_auth_forms', $adopt)`
 
 This filter is located in <br>
-`fluent-support/app/Services/FluentAuthBridge.php`
+`fluent-support/app/Modules/Auth/FluentAuthBridge.php`
 </div>
 </explain-block>
