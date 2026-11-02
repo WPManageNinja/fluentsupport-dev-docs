@@ -147,8 +147,7 @@ add_filter('fluent_support/signup_verification_email_body', function ($message, 
 `apply_filters('fluent_support/signup_verification_email_body', $message, $code, $formData)`
 
 This filter is located in <br>
-`fluent-support/app/Hooks/Handlers/EmailVerificationHandler.php`,<br>
-`fluent-support/app/Hooks/Handlers/TwoFaHandler.php`
+`fluent-support/app/Modules/Auth/AuthService.php`
 </div>
 </explain-block>
 

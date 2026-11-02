@@ -25,10 +25,11 @@ The `getProduct` method fetches product data.
 /*
 * getProduct method returns a specific product by id
 * @param int $id
-* @return: object
+* @return: object|null
 */
 $product = $productApi->getProduct($id);
 ```
+Returns `null` when no product has that ID.
 
 ### createProduct($data)
 This method Creates a new product.
@@ -37,7 +38,7 @@ This method Creates a new product.
 * createProduct method creates a new product.
 *
 * @param array $data The data to create the product.
-* @return array|null Returns the created product or null.
+* @return object|null Returns the created product, or null when `title` is empty.
 */
 $data = $productApi->createProduct($data);
 ```
@@ -50,7 +51,7 @@ This method will Updates a product by using the product ID.
 * updateProduct method will update product by id
 * @param int $id
 * @param array $data
-* @return array|null Returns the updated product or null.
+* @return bool|null True on success, null when no ID or data was given or the product was not found.
 */
 $data = $productApi->updateProduct($id, $data);
 ```
@@ -61,7 +62,7 @@ This method will delete a product by using the product ID
 /*
 * deleteProduct method will delete product by id
 * @param int $id
-* @return bool True if the deletion is successful; otherwise, returns false.
+* @return bool|null True if the deletion is successful, null when the product was not found.
 */
 $data = $productApi->deleteProduct($id);
 ```

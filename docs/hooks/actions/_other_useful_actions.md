@@ -19,7 +19,7 @@ add_action('fluent_support/before_assigning_role', function ($user) {
 `do_action('fluent_support/before_assigning_role', $user)`
 
 This action is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthService.php`
 </div>
 
 </explain-block>
@@ -46,7 +46,7 @@ add_action('fluent_support/after_assigning_role', function ($user) {
 `do_action('fluent_support/after_assigning_role', $user)`
 
 This action is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthService.php`
 </div>
 
 </explain-block>
@@ -102,37 +102,10 @@ add_action('fluent_support/workflow_triggered', function ($workflow, $ticket, $a
 `do_action('fluent_support/workflow_triggered', $workflow, $ticket, $actor, $context)`
 
 This action is located in <br>
-`fluent-support-pro/app/Hooks/Handlers/WorkflowHandler.php`,<br>
-`fluent-support-pro/app/Http/Controllers/WorkflowsController.php`
+`fluent-support-pro/app/Modules/Workflows/Runner.php`,<br>
+`fluent-support-pro/app/Modules/Workflows/WorkflowController.php`
 
 </div>
-</explain-block>
-
-<explain-block title="fluent_support_customer_created">
-<hr>
-<div class="fs-docs-content">
-This action is triggered after a new customer record is created in Fluent Support.
-
-**Parameters**
-- '$customer' (object) Customer object
-
-**Usage**
-
-```php
-add_action('fluent_support/customer_created', function ($customer) {
-     // ...do something
-}, 10, 1);
-```
-
-**Reference**
-
-`do_action('fluent_support/customer_created', $customer)`
-
-This action is located in <br>
-`fluent-support/app/Models/Customer.php`,<br>
-`fluent-support/app/Http/Controllers/TicketController.php`
-</div>
-
 </explain-block>
 
 <explain-block title="fluent_support_after_creating_any_response">
@@ -191,7 +164,7 @@ add_action('fluent_support/before_delete_email_box', function ($box, $fallbackBo
 `do_action('fluent_support/before_delete_email_box', $box, $fallbackBox)`
 
 This action is located in <br>
-`fluent-support/app/Services/MailerInbox/MailBoxService.php`
+`fluent-support/app/Http/Controllers/MailBoxController.php`
 
 </div>
 </explain-block>
@@ -217,7 +190,7 @@ add_action('fluent_support/mailbox_deleted', function ($mailBoxId, $fallbackBox)
 `do_action('fluent_support/mailbox_deleted', $mailBoxId, $fallbackBox)`
 
 This action is located in <br>
-`fluent-support/app/Services/MailerInbox/MailBoxService.php`
+`fluent-support/app/Http/Controllers/MailBoxController.php`
 
 </div>
 </explain-block>
@@ -243,7 +216,7 @@ add_action('fluent_support/telegram_payload_error', function ($responseData, $pa
 `do_action('fluent_support/telegram_payload_error', $responseData, $payload)`
 
 This action is located in <br>
-`fluent-support/app/Services/ThirdParty/HandleTelegramEvent.php`
+`fluent-support-pro/app/Modules/Chat/ChatController.php`
 
 </div>
 
@@ -270,7 +243,7 @@ add_action('fluent_support/slack_signature_verification_failed', function ($reas
 `do_action('fluent_support/slack_signature_verification_failed', $reason)`
 
 This action is located in <br>
-`fluent-support-pro/app/Services/Integrations/WebhookSignatureVerifier.php`
+`fluent-support-pro/app/Modules/Chat/Slack.php`
 
 </div>
 </explain-block>
@@ -468,11 +441,10 @@ add_action('fluent_support/tickets_query_by_permission_ref', function (&$tickets
 `do_action_ref_array('fluent_support/tickets_query_by_permission_ref', [&$ticketsQuery, $userId])`
 
 This action is located in <br>
-`fluent-support/app/Http/Controllers/TicketController.php`,<br>
-`fluent-support/app/Hooks/Handlers/PermissionFilterManager.php`,<br>
-`fluent-support/app/Services/Notifications/NotificationQueryService.php`,<br>
-`fluent-support/app/Modules/MCP/Tools/ManagementTools.php`, `CustomerTools.php`, `TicketTools.php`,<br>
-`fluent-support-pro/app/Http/Controllers/WorkflowsController.php`
+`fluent-support/app/Modules/MCP/Tools/CustomerTools.php`,<br>
+`fluent-support/app/Modules/MCP/Tools/ManagementTools.php`,<br>
+`fluent-support/app/Services/Tickets/AgentTicketAccess.php`,<br>
+`fluent-support-pro/app/Modules/Workflows/WorkflowController.php`
 </div>
 </explain-block>
 
@@ -499,7 +471,7 @@ add_action('fluent_support/customer_portal/tickets_query', function (&$ticketsQu
 `do_action_ref_array('fluent_support/customer_portal/tickets_query', [&$ticketsQuery, $customer, $request])`
 
 This action is located in <br>
-`fluent-support/app/Http/Controllers/CustomerPortalController.php`
+`fluent-support/app/Modules/CustomerPortal/PortalController.php`
 </div>
 </explain-block>
 
@@ -644,8 +616,7 @@ add_action('fluent_support/main_tickets_query', function ($ticketsQuery, $args) 
 `do_action_ref_array('fluent_support/main_tickets_query', [&$ticketsQuery, $this->args])`
 
 This action is located in <br>
-`fluent-support/app/Services/TicketQueryService.php`,<br>
-`fluent-support/app/Services/Notifications/NotificationQueryService.php`
+`fluent-support/app/Services/Tickets/TicketQuery.php`
 </div>
 </explain-block>
 
@@ -744,5 +715,31 @@ add_action('fluent_support/merging_customer_records', function ($source, $target
 This action is located in <br>
 `fluent-support/app/Services/EmailClaimService.php`,<br>
 `fluent-support-pro/app/Hooks/actions.php` (listener)
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_system_tools_database_repair">
+<hr>
+<div class="fs-docs-content">
+This action is triggered when an admin runs **Repair** on the System Tools > Database Health page, after the core migrations re-run (since 2.4.5). Add-ons that register tables through `fluent_support/system_tools_tables` should create them here.
+
+**Parameters**
+
+- None
+
+**Usage**
+
+```php
+add_action('fluent_support/system_tools_database_repair', function () {
+     // ...create your add-on tables
+}, 10, 0);
+```
+
+**Reference**
+
+`do_action('fluent_support/system_tools_database_repair')`
+
+This action is located in <br>
+`fluent-support/app/Modules/SystemTools/DatabaseHealth.php`
 </div>
 </explain-block>

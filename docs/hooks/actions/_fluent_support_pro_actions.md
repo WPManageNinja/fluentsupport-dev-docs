@@ -109,3 +109,194 @@ This action is located in <br>
 `fluent-support-pro/app/Services/Integrations/FluentEmailPiping/AutoReplyGuard.php`
 </div>
 </explain-block>
+
+### Scheduled Reply Actions
+
+<explain-block title="fluent_support_scheduled_reply_created">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after an agent schedules a reply to be sent later (since 2.5.0). This action is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$conversation' (object) The scheduled reply (Conversation model)
+- '$ticket' (object) Ticket data
+- '$agent' (object) The agent who scheduled it
+
+**Usage**
+
+```php
+add_action('fluent_support/scheduled_reply_created', function ($conversation, $ticket, $agent) {
+     // ...do something
+}, 10, 3);
+```
+
+**Reference**
+
+`do_action('fluent_support/scheduled_reply_created', $conversation, $ticket, $agent)`
+
+This action is located in <br>
+`fluent-support-pro/app/Modules/ScheduledReplies/ScheduledReplyService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_scheduled_reply_updated">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a scheduled reply's text, send time or options change (since 2.5.0). This action is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$conversation' (object) The scheduled reply (Conversation model)
+
+**Usage**
+
+```php
+add_action('fluent_support/scheduled_reply_updated', function ($conversation) {
+     // ...do something
+}, 10, 1);
+```
+
+**Reference**
+
+`do_action('fluent_support/scheduled_reply_updated', $conversation)`
+
+This action is located in <br>
+`fluent-support-pro/app/Modules/ScheduledReplies/ScheduledReplyService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_scheduled_reply_cancelled">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a scheduled reply is cancelled (since 2.5.0). The conversation row is already deleted when it fires. This action is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$conversation' (object) The cancelled reply (Conversation model)
+- '$cancelledBy' (object|null) The person who cancelled it
+
+**Usage**
+
+```php
+add_action('fluent_support/scheduled_reply_cancelled', function ($conversation, $cancelledBy) {
+     // ...do something
+}, 10, 2);
+```
+
+**Reference**
+
+`do_action('fluent_support/scheduled_reply_cancelled', $conversation, $cancelledBy)`
+
+This action is located in <br>
+`fluent-support-pro/app/Modules/ScheduledReplies/ScheduledReplyService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_scheduled_reply_paused">
+<hr>
+<div class="fs-docs-content">
+This action is triggered when a scheduled reply is held for an agent to review instead of being sent (since 2.5.0). This action is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$conversation' (object) The scheduled reply (Conversation model)
+- '$reason' (string) Why it was paused: `customer_replied`, `ticket_closed`, `agent_unavailable` or `missed`
+
+**Usage**
+
+```php
+add_action('fluent_support/scheduled_reply_paused', function ($conversation, $reason) {
+     // ...do something
+}, 10, 2);
+```
+
+**Reference**
+
+`do_action('fluent_support/scheduled_reply_paused', $conversation, $reason)`
+
+This action is located in <br>
+`fluent-support-pro/app/Modules/ScheduledReplies/ScheduledReplyService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_scheduled_reply_sent">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a scheduled reply has been sent to the customer (since 2.5.0). If the reply was set to close the ticket, the ticket is already closed. This action is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$conversation' (object) The sent reply (Conversation model)
+- '$ticket' (object) Ticket data
+- '$agent' (object) The agent the reply is sent as
+
+**Usage**
+
+```php
+add_action('fluent_support/scheduled_reply_sent', function ($conversation, $ticket, $agent) {
+     // ...do something
+}, 10, 3);
+```
+
+**Reference**
+
+`do_action('fluent_support/scheduled_reply_sent', $conversation, $ticket, $agent)`
+
+This action is located in <br>
+`fluent-support-pro/app/Modules/ScheduledReplies/ScheduledReplyService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_remote_portal_connected">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after a remote site connects to this site's Remote Portal. This action is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$siteUrl' (string) URL of the connected remote site
+- '$userId' (int) ID of the current user
+
+**Usage**
+
+```php
+add_action('fluent_support/remote_portal_connected', function ($siteUrl, $userId) {
+     // ...do something
+}, 10, 2);
+```
+
+**Reference**
+
+`do_action('fluent_support/remote_portal_connected', $siteUrl, $userId)`
+
+This action is located in <br>
+`fluent-support-pro/app/Http/Controllers/RemotePortalController.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_remote_portal_disconnected">
+<hr>
+<div class="fs-docs-content">
+This action is triggered after the Remote Portal connection is removed. This action is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$userId' (int) ID of the current user
+
+**Usage**
+
+```php
+add_action('fluent_support/remote_portal_disconnected', function ($userId) {
+     // ...do something
+}, 10, 1);
+```
+
+**Reference**
+
+`do_action('fluent_support/remote_portal_disconnected', $userId)`
+
+This action is located in <br>
+`fluent-support-pro/app/Http/Controllers/RemotePortalController.php`, `fluent-support-pro/app/Http/Controllers/RemotePortalSettingsController.php`
+</div>
+</explain-block>

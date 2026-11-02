@@ -19,7 +19,7 @@ add_action('fluent_support/before_signup_validation', function ($formData) {
 `do_action('fluent_support/before_signup_validation', $formData)`
 
 This action is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthController.php`
 </div>
 </explain-block>
 
@@ -45,7 +45,7 @@ add_action('fluent_support/after_signup_validation', function ($formData) {
 `do_action('fluent_support/after_signup_validation', $formData)`
 
 This action is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthController.php`
 </div>
 </explain-block>
 
@@ -67,7 +67,7 @@ add_action('fluent_support/after_creating_user', function () {
 `do_action('fluent_support/after_creating_user')`
 
 This action is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthController.php`
 </div>
 </explain-block>
 
@@ -94,7 +94,7 @@ add_action('fluent_support/before_creating_user', function ($userName, $password
 `do_action('fluent_support/before_creating_user', $userName, $password, $email)`
 
 This action is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthService.php`
 </div>
 </explain-block>
 
@@ -119,7 +119,7 @@ add_action('fluent_support/before_updating_user', function ($data) {
 `do_action('fluent_support/before_updating_user', $data)`
 
 This action is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthService.php`
 </div>
 </explain-block>
 
@@ -144,7 +144,7 @@ add_action('fluent_support/after_updating_user', function ($data) {
 `do_action('fluent_support/after_updating_user', $data)`
 
 This action is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthService.php`
 </div>
 </explain-block>
 
@@ -169,7 +169,7 @@ add_action('fluent_support/before_logging_in_user', function ($userId) {
 `do_action('fluent_support/before_logging_in_user', $userId)`
 
 This action is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthService.php`
 </div>
 </explain-block>
 
@@ -194,7 +194,7 @@ add_action('fluent_support/after_logging_in_user', function ($userId) {
 `do_action('fluent_support/after_logging_in_user', $userId)`
 
 This action is located in <br>
-`fluent-support/app/Http/Controllers/AuthController.php`
+`fluent-support/app/Modules/Auth/AuthService.php`
 </div>
 </explain-block>
 
@@ -204,11 +204,7 @@ This action is located in <br>
 <div class="fs-docs-content">
 This action is triggered after a new customer record is created. It fires only when the row was actually saved, so a failed insert never triggers it.
 
-It fires from three places:
-
-- `Customer::maybeCreateCustomer()`, used by the customer portal, email piping, importers and the Fluent Forms and FluentCRM integrations whenever a ticket comes from an unknown email
-- `TicketController::createTicket()`, when an agent creates a ticket in the admin for a new customer
-- the MCP `create-ticket` tool (`TicketTools::createTicket()`), when an AI agent opens a ticket for an email that has no customer yet
+It fires from one place, `CustomerService::findOrCreate()`, which every path that creates a customer goes through: the customer portal, email piping, ticket importers, the Fluent Forms and FluentCRM integrations, an agent creating a ticket in the admin for a new customer, and the MCP `create-ticket` tool. The deprecated `Customer::maybeCreateCustomer()` calls it too.
 
 **Parameters**
 - '$customer' (object) Customer data
@@ -225,9 +221,7 @@ add_action('fluent_support/customer_created', function ($customer) {
 `do_action('fluent_support/customer_created', $customer)`
 
 This action is located in <br>
-`fluent-support/app/Models/Customer.php`,<br>
-`fluent-support/app/Http/Controllers/TicketController.php`,<br>
-`fluent-support/app/Modules/MCP/Tools/TicketTools.php`
+`fluent-support/app/Modules/Customers/CustomerService.php`
 </div>
 
 </explain-block>

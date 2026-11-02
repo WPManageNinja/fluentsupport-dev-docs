@@ -298,7 +298,8 @@ add_filter('fluent_support/custom_field_types', function($fieldTypes) {
 <b>`$fieldTypes` is used here as an illustrative variable to represent the raw array value found in the main filter, demonstrating the custom form field types.</b>
 
 This filter is located in <br>
-`fluent-support-pro/app/Services/CustomFieldsService.php`
+`fluent-support/app/Services/Integrations/FluentForm/FeedIntegration.php`,<br>
+`fluent-support-pro/app/Modules/CustomFields/CustomFields.php`
 </div>
 </explain-block>
 
@@ -442,7 +443,7 @@ add_filter('fluent_support/slack_api_data', function($data, $message) {
 
 
 This filter is located in <br>
-`fluent-support-pro/app/Services/Integrations/Slack/SlackApi.php`
+`fluent-support-pro/app/Modules/Chat/Slack.php`
 </div>
 </explain-block>
 
@@ -500,7 +501,7 @@ add_filter('fluent_support/outgoing_webhook_data', function($data, $action, $tic
 
 
 This filter is located in <br>
-`fluent-support-pro/app/Services/Workflow/ActionRunner.php`
+`fluent-support-pro/app/Modules/Workflows/Actions/OutgoingWebhook.php`
 </div>
 </explain-block>
 
@@ -722,7 +723,7 @@ add_filter('fluent_support/workflow_conditions', function($conditions) {
 `apply_filters('fluent_support/workflow_conditions', $conditions)`
 
 This filter is located in <br>
-`fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`
+`fluent-support-pro/app/Modules/Workflows/Conditions.php`
 </div>
 </explain-block>
 
@@ -750,7 +751,90 @@ add_filter('fluent_support/workflow_actions', function($actions, $workFlow) {
 `apply_filters('fluent_support/workflow_actions', $actions, $workFlow)`
 
 This filter is located in <br>
-`fluent-support-pro/app/Services/Workflow/WorkflowHelper.php`
+`fluent-support-pro/app/Modules/Workflows/WorkflowController.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_workflow_trigger_classes">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to register workflow trigger classes. Each class must extend `FluentSupportPro\App\Modules\Workflows\Triggers\BaseTrigger`; the order is the order shown in the workflow editor. This filter is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$classes' (array) Trigger class names
+
+**Usage**
+
+```php
+add_filter('fluent_support/workflow_trigger_classes', function ($classes) {
+    // ...do something
+    return $classes;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/workflow_trigger_classes', [...])`
+
+This filter is located in <br>
+`fluent-support-pro/app/Modules/Workflows/Runner.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_workflow_action_classes">
+<hr>
+<div class="fs-docs-content">
+This filter hook allows you to register workflow action classes. Each class must extend `FluentSupportPro\App\Modules\Workflows\Actions\BaseAction`; the order is the order shown in the workflow editor. This filter is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$classes' (array) Action class names
+
+**Usage**
+
+```php
+add_filter('fluent_support/workflow_action_classes', function ($classes) {
+    // ...do something
+    return $classes;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/workflow_action_classes', [...])`
+
+This filter is located in <br>
+`fluent-support-pro/app/Modules/Workflows/Runner.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_workflow_condition_matches">
+<hr>
+<div class="fs-docs-content">
+This filter hook lets you decide whether a single workflow condition row matches. Return `true` or `false` to decide it; return `null` to leave it to the built-in rules. This filter is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$matches' (bool|null) `null` by default
+- '$row' (array) The condition row: `data_key` (`provider.property`), `data_operator`, `data_value`
+- '$context' (array) The trigger context: `ticket`, `customer` when known, plus trigger-specific data
+
+**Usage**
+
+```php
+add_filter('fluent_support/workflow_condition_matches', function ($matches, $row, $context) {
+    // ...do something
+    return $matches;
+}, 10, 3);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/workflow_condition_matches', null, $row, $context)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Modules/Workflows/Conditions.php`
 </div>
 </explain-block>
 
@@ -783,18 +867,18 @@ This filter is located in <br>
 <explain-block title="fluent_support_verify_webhook_signature_by_platform">
 <hr>
 <div class="fs-docs-content">
-This filter hook allows you to cryptographically verify an incoming Telegram or Slack webhook payload before it's processed. `{platform}` is `telegram` or `slack`. When no callback is registered for a platform, verification is skipped and the existing token-based validation is used instead.
+This filter hook allows you to override the signature check on an incoming Telegram or Slack webhook before it's processed. `{platform}` is `telegram` or `slack`. The default value is the result of Fluent Support Pro's built-in check: Telegram's `X-Telegram-Bot-Api-Secret-Token` header, or Slack's signing secret (`X-Slack-Signature`). The built-in check passes when no secret is configured. Returning `false` rejects the request with a 403. This filter is available in Fluent Support Pro only.
 
 **Parameters**
 
-- `$verified` (boolean) Default `false`
+- `$verified` (boolean) Result of the built-in signature check
 - `$request` (object) The current request, containing the raw webhook payload
 
 **Usage**
 
 ```php
 add_filter('fluent_support/verify_webhook_signature_telegram', function ($verified, $request) {
-    return my_verify_telegram_signature($request);
+    return $verified && my_verify_telegram_signature($request);
 }, 10, 2);
 ```
 
@@ -802,11 +886,11 @@ add_filter('fluent_support/verify_webhook_signature_telegram', function ($verifi
 
 **Reference**
 
-`apply_filters('fluent_support/verify_webhook_signature_' . $platform, false, $request)`
+`apply_filters('fluent_support/verify_webhook_signature_telegram', $telegram->verifySignature(), $request)`<br>
+`apply_filters('fluent_support/verify_webhook_signature_slack', $slack->verifySignature($request->getContent()), $request)`
 
 This filter is located in <br>
-`fluent-support/app/Http/Controllers/ChatMessageParserController.php` (fired from Core),<br>
-`fluent-support-pro/app/Services/Integrations/WebhookSignatureVerifier.php` (Pro-side implementation)
+`fluent-support-pro/app/Modules/Chat/ChatController.php`
 </div>
 </explain-block>
 
@@ -832,7 +916,7 @@ add_filter('fluent_support/ai_audit_batch_limit', function ($limit) {
 `apply_filters('fluent_support/ai_audit_batch_limit', 200)`
 
 This filter is located in <br>
-`fluent-support-pro/app/Modules/Reporting/AuditService.php`
+`fluent-support-pro/app/Modules/TicketAudit/AuditController.php`
 </div>
 </explain-block>
 
@@ -858,7 +942,7 @@ add_filter('fluent_support/generate_ticket_audit', function ($prompt) {
 `apply_filters('fluent_support/generate_ticket_audit', $prompt)`
 
 This filter is located in <br>
-`fluent-support-pro/app/Modules/Reporting/AuditService.php`
+`fluent-support-pro/app/Modules/TicketAudit/AuditController.php`
 </div>
 </explain-block>
 
@@ -989,7 +1073,7 @@ add_filter('fluent_support/telegram_request_timeout', function ($timeout) {
 `apply_filters('fluent_support/telegram_request_timeout', 10)`
 
 This filter is located in <br>
-`fluent-support-pro/app/Services/Integrations/Telegram/TelegramApi.php`
+`fluent-support-pro/app/Modules/Chat/Telegram.php`
 </div>
 </explain-block>
 
@@ -1246,5 +1330,62 @@ add_filter('fluent_support_pro/storage_stream_threshold', function ($bytes) {
 
 This filter is located in <br>
 `fluent-support-pro/app/Services/FileUploadIntegration/Support/Http.php`
+</div>
+</explain-block>
+
+### Scheduled Reply Filters
+
+<explain-block title="fluent_support_scheduled_reply_max_days">
+<hr>
+<div class="fs-docs-content">
+This filter hook sets how many days ahead a reply can be scheduled (since 2.5.0). This filter is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$maxDays' (int) Maximum days ahead. Default `90`
+
+**Usage**
+
+```php
+add_filter('fluent_support/scheduled_reply_max_days', function ($maxDays) {
+    // ...do something
+    return $maxDays;
+}, 10, 1);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/scheduled_reply_max_days', 90)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Modules/ScheduledReplies/ScheduledReplyService.php`
+</div>
+</explain-block>
+
+<explain-block title="fluent_support_remote_portal_ssl_verify">
+<hr>
+<div class="fs-docs-content">
+This filter hook sets whether the remote site's SSL certificate is verified for Remote Portal requests. The default is `true`, except on a site marked as local or development (`WP_ENVIRONMENT_TYPE`). This filter is available in Fluent Support Pro only.
+
+**Parameters**
+
+- '$verify' (bool) Whether to verify the certificate
+- '$url' (string) The remote URL being requested
+
+**Usage**
+
+```php
+add_filter('fluent_support/remote_portal_ssl_verify', function ($verify, $url) {
+    // ...do something
+    return $verify;
+}, 10, 2);
+```
+
+**Reference**
+
+`apply_filters('fluent_support/remote_portal_ssl_verify', $verify, $url)`
+
+This filter is located in <br>
+`fluent-support-pro/app/Modules/RemotePortal/RemoteSiteClient.php`
 </div>
 </explain-block>

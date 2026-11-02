@@ -147,7 +147,7 @@ add_filter('fluent_support/ticket_close_internal_note', function ($internalNote,
 
 
 This filter is located in <br>
-`fluent-support/app/Services/Tickets/ResponseService.php`
+`fluent-support/app/Services/Tickets/TicketService.php`
 </div>
 </explain-block>
 

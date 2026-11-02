@@ -202,7 +202,7 @@ add_filter('fluent_support/should_send_notification', function ($shouldSend, $ch
 ```
 
 This filter is located in <br>
-`fluent-support-pro/app/Services/Integrations/ChatNotificationIntegration.php`,<br>
-`fluent-support/app/Hooks/Handlers/EmailNotificationHandler.php`
+`fluent-support/app/Hooks/Handlers/EmailNotificationHandler.php`,<br>
+`fluent-support-pro/app/Modules/Chat/Channel.php`
 </div>
 </explain-block>
